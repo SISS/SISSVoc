@@ -1,0 +1,238 @@
+## Common prefixes.
+@prefix api:     <http://purl.org/linked-data/api/vocab#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <hhttp://def.seegrid.csiro.au/isotc211//owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+## deployment specific prefixes
+@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic+types/> .
+@prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
+@prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
+@prefix gml31:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.1/> .
+@prefix gml32:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.2/> .
+@prefix gtrs:    <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
+@prefix gts:     <http://resource.geosciml.org/schema/cgi/gts/3.0/> .
+@prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
+@prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
+@prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
+@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal+objects/> .
+@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal+reference+system/> .
+
+## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
+
+svoc:isc a api:API 
+# generic SISSvoc stuff
+	; api:maxPageSize "50"
+	; api:defaultPageSize "10" 
+	; api:defaultFormatter [ 
+			a api:XsltFormatter
+			; api:name 'html'
+			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
+			; api:mimeType 'text/html' 
+	] 
+	; api:endpoint
+		svoc:conceptSchemeEndpoint , 		
+		svoc:collectionEndpoint , 	
+		svoc:conceptListEndpoint , 
+		svoc:conceptByLabelEndpoint , 
+		svoc:conceptByNotationEndpoint , 
+		svoc:URIEndpoint 
+	; api:defaultViewer api:describeViewer 
+# deployment specific stuff
+	; rdfs:label "International Stratigraphic Chart API"@en 
+	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
+	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
+	.
+
+#VIEWERS
+
+svoc:viewerNone a api:Viewer 
+    ; api:name "none"
+    .
+
+svoc:viewerConceptShort a api:Viewer 
+    ; api:name "conceptShort" 
+    ; api:property skos:prefLabel
+    .
+
+
+#ENDPOINTS
+
+# can we factor out the /isc element from the paths here, to make it a generic SISSvoc configuration?
+
+## 1. List of concept schemes - basic-view 
+svoc:conceptSchemeEndpoint a api:ListEndpoint 
+		; rdfs:comment "All concept-schemes" 
+		; api:uriTemplate "/isc/conceptscheme" 
+		; api:exampleRequestPath  "/isc/conceptscheme"
+		; api:selector [	api:filter "type=ConceptScheme" ] 
+		.
+		
+## 2. List of concept collections - basic-view 	 
+svoc:collectionEndpoint a api:ListEndpoint 
+		; rdfs:comment "All collections" 
+		; api:uriTemplate "/isc/collection" 
+		; api:exampleRequestPath  "/isc/collection"
+		; api:selector [
+			api:where " {?item rdf:type ?type ; ?label ?l  } FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) FILTER ( ?label = dc:title || ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel )";
+		] 
+		.
+		
+## 3. List of concepts - basic-view 
+svoc:conceptListEndpoint a api:ListEndpoint 
+		; rdfs:comment "All concepts" 
+		; api:uriTemplate "/isc/concept" 
+		; api:exampleRequestPath  "/isc/concept"
+		; api:selector [ api:filter "type=Concept" ] 
+		; api:defaultViewer svoc:viewerConceptShort 
+#		; api:viewer svoc:viewerGenericShort 
+#		; api:viewer svoc:viewerNone 
+		.
+		
+## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel contains the quoted text,any language - basic-view
+svoc:conceptByLabelEndpoint a api:ListEndpoint 
+		; api:uriTemplate "/isc/concept?label={text}" 
+		; api:exampleRequestPath  "/isc/concept?label=Aalen" 
+		; api:selector [
+				api:where " { ?item ?label ?lbl ;skos:prefLabel ?l .}  FILTER ( ?label = dc:title|| ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel )FILTER regex(str(?l),?text )  "
+			; api:orderBy "STR(?item)"
+		] 		
+		.
+		
+## 5. List of concepts where the skos:notation is exactly the quoted text - basic-view 	 
+svoc:conceptByNotationEndpoint a api:ListEndpoint 
+		; api:uriTemplate "/isc/concept?notation={notation}" 
+		; api:exampleRequestPath  "/isc/concept?notation=a1.1.2.2.2.4"
+		; api:selector [
+				api:where " {?item skos:notation ?n .} FILTER regex(str(?n),?notation ) "
+			; api:orderBy "STR(?item)"
+		]
+		.
+		
+## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
+svoc:URIEndpoint a api:ItemEndpoint
+		; api:uriTemplate  "/isc/resource?uri={uri}" 
+		; api:itemTemplate  "{uri}"
+		; api:exampleRequestPath  "/isc/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Aalenian"
+		; api:defaultViewer  api:describeViewer
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
+		.
+
+
+#
+# VOCABULARY
+#
+# The vocabulary declarations say which properties can be used in queries
+# and by what short name those properties are known. If property P with short
+# name Q has range type T, then a query parameters Q=V is translated to
+# a WHERE clause fragment ?item P V' where V' is a literal which is V
+# with type T. This is especially important for numbers and booleans.
+# 
+
+## RDF
+rdf:type
+    api:label "type" ; 
+    rdfs:range rdfs:Class .
+  
+## RDFS
+rdfs:label 
+    api:label "label" ; 
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:comment 
+    api:label "comment" ; 
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+## SKOS
+skos:Concept
+						api:label "Concept" ;
+             a         rdfs:Class .
+             
+skos:ConceptScheme 
+             api:label "ConceptScheme" ;
+             a         rdfs:Class .
+
+skos:prefLabel
+         	api:label "name" ;
+         	api:structured "true"^^xsd:boolean;
+            a           rdf:Property .
+            
+skos:altLabel
+            api:label "alias" ; 
+            api:multiValued true ;
+            api:structured "true"^^xsd:boolean;
+            a         rdf:Property  .
+            
+skos:note
+						api:label "note" ;
+            api:structured "true"^^xsd:boolean;
+            a         rdf:Property  .
+            
+skos:notation
+						a owl:DatatypeProperty; 
+						api:label "notation"  .
+
+skos:scopeNote
+						api:label "scopeNote" ;
+            api:structured "true"^^xsd:boolean;
+            a   rdf:Property  .
+            
+skos:topConceptOf
+						api:label "topConceptOf" ;
+            rdfs:range      skos:ConceptScheme .
+            
+skos:hasTopConcept
+						api:label "topConcept" ; 
+						api:multiValued true ;
+            rdfs:range      skos:Concept .
+            
+skos:broader
+							api:label "broader" ; 
+							api:multiValued true ;
+             rdfs:range      skos:Concept .
+
+skos:narrower
+							api:label "narrower" ; 
+							api:multiValued true ;
+             rdfs:range      skos:Concept .
+            
+skos:broaderTransitive
+							api:label "broaderTransitive" ; 
+							api:multiValued true ;
+             rdfs:range      skos:Concept .
+
+skos:narrowerTransitive
+							api:label "narrowerTransitive" ; 
+							api:multiValued true ;
+             rdfs:range      skos:Concept .
+            
+skos:definition	
+							api:label "definition" ; 
+							api:multiValued true .
+	
+skos:inScheme
+						api:label "inScheme" ; 
+						rdfs:domain	skos:Concept ;
+            rdfs:range      skos:ConceptScheme .
+
+skos:member
+						api:label "member" ; 
+						api:multiValued true ;
+						rdfs:domain	skos:Collection ;
+            rdfs:range      skos:Concept .
+
+skos:memberList
+						api:label "memberList" ; 
+						rdfs:domain	skos:OrderedCollection ;
+            rdfs:range      skos:Concept .
+
+
