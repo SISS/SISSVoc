@@ -59,7 +59,7 @@ svoc:viewerNone a api:Viewer
 
 svoc:viewerConceptShort a api:Viewer 
     ; api:name "conceptShort" 
-#    ; api:property skos:prefLabel
+    ; api:property skos:prefLabel, rdfs:comment
     .
 
 
