@@ -80,7 +80,7 @@ svoc:collectionEndpoint a api:ListEndpoint
 		; rdfs:comment "All collections" 
 		; api:uriTemplate "/test/collection" 
 		; api:exampleRequestPath  "/test/collection"
-		; api:selector [ api:where " { ?item rdf:type ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) } " ] 
+		; api:selector [ api:where " ?item rdf:type ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -97,7 +97,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?label={text}" 
 		; api:exampleRequestPath  "/test/concept?label=Aalen" 
 		; api:selector [
-				api:where " { { ?item rdfs:label ?l .} UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex(str(?l),(?i)?text ) } "
+				api:where " { ?item rdfs:label ?l .} UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex( str(?l) , ?text ) "
 		] 		
 		.
 		
