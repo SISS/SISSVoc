@@ -80,9 +80,7 @@ svoc:collectionEndpoint a api:ListEndpoint
 		; rdfs:comment "All collections" 
 		; api:uriTemplate "/test/collection" 
 		; api:exampleRequestPath  "/test/collection"
-		; api:selector [
-			api:where " {?item rdf:type ?type ; ?label ?l  } FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) FILTER ( ?label = dc:title || ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel )";
-		] 
+		; api:selector [ api:where " { ?item rdf:type ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) } " ] 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -92,8 +90,6 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; api:exampleRequestPath  "/test/concept"
 		; api:selector [ api:filter "type=Concept" ] 
 		; api:defaultViewer svoc:viewerConceptShort 
-#		; api:viewer svoc:viewerGenericShort 
-#		; api:viewer svoc:viewerNone 
 		.
 		
 ## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel contains the quoted text,any language - basic-view
@@ -121,7 +117,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={uri}" 
 		; api:itemTemplate  "{uri}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Aalenian"
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  api:describeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
