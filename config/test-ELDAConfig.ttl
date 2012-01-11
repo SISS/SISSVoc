@@ -72,7 +72,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; rdfs:comment "All concept-schemes" 
 		; api:uriTemplate "/test/conceptscheme" 
 		; api:exampleRequestPath  "/test/conceptscheme"
-		; api:selector [	api:filter "type=ConceptScheme" ] 
+#		; api:selector [	api:filter "type=ConceptScheme" ] 
+		; api:selector [	api:where " ?item a skos:ConceptScheme" ] 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
@@ -80,7 +81,7 @@ svoc:collectionEndpoint a api:ListEndpoint
 		; rdfs:comment "All collections" 
 		; api:uriTemplate "/test/collection" 
 		; api:exampleRequestPath  "/test/collection"
-		; api:selector [ api:where " ?item rdf:type ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
+		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -88,16 +89,19 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; rdfs:comment "All concepts" 
 		; api:uriTemplate "/test/concept" 
 		; api:exampleRequestPath  "/test/concept"
-		; api:selector [ api:filter "type=Concept" ] 
+#		; api:selector [ api:filter "type=Concept" ] 
+		; api:selector [ api:where " ?item a skos:Concept " ] 
 		; api:defaultViewer svoc:viewerConceptShort 
 		.
 		
-## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel contains the quoted text,any language - basic-view
+## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel matches the quoted text,any language - basic-view
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?label={text}" 
 		; api:exampleRequestPath  "/test/concept?label=Aalen" 
 		; api:selector [
-				api:where " { ?item rdfs:label ?l .} UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex( str(?l) , ?text ) "
+#				api:where " { ?item rdfs:label ?l } UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex( str(?l) , ?text ) "
+#				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text ) "
+				api:where " ?item skos:prefLabel ?l . FILTER ( ?l = ?text ) "
 		] 		
 		.
 		
@@ -105,8 +109,9 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?notation={notation}" 
 		; api:exampleRequestPath  "/test/concept?notation=a1.1.2.2.2.4"
-		; api:selector [
-				api:where " {?item skos:notation ?n .} FILTER regex(str(?n),?notation ) "
+		; api:selector [ 
+#				api:where " ?item skos:notation ?n . FILTER regex(str(?n),?notation ) "
+				api:where " ?item skos:notation ?notation "
 			; api:orderBy "STR(?item)"
 		]
 		.
