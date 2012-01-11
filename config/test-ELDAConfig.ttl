@@ -121,7 +121,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={uri}" 
 		; api:itemTemplate  "{uri}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Aalenian"
-		; api:defaultViewer  api:describeViewer
+		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
