@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Elda -- an implementation of the Linked Data API</title>
+<link href="style.css" type="text/css" rel="stylesheet"></link>
+</head>
+<body>
+
+<div class="main">
+
+<div class="heading">
+<a href="http://www.epimorphics.com">
+<img class="logo" src="epilogo-240.png">
+</a>
+<h1>Elda</h1>
+<h2>An implementation of the Linked Data API</h2>
+</div>
+
+<p>
+RESTful vocabulary-service interface, following the Linked Data API.
+</p>
+
+<h1>
+URI Templates Available :
+</h1>
+<menu>
+<li type="circle"><a href="api/isc/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Ludlow">Query resource identified by a URI</a></li>
+<br>
+<li type="circle"><a href="api/isc/conceptscheme"> List of concept schemes - basic-view </a></li>
+<br>
+<li type="circle"><a href="api/isc/collection"> List of concept collections - basic-view  </a></li>
+<br>
+<li type="circle"><a href="api/isc/concept">List of concepts - basic-view  </a></li>
+<br>
+<li type="circle"><a href="api/isc/concept?label=Aalen">List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel contains the quoted text,
+any language - basic-view </a></li>
+<br>
+<li type="circle"><a href="api/isc/concept?notation=a1.1.2.2.2.4 ">List of concepts where the skos:notation is exactly the quoted text - basic-view </a></li>
+
+</menu>
+<h1>
+Format negotiation using HTTP Accept Header :
+</h1>
+<p><b>Default format is HTML</b></p>
+<p>
+Format negotiation can be achieved by appending the request with :
+<li type="circle"><b>.json </b>(should return JSON formatted document) > <i> Example </i> <a href="api/isc/concept.json"> .json </a></li>
+<li type="circle"><b>.ttl </b>(should return Turtle formatted document) > <i> Example </i> <a href="api/isc/concept.ttl"> .ttl </a></li> 
+<li type="circle"><b> .rdf </b> (should return RDF/XML formatted document) > <i> Example </i> <a href="api/isc/concept.rdf"> .rdf </a></li> 
+<br>
+<br>
+
+</p>
+
+<p><i>Re-Engineering the SISSVoc Using Linked Data API :</i></p><a href = "https://www.seegrid.csiro.au/wiki/bin/view/Siss/VocabularyService3"> For detailed documentation click here:</a>
+
+
+</body>
+</html>
