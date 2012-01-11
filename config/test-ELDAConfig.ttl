@@ -97,8 +97,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?label={text}" 
 		; api:exampleRequestPath  "/test/concept?label=Aalen" 
 		; api:selector [
-				api:where " { { ?item rdfs:label ?l .} UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex(str(?l),"(?i){text}" ) } "
-			; api:orderBy "STR(?item)"
+				api:where " { { ?item rdfs:label ?l .} UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex(str(?l),(?i)?text ) } "
 		] 		
 		.
 		
