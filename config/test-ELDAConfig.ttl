@@ -89,11 +89,11 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; rdfs:comment "All concepts" 
 		; api:uriTemplate "/test/concept" 
 		; api:exampleRequestPath  "/test/concept"
-#		; api:selector [ api:filter "type=Concept" ] 
-		; api:selector [ 
-			api:where " ?item a skos:Concept " 
-			; api:orderBy "STR(?item)"
-		] 
+		; api:selector [ api:filter "type=Concept" ] 
+#		; api:selector [ 
+#			api:where " ?item a skos:Concept " 
+#			; api:orderBy "STR(?item)"
+#		] 
 		; api:defaultViewer svoc:viewerConceptShort 
 		.
 		
