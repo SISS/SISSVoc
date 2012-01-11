@@ -74,6 +74,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; api:exampleRequestPath  "/test/conceptscheme"
 #		; api:selector [	api:filter "type=ConceptScheme" ] 
 		; api:selector [	api:where " ?item a skos:ConceptScheme" ] 
+		; api:defaultViewer  api:labelledDescribeViewer
 		.
 		
 ## 2. List of concept collections - basic-view 	 
@@ -82,6 +83,7 @@ svoc:collectionEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/collection" 
 		; api:exampleRequestPath  "/test/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
+		; api:defaultViewer  api:labelledDescribeViewer
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -106,6 +108,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 #				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text ) "
 				api:where " ?item skos:prefLabel ?l . FILTER ( ?l = ?text ) "
 		] 		
+		; api:defaultViewer svoc:viewerConceptShort 
 		.
 		
 ## 5. List of concepts where the skos:notation is exactly the quoted text - basic-view 	 
@@ -117,6 +120,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 				api:where " ?item skos:notation ?notation "
 			; api:orderBy "STR(?item)"
 		]
+		; api:defaultViewer svoc:viewerConceptShort 
 		.
 		
 ## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
