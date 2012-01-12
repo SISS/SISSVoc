@@ -46,7 +46,7 @@ svoc:test a api:API
 		svoc:URIEndpoint 
 	; api:defaultViewer api:describeViewer 
 # deployment specific stuff
-	; rdfs:label "International Stratigraphic Chart API"@en 
+	; rdfs:label "TEST - International Stratigraphic Chart API"@en 
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
 	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
 	.
@@ -91,11 +91,11 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; rdfs:comment "All concepts" 
 		; api:uriTemplate "/test/concept" 
 		; api:exampleRequestPath  "/test/concept"
-		; api:selector [ api:filter "type=Concept" ] 
-#		; api:selector [ 
-#			api:where " ?item a skos:Concept " 
+#		; api:selector [ api:filter "type=Concept" ] 
+		; api:selector [ 
+			api:where " ?item a skos:Concept " 
 #			; api:orderBy "STR(?item)"
-#		] 
+		] 
 		; api:defaultViewer svoc:viewerConceptShort 
 		.
 		
