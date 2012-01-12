@@ -74,7 +74,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/conceptscheme" 
 		; api:exampleRequestPath  "/test/conceptscheme"
 #		; api:selector [	api:filter "type=ConceptScheme" ] 
-		; api:selector [	api:where " ?item a skos:ConceptScheme" ] 
+		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
 		; api:defaultViewer  api:labelledDescribeViewer
 		.
 		
@@ -85,6 +85,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 		; api:exampleRequestPath  "/test/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -93,9 +94,10 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept" 
 		; api:exampleRequestPath  "/test/concept"
 		; api:selector [ 
-				api:where " ?item a skos:Concept " 
+				api:where " ?item a skos:Concept . " 
 		] 
 		; api:defaultViewer svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
 		.
 		
 ## 4. List of concepts where a label matches the text, in English 
@@ -107,6 +109,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
 		.
 		
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
@@ -118,7 +121,9 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
 		.
+
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; rdfs:comment "Exact match to value of notation property"
@@ -129,6 +134,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
 		.
 		
 ## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
