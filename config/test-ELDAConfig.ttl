@@ -42,6 +42,7 @@ svoc:test a api:API
 		svoc:conceptCollectionEndpoint , 	
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
+		svoc:conceptByLabelLooseEndpoint ,
 		svoc:conceptByNotationEndpoint , 
 		svoc:URIEndpoint 
 	; api:defaultViewer api:describeViewer 
@@ -91,30 +92,35 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; rdfs:comment "All concepts" 
 		; api:uriTemplate "/test/concept" 
 		; api:exampleRequestPath  "/test/concept"
-#		; api:selector [ api:filter "type=Concept" ] 
 		; api:selector [ 
-			api:where " ?item a skos:Concept " 
-#			; api:orderBy "STR(?item)"
+				api:where " ?item a skos:Concept " 
 		] 
 		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
-## 4. List of concepts where the label matches the quoted text, in English 
+## 4. List of concepts where the label matches the text, in English 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
-		; api:uriTemplate "/test/concept?label={text}" 
-		; api:exampleRequestPath  "/test/concept?label=Aalen" 
+		; api:uriTemplate "/test/concept?anylabel={text}" 
+		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
 		; api:selector [
-#				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text ) "
-#				api:where " ?item skos:prefLabel ?l . FILTER regex( str(?l) , ?text ) "
-				api:where " ?item skos:prefLabel ?l . FILTER ( ?l=?text@en ) "
+				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
+## 4a. List of concepts where the label contains the text, any language, case-insensitive 
+svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
+		; api:uriTemplate "/test/concept?labelcontains={text}" 
+		; api:exampleRequestPath  "/test/concept?labelcontains=Cambrian" 
+		; api:selector [
+				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , (?i)?text ) "
+		] 		
+		; api:defaultViewer svoc:shortConceptViewer 
+		.
 ## 5. List of concepts where the skos:notation is exactly the quoted text  	 
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?notation={notation}" 
-		; api:exampleRequestPath  "/test/concept?notation=a1.1.2.2.2.4"
+		; api:exampleRequestPath  "/test/concept?notation=a1.1.3.6"
 		; api:selector [ 
 				api:where " ?item skos:notation ?n . FILTER regex( str(?n),?notation ) "
 #			; api:orderBy "STR(?item)"
@@ -126,7 +132,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={uri}" 
 		; api:itemTemplate  "{uri}"
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Aalenian"
+		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
