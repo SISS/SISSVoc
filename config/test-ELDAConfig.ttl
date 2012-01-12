@@ -1,4 +1,4 @@
-## Common prefixes.
+## Common prefixes - don't change these.
 @prefix api:     <http://purl.org/linked-data/api/vocab#> .
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -11,7 +11,7 @@
 @prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-## deployment specific prefixes
+## instance specific prefixes - extra namespaces that appear in this vocabulary - adjust to taste
 @prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic+types/> .
 @prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
 @prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
@@ -39,13 +39,13 @@ svoc:test a api:API
 	] 
 	; api:endpoint
 		svoc:conceptSchemeEndpoint , 		
-		svoc:collectionEndpoint , 	
+		svoc:conceptCollectionEndpoint , 	
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByNotationEndpoint , 
 		svoc:URIEndpoint 
 	; api:defaultViewer api:describeViewer 
-# deployment specific stuff
+# deployment specific stuff - adjust to taste
 	; rdfs:label "TEST - International Stratigraphic Chart API"@en 
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
 	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
@@ -57,7 +57,7 @@ svoc:viewerNone a api:Viewer
     ; api:name "none"
     .
 
-svoc:viewerConceptShort a api:Viewer 
+svoc:shortConceptViewer a api:Viewer 
     ; api:name "conceptShort" 
     ; api:property skos:prefLabel
     .
@@ -78,8 +78,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 		.
 		
 ## 2. List of concept collections - basic-view 	 
-svoc:collectionEndpoint a api:ListEndpoint 
-		; rdfs:comment "All collections" 
+svoc:conceptCollectionEndpoint a api:ListEndpoint 
+		; rdfs:comment "All concept collections" 
 		; api:uriTemplate "/test/collection" 
 		; api:exampleRequestPath  "/test/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
@@ -96,10 +96,10 @@ svoc:conceptListEndpoint a api:ListEndpoint
 			api:where " ?item a skos:Concept " 
 #			; api:orderBy "STR(?item)"
 		] 
-		; api:defaultViewer svoc:viewerConceptShort 
+		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
-## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel matches the quoted text,any language - basic-view
+## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel matches the quoted text, any language 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?label={text}" 
 		; api:exampleRequestPath  "/test/concept?label=Aalen" 
@@ -108,19 +108,19 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 #				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text ) "
 				api:where " ?item skos:prefLabel ?l . FILTER ( ?l = ?text ) "
 		] 		
-		; api:defaultViewer svoc:viewerConceptShort 
+		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
-## 5. List of concepts where the skos:notation is exactly the quoted text - basic-view 	 
+## 5. List of concepts where the skos:notation is exactly the quoted text  	 
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?notation={notation}" 
 		; api:exampleRequestPath  "/test/concept?notation=a1.1.2.2.2.4"
 		; api:selector [ 
 #				api:where " ?item skos:notation ?n . FILTER regex(str(?n),?notation ) "
 				api:where " ?item skos:notation ?notation "
-			; api:orderBy "STR(?item)"
+#			; api:orderBy "STR(?item)"
 		]
-		; api:defaultViewer svoc:viewerConceptShort 
+		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
 ## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
@@ -169,12 +169,12 @@ skos:ConceptScheme
              a         rdfs:Class .
 
 skos:prefLabel
-         	api:label "name" ;
+         	api:label "prefLabel" ;
          	api:structured "true"^^xsd:boolean;
             a           rdf:Property .
             
 skos:altLabel
-            api:label "alias" ; 
+            api:label "altLabel" ; 
             api:multiValued true ;
             api:structured "true"^^xsd:boolean;
             a         rdf:Property  .
@@ -198,7 +198,7 @@ skos:topConceptOf
             rdfs:range      skos:ConceptScheme .
             
 skos:hasTopConcept
-						api:label "topConcept" ; 
+						api:label "hasTopConcept" ; 
 						api:multiValued true ;
             rdfs:range      skos:Concept .
             
