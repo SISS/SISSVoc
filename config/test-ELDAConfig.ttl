@@ -141,8 +141,8 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
 svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource" 
-		; api:uriTemplate  "/test/resource?uri={uri}" 
-		; api:itemTemplate  "{uri}"
+		; api:uriTemplate  "/test/resource?uri={URI}" 
+		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
@@ -151,11 +151,11 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## 7. List of concepts narrower than the one identified by this URI 
 svoc:narrowerThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "Report concepts narrower than the one identified"
-		; api:uriTemplate "/test/concept/narrower?uri={uri}" 
+		; api:uriTemplate "/test/concept/narrower?uri={URI}" 
 		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " \<?uri\> skos:narrower ?item . "
-#			; api:orderBy "STR(?item)"
+				api:where " ?URI skos:narrower ?item . "
+##############			SPARQL requires a full URI to be contained in <carets>. Not clear how to escape them in previous expression. 
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
