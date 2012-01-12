@@ -152,6 +152,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 svoc:narrowerThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "Report concepts narrower than the one identified"
 		; api:uriTemplate "/test/concept/narrower?uri={URI}" 
+		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
 				api:where " ?URI skos:narrower ?item . "
