@@ -154,7 +154,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept/narrower?uri={uri}" 
 		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " ?uri skos:narrower ?item . "
+				api:where " <?uri> skos:narrower ?item . "
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
