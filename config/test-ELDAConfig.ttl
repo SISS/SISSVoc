@@ -115,7 +115,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/test/concept?labelcontains=Cambrian" 
 		; api:selector [
-				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , i ) "
+				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , "i" ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		.
