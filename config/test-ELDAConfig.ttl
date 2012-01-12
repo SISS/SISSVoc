@@ -99,14 +99,14 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; api:defaultViewer svoc:shortConceptViewer 
 		.
 		
-## 4. List of concepts where the rdfs:label, skos:prefLabel or skos:altLabel matches the quoted text, any language 
+## 4. List of concepts where the label matches the quoted text, in English 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
 		; api:uriTemplate "/test/concept?label={text}" 
 		; api:exampleRequestPath  "/test/concept?label=Aalen" 
 		; api:selector [
-#				api:where " { ?item rdfs:label ?l } UNION { ?item skos:prefLabel ?l } UNION { ?item skos:altLabel ?l } FILTER regex( str(?l) , ?text ) "
 #				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text ) "
-				api:where " ?item skos:prefLabel ?l . FILTER ( ?l = ?text ) "
+#				api:where " ?item skos:prefLabel ?l . FILTER regex( str(?l) , ?text ) "
+				api:where " ?item skos:prefLabel ?l . FILTER ( ?l=?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		.
@@ -116,8 +116,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?notation={notation}" 
 		; api:exampleRequestPath  "/test/concept?notation=a1.1.2.2.2.4"
 		; api:selector [ 
-#				api:where " ?item skos:notation ?n . FILTER regex(str(?n),?notation ) "
-				api:where " ?item skos:notation ?notation "
+				api:where " ?item skos:notation ?n . FILTER regex( str(?n),?notation ) "
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
