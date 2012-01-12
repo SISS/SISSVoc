@@ -44,7 +44,8 @@ svoc:test a api:API
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,
 		svoc:conceptByNotationEndpoint , 
-		svoc:URIEndpoint 
+		svoc:URIEndpoint ,
+		svoc:narrowerThanURIEndpoint
 	; api:defaultViewer api:describeViewer 
 # deployment specific stuff - adjust to taste
 	; rdfs:label "TEST - International Stratigraphic Chart API"@en 
@@ -85,7 +86,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 		; api:exampleRequestPath  "/test/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  api:labelledDescribeViewer
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -97,7 +98,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . " 
 		] 
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 4. List of concepts where a label matches the text, in English 
@@ -109,7 +110,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
@@ -121,7 +122,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
@@ -134,7 +135,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer, svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 6. This is the basic "tell me what you know about the resource identified by this URI" request. 
@@ -147,6 +148,19 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
+## 7. List of concepts narrower than the one identified by this URI 
+svoc:narrowerThanURIEndpoint a api:ListEndpoint 
+		; rdfs:comment "Report concepts narrower than the one identified"
+		; api:uriTemplate "/test/concept/narrower?uri={uri}" 
+		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:selector [ 
+				api:where " ?uri skos:narrower ?item . "
+#			; api:orderBy "STR(?item)"
+		]
+		; api:defaultViewer svoc:shortConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		.
+		
 
 #
 # VOCABULARY
