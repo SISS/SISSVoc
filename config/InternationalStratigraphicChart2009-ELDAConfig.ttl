@@ -123,7 +123,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2009/concept?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -135,7 +135,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/isc2009/concept?labelcontains=cambrian" 
 		; api:selector [
-				api:where " ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -147,7 +147,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept?notation={nn}" 
 		; api:exampleRequestPath  "/isc2009/concept?notation=a1.1.3.6"
 		; api:selector [ 
-				api:where " ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
+				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
@@ -161,7 +161,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2009/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " ?URI skos:broader ?item . "
+				api:where " ?item a skos:Concept . ?URI skos:broader ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -174,7 +174,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2009/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " ?URI skos:narrower ?item . "
+				api:where " ?item a skos:Concept . ?URI skos:narrower ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -187,7 +187,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2009/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " ?URI skos:broaderTransitive ?item . "
+				api:where " ?item a skos:Concept . ?URI skos:broaderTransitive ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -200,7 +200,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2009/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " ?URI skos:narrowerTransitive ?item . "
+				api:where " ?item a skos:Concept . ?URI skos:narrowerTransitive ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -212,7 +212,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept/broader?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2009/concept/broader?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?item a skos:Concept . ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -224,7 +224,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept/narrower?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2009/concept/narrower?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?item a skos:Concept . ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -236,7 +236,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept/broaderTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2009/concept/broaderTransitive?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?item a skos:Concept . ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -248,7 +248,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2009/concept/narrowerTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2009/concept/narrowerTransitive?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?item a skos:Concept . ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
