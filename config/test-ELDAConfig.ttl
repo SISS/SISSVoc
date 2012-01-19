@@ -119,11 +119,12 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		
 ## 4. List of concepts where a label matches the text, in English 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
-		; rdfs:comment "List concepts where a label property has exact match to text, in English"
+		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
 		; api:uriTemplate "/test/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
 		; api:selector [
-				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) } "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+#				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) } "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -131,11 +132,12 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
 svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
-		; rdfs:comment "List concepts where a label property contains this text, case-insensitive"
+		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
 		; api:uriTemplate "/test/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
 		; api:selector [
-				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+#				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 

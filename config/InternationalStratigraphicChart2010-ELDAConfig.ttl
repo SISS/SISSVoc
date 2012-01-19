@@ -127,7 +127,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2010/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept?anylabel=Cambrian" 
 		; api:selector [
-				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) } "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -139,7 +139,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:uriTemplate "/isc2010/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/isc2010/concept?labelcontains=cambrian" 
 		; api:selector [
-				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
