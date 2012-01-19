@@ -57,7 +57,7 @@ svoc:test a api:API
 # deployment specific stuff - adjust to taste
 	; rdfs:label "TEST - vocabulary service API"@en 
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
-	; api:sparqlEndpoint <http://services.auscope.org/openrdf-sesame/repositories/isc2010> 
+	; api:sparqlEndpoint <http://def.seegrid.csiro.au/fake/sparql/currentisc> 
 	.
 
 #VIEWERS
