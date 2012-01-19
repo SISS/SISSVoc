@@ -19,7 +19,7 @@
 @prefix gml32:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.2/> .
 @prefix gtrs:    <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
 @prefix gts:     <http://resource.geosciml.org/schema/cgi/gts/3.0/> .
-@prefix isc:     <http://resource.geosciml.org/classifier/ics/localhostischart/> .
+@prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
 @prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
 @prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
 @prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal+objects/> .
@@ -57,7 +57,7 @@ svoc:localhostisc a api:API
 # deployment specific stuff - adjust to taste
 	; rdfs:label "LOCALHOST - International Stratigraphic Chart (2009) API"@en 
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
-	; api:sparqlEndpoint <http://localhost:8080/openrdf-sesame/repositories/localhostischart> 
+	; api:sparqlEndpoint <http://localhost:8080/openrdf-sesame/repositories/ischart> 
 	.
 
 #VIEWERS
