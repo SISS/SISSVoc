@@ -12,7 +12,7 @@
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 ## instance specific prefixes - extra namespaces that appear in this vocabulary - adjust to taste
-@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic+types/> .
+@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basictype/> .
 @prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
 @prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
 @prefix gml31:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.1/> .
@@ -22,8 +22,8 @@
 @prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
 @prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
 @prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
-@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal+objects/> .
-@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal+reference+system/> .
+@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
+@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
@@ -123,7 +123,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
 		; api:selector [
-				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) } "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -137,10 +137,6 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:selector [
 				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
 		] 		
-#		; api:selector [
-#				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
-#		] 		
-#### Issue: if more than one label has the string, get multiple matches. How to do 'DISTINCT' operation in LDA config? 
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
