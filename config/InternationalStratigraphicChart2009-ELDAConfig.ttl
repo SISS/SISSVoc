@@ -25,6 +25,17 @@
 @prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
 @prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
 
+##
+## SPARQL 1.1 endpoints ONLY!
+## MUST BE THE SPARQL 1.1 ENDPOINT used BELOW
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
+
+# <http://example.org/sparql/1.1/compliant/endpoint> elda:supportsNestedSelect true .
+<http://services-test.auscope.org/openrdf-sesame/repositories/isc2009> elda:supportsNestedSelect true .
+##
+## END of 1.1 'speed/size hacks'
+##
+
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
 svoc:isc2009 a api:API 
