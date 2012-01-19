@@ -38,7 +38,7 @@
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
-svoc:isc a api:API 
+svoc:sparql11test a api:API 
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
