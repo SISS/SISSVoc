@@ -135,13 +135,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
 		; api:selector [
-				api:select " DISTINCT ?item 
-											WHERE { 
-												?item a skos:Concept . 
-												?item ?label ?l . 
-												FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) 
-												FILTER regex( str(?l) , ?text , 'i' ) 
-											} "
+				api:select " DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
 		] 		
 #		; api:selector [
 #				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
