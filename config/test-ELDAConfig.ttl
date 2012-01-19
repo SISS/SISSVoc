@@ -135,8 +135,18 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; api:uriTemplate "/test/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
 		; api:selector [
-				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+				api:select " DISTINCT ?item 
+											WHERE { 
+												?item a skos:Concept . 
+												?item ?label ?l . 
+												FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) 
+												FILTER regex( str(?l) , ?text , 'i' ) 
+											} "
 		] 		
+#		; api:selector [
+#				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+#		] 		
+#### Issue: if more than one label has the string, get multiple matches. How to do 'DISTINCT' operation in LDA config? 
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
