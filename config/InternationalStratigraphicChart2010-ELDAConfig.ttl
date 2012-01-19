@@ -27,7 +27,7 @@
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
-svoc:isc a api:API 
+svoc:isc2010 a api:API 
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
@@ -165,10 +165,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2010/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
-				api:where " 
-				?item a skos:Concept . 
-				?URI skos:broader ?item . 
-				"
+				api:where " ?item a skos:Concept . ?URI skos:broader ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
