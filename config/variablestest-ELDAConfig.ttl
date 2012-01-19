@@ -38,7 +38,7 @@
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
-svoc:sparql11test a api:API;
+svoc:variabletest a api:API;
 # generic SISSvoc stuff
 	api:maxPageSize "50";
 	api:defaultPageSize "10";
@@ -73,7 +73,7 @@ svoc:sparql11test a api:API;
 	api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart>;
 	api:variable [
 		api:name "base";
-		api:value "/sparql11test";
+		api:value "/variabletest";
 	], [ 
 		api:name "URI"; 
 		api:type rdfs:Resource 
