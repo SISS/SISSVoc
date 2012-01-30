@@ -31,7 +31,7 @@
 @prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
 
 # <http://example.org/sparql/1.1/compliant/endpoint> elda:supportsNestedSelect true .
-<http://services-test.auscope.org/openrdf-sesame/repositories/isc2009> elda:supportsNestedSelect true .
+<http://services.auscope.org/openrdf-sesame/repositories/isc2009> elda:supportsNestedSelect true .
 ##
 ## END of 1.1 'speed/size hacks'
 ##
@@ -77,6 +77,16 @@ svoc:viewerNone a api:Viewer
     ; api:name "none"
     .
 
+svoc:shortConceptSchemeViewer a api:Viewer 
+    ; api:name "conceptSchemeShort" 
+    ; api:property rdfs:label
+    .
+
+svoc:shortCollectionViewer a api:Viewer 
+    ; api:name "collectionShort" 
+    ; api:property rdfs:label
+    .
+
 svoc:shortConceptViewer a api:Viewer 
     ; api:name "conceptShort" 
     ; api:property skos:prefLabel
@@ -92,7 +102,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/isc2009/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/isc2009/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  api:describeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
@@ -101,11 +111,11 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; rdfs:comment "List all concept-schemes" 
 		; api:uriTemplate "/isc2009/conceptscheme" 
 		; api:exampleRequestPath  "/isc2009/conceptscheme"
-#		; api:selector [	api:filter "type=ConceptScheme" ] 
 		; api:selector [	
 				api:where " ?item a skos:ConceptScheme . " 
 		] 
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  svoc:shortConceptSchemeViewer
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptSchemeViewer 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
@@ -116,8 +126,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 		; api:selector [ 
 				api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " 
 		] 
-		; api:defaultViewer  api:labelledDescribeViewer
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:defaultViewer  svoc:shortCollectionViewer
+		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortCollectionViewer 
 		.
 		
 ## 3. List of concepts - basic-view 
