@@ -92,11 +92,10 @@ svoc:shortConceptViewer a api:Viewer
     ; api:property skos:prefLabel
     .
 
-svoc:labelledDescribeConceptViewer a api:Viewer
-    ; api:name "conceptFull"
-    ; api:include api:describeViewer
-#    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) , (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
-    .
+#svoc:labelledDescribeConceptViewer a api:Viewer
+#    ; api:name "conceptFull"
+#    ; api:template [ ]
+#    .
 
 #ENDPOINTS
 
@@ -108,8 +107,9 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-		; api:defaultViewer  svoc:labelledDescribeConceptViewer
-		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:labelledDescribeConceptViewer
+		; api:defaultViewer  svoc:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
+#		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
