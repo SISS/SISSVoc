@@ -91,7 +91,7 @@ svoc:shortConceptViewer a api:Viewer
     ; api:name "conceptShort" 
     ; api:property skos:prefLabel
     .
-
+    
 #ENDPOINTS
 
 # can we factor out the /isc2010 element from the paths here, to make it a generic SISSvoc configuration?
@@ -102,7 +102,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/isc2010/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/isc2010/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  api:describeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
