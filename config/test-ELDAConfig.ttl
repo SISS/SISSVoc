@@ -95,7 +95,7 @@ svoc:shortConceptViewer a api:Viewer
 svoc:labelledDescribeConceptViewer a api:Viewer
     ; api:name "conceptFull"
     ; api:include api:describeViewer
-#    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
+#    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) , (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
     .
 
 #ENDPOINTS
@@ -109,7 +109,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  svoc:labelledDescribeConceptViewer
-		; api:viewer  svoc:labelledDescribeConceptViewer, api:describeViewer,api:basicViewer,api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
@@ -120,7 +120,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 #		; api:selector [	api:filter "type=ConceptScheme" ] 
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
 		; api:defaultViewer  svoc:shortConceptSchemeViewer
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptSchemeViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptSchemeViewer 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
@@ -130,7 +130,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 		; api:exampleRequestPath  "/test/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  svoc:shortCollectionViewer
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortCollectionViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortCollectionViewer 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -155,7 +155,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 #				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) } "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
@@ -168,7 +168,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 #				api:select " SELECT DISTINCT ?item WHERE { ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) } "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
@@ -181,7 +181,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 #			; api:orderBy "STR(?item)"
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 6. List of concepts broader than the one identified by this URI 
@@ -194,7 +194,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?URI skos:broader ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 7. List of concepts narrower than the one identified by this URI 
@@ -207,7 +207,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?URI skos:narrower ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 8. List of concepts broaderTransitive than the one identified by this URI 
@@ -220,7 +220,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?URI skos:broaderTransitive ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 9. List of concepts narrowerTransitive than the one identified by this URI 
@@ -233,7 +233,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?URI skos:narrowerTransitive ?item . "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 10. List of concepts broader than the one where a label matches the text, in English 
@@ -245,7 +245,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 11. List of concepts narrower than the one where a label matches the text, in English 
@@ -257,7 +257,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 ## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
@@ -269,7 +269,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 		
 ## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
@@ -281,7 +281,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:shortConceptViewer 
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
 		.
 
 #
