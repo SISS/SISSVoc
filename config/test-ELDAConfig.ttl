@@ -108,8 +108,8 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-		; api:defaultViewer  api:describeViewer
-		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
+		; api:defaultViewer  svoc:labelledDescribeConceptViewer
+		; api:viewer  svoc:labelledDescribeConceptViewer, api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
