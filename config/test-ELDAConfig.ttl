@@ -107,7 +107,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:uriTemplate  "/test/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-		; api:defaultViewer  svoc:labelledDescribeViewer
+		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
