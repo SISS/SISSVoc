@@ -92,6 +92,12 @@ svoc:shortConceptViewer a api:Viewer
     ; api:property skos:prefLabel
     .
 
+svoc:labelledDescribeConceptViewer a api:Viewer
+    ; api:name "conceptFull"
+    ; api:include api:describeViewer
+    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
+    .
+
 #ENDPOINTS
 
 # can we factor out the /test element from the paths here, to make it a generic SISSvoc configuration?
