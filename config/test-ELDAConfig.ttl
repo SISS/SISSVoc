@@ -95,7 +95,7 @@ svoc:shortConceptViewer a api:Viewer
 svoc:labelledDescribeConceptViewer a api:Viewer
     ; api:name "conceptFull"
     ; api:include api:describeViewer
-    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
+#    ; api:property (skos:broader skos:prefLabel) , (skos:broaderTransitive skos:prefLabel) 
     .
 
 #ENDPOINTS
