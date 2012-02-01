@@ -1,5 +1,6 @@
 ## Common prefixes - don't change these.
 @prefix api:     <http://purl.org/linked-data/api/vocab#> .
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
@@ -25,16 +26,6 @@
 @prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
 @prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
 
-##
-## SPARQL 1.1 endpoints ONLY!
-## MUST BE THE SPARQL 1.1 ENDPOINT used BELOW
-@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
-
-# <http://example.org/sparql/1.1/compliant/endpoint> elda:supportsNestedSelect true .
-<http://services-test.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
-##
-## END of 1.1 'speed/size hacks'
-##
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
@@ -65,11 +56,31 @@ svoc:test a api:API
 		svoc:broaderTransitiveByLabelEndpoint ,
 		svoc:narrowerTransitiveByLabelEndpoint 
 	; api:defaultViewer api:describeViewer 
+#####################
 # deployment specific stuff - adjust to taste
+# set title of service
 	; rdfs:label "TEST - vocabulary service API"@en 
+# set service shortname - change value of "/test" here
+	; api:variable 
+			[	api:name "vocab" ; api:value "/test"	]
+# document the provenance of this vocabulary with links to the source
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
-	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
+	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
+# set the SPARQL endpoint
+	; api:sparqlEndpoint <http://services.auscope.org/openrdf-sesame/repositories/ischart> 
 	.
+
+##
+## SPARQL 1.1 endpoints ONLY!
+## remove this if the endpoint does not support SPARQL 1.1
+
+<http://services.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
+
+## END of 1.1 'speed/size hacks'
+##
+
+# end of deployment specific stuff
+#######################
 
 #VIEWERS
 
@@ -92,10 +103,10 @@ svoc:shortConceptViewer a api:Viewer
     ; api:property skos:prefLabel
     .
 
-svoc:labelledDescribeConceptViewer a api:Viewer
-    ; api:name "conceptFull"
-    ; api:template " CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?l } WHERE { ?s ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } FILTER ( ?s = {URI} ) } "
-    .
+#svoc:labelledDescribeConceptViewer a api:Viewer
+#    ; api:name "conceptFull"
+#    ; api:template " CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?l } WHERE { ?s ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } FILTER ( ?s = {URI} ) } "
+#    .
 
 #ENDPOINTS
 
@@ -104,12 +115,12 @@ svoc:labelledDescribeConceptViewer a api:Viewer
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request. 
 svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource" 
-		; api:uriTemplate  "/test/resource?uri={URI}" 
+		; api:uriTemplate  "{vocab}/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "{vocab}/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
-		; api:viewer  svoc:labelledDescribeConceptViewer
+#		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
