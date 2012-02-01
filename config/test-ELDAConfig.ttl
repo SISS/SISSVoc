@@ -117,7 +117,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource" 
 		; api:uriTemplate  "{vocab}/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
-		; api:exampleRequestPath  "{vocab}/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
 #		; api:viewer  svoc:labelledDescribeConceptViewer
