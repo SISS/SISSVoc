@@ -31,7 +31,7 @@
 @prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
 
 # <http://example.org/sparql/1.1/compliant/endpoint> elda:supportsNestedSelect true .
-<http://def.seegrid.csiro.au/fake/sparql/currentisc> elda:supportsNestedSelect true .
+<http://services-test.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
 ##
 ## END of 1.1 'speed/size hacks'
 ##
@@ -92,10 +92,10 @@ svoc:shortConceptViewer a api:Viewer
     ; api:property skos:prefLabel
     .
 
-#svoc:labelledDescribeConceptViewer a api:Viewer
-#    ; api:name "conceptFull"
-#    ; api:template [ ]
-#    .
+svoc:labelledDescribeConceptViewer a api:Viewer
+    ; api:name "conceptFull"
+    ; api:template " CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?l } WHERE { ?s ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } FILTER ( ?s = {URI} ) } "
+    .
 
 #ENDPOINTS
 
@@ -109,7 +109,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
-#		; api:viewer  svoc:labelledDescribeConceptViewer
+		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
