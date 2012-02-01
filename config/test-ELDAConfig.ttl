@@ -67,14 +67,14 @@ svoc:test a api:API
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
 	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
 # set the SPARQL endpoint
-	; api:sparqlEndpoint <http://services.auscope.org/openrdf-sesame/repositories/ischart> 
+	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
 	.
 
 ##
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://services.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
+<http://services-test.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
 
 ## END of 1.1 'speed/size hacks'
 ##
@@ -147,7 +147,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## 3. List of concepts - basic-view 
 svoc:conceptListEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concepts" 
-		; api:uriTemplate "/test/concept" 
+		; api:uriTemplate "{vocab}/concept" 
 		; api:exampleRequestPath  "/test/concept"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . " 
