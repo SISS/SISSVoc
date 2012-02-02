@@ -50,7 +50,7 @@
 ##############################################################
 
 
-svoc:test a api:API 
+svoc:isc2009 a api:API 
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
