@@ -81,9 +81,13 @@ svoc:test a api:API
 # deployment specific stuff - adjust to taste
 # set title of service
 	; rdfs:label "International Stratigraphic Chart (2010) API"@en 
+####
 # set service shortname - change value of "/test" here
-	; api:variable 
-			[	api:name "vocab" ; api:value "/isc2010"	]
+#	; api:variable 
+#			[	api:name "vocab" ; api:value "/test"	]
+## was trying to set constant here to be used as the first step of the uriTemplates below
+## but the {variable} syntax is for catching values, not putting them, so failed
+####
 # document the provenance of this vocabulary with links to the source
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
 	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
@@ -144,7 +148,7 @@ svoc:shortConceptViewer a api:Viewer
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request. 
 svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource" 
-		; api:uriTemplate  "{vocab}/resource?uri={URI}" 
+		; api:uriTemplate  "/isc2010/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
 		; api:exampleRequestPath  "/isc2010/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
 		; api:defaultViewer  api:labelledDescribeViewer
@@ -155,7 +159,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## 1. List of concept schemes - basic-view 
 svoc:conceptSchemeEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concept-schemes" 
-		; api:uriTemplate "{vocab}/conceptscheme" 
+		; api:uriTemplate "/isc2010/conceptscheme" 
 		; api:exampleRequestPath  "/isc2010/conceptscheme"
 #		; api:selector [	api:filter "type=ConceptScheme" ] 
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
@@ -166,7 +170,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## 2. List of concept collections - basic-view 	 
 svoc:conceptCollectionEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concept collections" 
-		; api:uriTemplate "{vocab}/collection" 
+		; api:uriTemplate "/isc2010/collection" 
 		; api:exampleRequestPath  "/isc2010/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  svoc:shortCollectionViewer
@@ -176,7 +180,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## 3. List of concepts - basic-view 
 svoc:conceptListEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concepts" 
-		; api:uriTemplate "{vocab}/concept" 
+		; api:uriTemplate "/isc2010/concept" 
 		; api:exampleRequestPath  "/isc2010/concept"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . " 
@@ -188,7 +192,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## 4. List of concepts where a label matches the text, in English 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
-		; api:uriTemplate "{vocab}/concept?anylabel={text}" 
+		; api:uriTemplate "/isc2010/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
@@ -200,7 +204,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
 svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
-		; api:uriTemplate "{vocab}/concept?labelcontains={text}" 
+		; api:uriTemplate "/isc2010/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/isc2010/concept?labelcontains=cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
@@ -212,7 +216,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where notation property has exact match to this string"
-		; api:uriTemplate "{vocab}/concept?notation={nn}" 
+		; api:uriTemplate "/isc2010/concept?notation={nn}" 
 		; api:exampleRequestPath  "/isc2010/concept?notation=a1.1.3.6"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
@@ -224,7 +228,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ## 6. List of concepts broader than the one identified by this URI 
 svoc:broaderThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than the one identified by this URI"
-		; api:uriTemplate "{vocab}/concept/broader?uri={URI}" 
+		; api:uriTemplate "/isc2010/concept/broader?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2010/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
@@ -237,7 +241,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## 7. List of concepts narrower than the one identified by this URI 
 svoc:narrowerThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than the one identified by this URI"
-		; api:uriTemplate "{vocab}/concept/narrower?uri={URI}" 
+		; api:uriTemplate "/isc2010/concept/narrower?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2010/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
@@ -250,7 +254,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## 8. List of concepts broaderTransitive than the one identified by this URI 
 svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
-		; api:uriTemplate "{vocab}/concept/broaderTransitive?uri={URI}" 
+		; api:uriTemplate "/isc2010/concept/broaderTransitive?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2010/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
@@ -263,7 +267,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## 9. List of concepts narrowerTransitive than the one identified by this URI 
 svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
-		; api:uriTemplate "{vocab}/concept/narrowerTransitive?uri={URI}" 
+		; api:uriTemplate "/isc2010/concept/narrowerTransitive?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
 		; api:exampleRequestPath  "/isc2010/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
@@ -276,7 +280,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## 10. List of concepts broader than the one where a label matches the text, in English 
 svoc:broaderByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
-		; api:uriTemplate "{vocab}/concept/broader?anylabel={text}" 
+		; api:uriTemplate "/isc2010/concept/broader?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept/broader?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
@@ -288,7 +292,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## 11. List of concepts narrower than the one where a label matches the text, in English 
 svoc:narrowerByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
-		; api:uriTemplate "{vocab}/concept/narrower?anylabel={text}" 
+		; api:uriTemplate "/isc2010/concept/narrower?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept/narrower?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
@@ -300,7 +304,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
 svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
-		; api:uriTemplate "{vocab}/concept/broaderTransitive?anylabel={text}" 
+		; api:uriTemplate "/isc2010/concept/broaderTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept/broaderTransitive?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
@@ -312,7 +316,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
 svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
-		; api:uriTemplate "{vocab}/concept/narrowerTransitive?anylabel={text}" 
+		; api:uriTemplate "/isc2010/concept/narrowerTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/isc2010/concept/narrowerTransitive?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
