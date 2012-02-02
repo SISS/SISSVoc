@@ -155,10 +155,10 @@ svoc:shortConceptViewer a api:Viewer
 ##
 ## LDA documentation is unclear about syntax for api_template, and in particular how to pass in the URI for the item
 ##
-#svoc:labelledDescribeConceptViewer a api:Viewer
-#    ; api:name "conceptFull"
-#    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
-#    .
+svoc:labelledDescribeConceptViewer a api:Viewer
+    ; api:name "conceptFull"
+    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
+    .
 #
 ##
 ################
@@ -172,16 +172,17 @@ svoc:URIEndpoint a api:ItemEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## set value of uri= to a URI from the vocabulary
 
 		; api:uriTemplate  "/test/resource?uri={URI}" 
+		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
 		
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
-#		; api:viewer  svoc:labelledDescribeConceptViewer
+		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
@@ -247,6 +248,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
@@ -267,6 +269,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept?labelcontains={text}" 
 		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
@@ -287,6 +290,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of notation= to a code for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept?notation={nn}" 
 		; api:exampleRequestPath  "/test/concept?notation=a1.1.3.6"
@@ -308,6 +312,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/broader?uri={baseConcept}" 
 		; api:exampleRequestPath  "/test/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
@@ -329,6 +334,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/narrower?uri={baseConcept}" 
 		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
@@ -350,6 +356,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/broaderTransitive?uri={baseConcept}" 
 		; api:exampleRequestPath  "/test/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
@@ -371,6 +378,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/narrowerTransitive?uri={baseConcept}" 
 		; api:exampleRequestPath  "/test/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
@@ -392,6 +400,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/broader?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept/broader?anylabel=Cambrian" 
@@ -412,6 +421,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/narrower?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept/narrower?anylabel=Cambrian" 
@@ -432,6 +442,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/broaderTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept/broaderTransitive?anylabel=Cambrian" 
@@ -452,6 +463,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/test/concept/narrowerTransitive?anylabel={text}" 
 		; api:exampleRequestPath  "/test/concept/narrowerTransitive?anylabel=Cambrian" 
