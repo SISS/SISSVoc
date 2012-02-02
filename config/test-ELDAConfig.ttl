@@ -298,6 +298,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [ 
+## this match isn't quite right - it is not exact, but must use regex and str() because in general don't know the datatype
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 		]
 		; api:defaultViewer svoc:shortConceptViewer 
