@@ -155,10 +155,10 @@ svoc:shortConceptViewer a api:Viewer
 ##
 ## LDA documentation is unclear about syntax for api_template, and in particular how to pass in the URI for the item
 ##
-svoc:labelledDescribeConceptViewer a api:Viewer
-    ; api:name "conceptFull"
-    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
-    .
+#svoc:labelledDescribeConceptViewer a api:Viewer
+#    ; api:name "conceptFull"
+#    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
+#    .
 #
 ##
 ################
@@ -182,7 +182,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 		; api:itemTemplate  "{URI}"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
-		; api:viewer  svoc:labelledDescribeConceptViewer
+#		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
 ## 1. List of concept schemes - basic-view 
