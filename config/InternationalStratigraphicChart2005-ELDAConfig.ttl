@@ -1,6 +1,6 @@
 ##############################################################
 #
-# This is the template LDA configuration for a SISSvoc service
+# This is based on the template LDA configuration for a SISSvoc service
 # Reference - <https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3>
 #
 # Copyright (c) CSIRO 2012
@@ -60,7 +60,7 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:test a api:API 
+svoc:isc2005 a api:API 
 
 ## end of TODO:
 ##############################################################
@@ -72,7 +72,6 @@ svoc:test a api:API
 			a api:XsltFormatter
 			; api:name 'html'
 			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
-#			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	] 
 	; api:endpoint
@@ -98,7 +97,7 @@ svoc:test a api:API
 ##
 ## set title of service
 
-	; rdfs:label "TEST - vocabulary service API"@en 
+	; rdfs:label "International Stratigraphic Chart (2005) API"@en 
 	
 ####
 ## set service shortname - change value of "test" here
@@ -114,7 +113,7 @@ svoc:test a api:API
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
+	; api:sparqlEndpoint <http://services.auscope.org/openrdf-sesame/repositories/isc2005> 
 	.
 	
 ## end of TODO:
@@ -126,7 +125,7 @@ svoc:test a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://services-test.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
+<http://services.auscope.org/openrdf-sesame/repositories/isc2005> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
@@ -173,10 +172,9 @@ svoc:URIEndpoint a api:ItemEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## set value of uri= to a URI from the vocabulary
 
-		; api:uriTemplate  "/test/resource?uri={URI}" 
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
+		; api:uriTemplate  "/isc2005/resource?uri={URI}" 
+		; api:exampleRequestPath  "/isc2005/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
 		
 ## end of TODO:
 ##############################################################
@@ -194,8 +192,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/conceptscheme" 
-		; api:exampleRequestPath  "/test/conceptscheme"
+		; api:uriTemplate  "/isc2005/conceptscheme" 
+		; api:exampleRequestPath  "/isc2005/conceptscheme"
 		
 ## end of TODO:
 ##############################################################
@@ -212,8 +210,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/collection" 
-		; api:exampleRequestPath  "/test/collection"
+		; api:uriTemplate  "/isc2005/collection" 
+		; api:exampleRequestPath  "/isc2005/collection"
 		
 ## end of TODO:
 ##############################################################
@@ -230,8 +228,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/concept" 
-		; api:exampleRequestPath  "/test/concept"
+		; api:uriTemplate  "/isc2005/concept" 
+		; api:exampleRequestPath  "/isc2005/concept"
 		
 ## end of TODO:
 ##############################################################
@@ -239,7 +237,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . " 
 		] 
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:describeViewer,api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 ## 4. List of concepts where a label matches the text, in English 
@@ -249,10 +247,9 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2005/concept?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2005/concept?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -270,10 +267,9 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?labelcontains={text}" 
-		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
+		; api:uriTemplate  "/isc2005/concept?labelcontains={text}" 
+		; api:exampleRequestPath  "/isc2005/concept?labelcontains=cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -291,15 +287,13 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of notation= to a code for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?notation={nn}" 
-		; api:exampleRequestPath  "/test/concept?notation=a1.1.3.6"
+		; api:uriTemplate  "/isc2005/concept?notation={nn}" 
+		; api:exampleRequestPath  "/isc2005/concept?notation=a1.1.3.6"
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [ 
-## this match isn't quite right - it is not exact, but must use regex and str() because in general don't know the datatype
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
@@ -314,10 +308,9 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2005/concept/broader?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2005/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -336,10 +329,9 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2005/concept/narrower?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2005/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -358,10 +350,9 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2005/concept/broaderTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2005/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -380,10 +371,9 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2005/concept/narrowerTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2005/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -402,10 +392,9 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broader?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2005/concept/broader?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2005/concept/broader?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -423,10 +412,9 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrower?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2005/concept/narrower?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2005/concept/narrower?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -444,10 +432,9 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2005/concept/broaderTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2005/concept/broaderTransitive?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -465,10 +452,9 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2005/concept/narrowerTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2005/concept/narrowerTransitive?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
