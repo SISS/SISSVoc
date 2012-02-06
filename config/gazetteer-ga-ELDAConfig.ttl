@@ -27,7 +27,7 @@
 
 ## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
 
-svoc:gazetteer-au a api:API 
+svoc:gazetteer-ga a api:API 
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
@@ -73,14 +73,14 @@ svoc:shortConceptViewer a api:Viewer
 
 #ENDPOINTS
 
-# can we factor out the /gazetteer-au element from the paths here, to make it a generic SISSvoc configuration?
+# can we factor out the /gazetteer-ga element from the paths here, to make it a generic SISSvoc configuration?
 
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request. 
 svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource" 
-		; api:uriTemplate  "/gazetteer-au/resource?uri={URI}" 
+		; api:uriTemplate  "/gazetteer-ga/resource?uri={URI}" 
 		; api:itemTemplate  "{URI}"
-		; api:exampleRequestPath  "/gazetteer-au/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/gazetteer-ga/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer
 		.
@@ -88,8 +88,8 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## 1. List of concept schemes - basic-view 
 svoc:conceptSchemeEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concept-schemes" 
-		; api:uriTemplate "/gazetteer-au/conceptscheme" 
-		; api:exampleRequestPath  "/gazetteer-au/conceptscheme"
+		; api:uriTemplate "/gazetteer-ga/conceptscheme" 
+		; api:exampleRequestPath  "/gazetteer-ga/conceptscheme"
 #		; api:selector [	api:filter "type=ConceptScheme" ] 
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
 		; api:defaultViewer  api:labelledDescribeViewer
@@ -98,8 +98,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## 2. List of concept collections - basic-view 	 
 svoc:conceptCollectionEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concept collections" 
-		; api:uriTemplate "/gazetteer-au/collection" 
-		; api:exampleRequestPath  "/gazetteer-au/collection"
+		; api:uriTemplate "/gazetteer-ga/collection" 
+		; api:exampleRequestPath  "/gazetteer-ga/collection"
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:describeViewer,api:basicViewer,api:labelledDescribeViewer,svoc:shortConceptViewer 
@@ -108,8 +108,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## 3. List of concepts - basic-view 
 svoc:conceptListEndpoint a api:ListEndpoint 
 		; rdfs:comment "List all concepts" 
-		; api:uriTemplate "/gazetteer-au/concept" 
-		; api:exampleRequestPath  "/gazetteer-au/concept"
+		; api:uriTemplate "/gazetteer-ga/concept" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . " 
 		] 
@@ -120,8 +120,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## 4. List of concepts where a label matches the text, in English 
 svoc:conceptByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where any label property has exact match to text, in English"
-		; api:uriTemplate "/gazetteer-au/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept?anylabel=Cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept?anylabel={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
@@ -132,8 +132,8 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
 svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where any label property contains this text, case-insensitive"
-		; api:uriTemplate "/gazetteer-au/concept?labelcontains={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept?labelcontains=cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept?labelcontains={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept?labelcontains=cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
@@ -144,8 +144,8 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
 svoc:conceptByNotationEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where notation property has exact match to this string"
-		; api:uriTemplate "/gazetteer-au/concept?notation={nn}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept?notation=a1.1.3.6"
+		; api:uriTemplate "/gazetteer-ga/concept?notation={nn}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept?notation=a1.1.3.6"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 #			; api:orderBy "STR(?item)"
@@ -157,9 +157,9 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ## 6. List of concepts broader than the one identified by this URI 
 svoc:broaderThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than the one identified by this URI"
-		; api:uriTemplate "/gazetteer-au/concept/broader?uri={URI}" 
+		; api:uriTemplate "/gazetteer-ga/concept/broader?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
-		; api:exampleRequestPath  "/gazetteer-au/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/gazetteer-ga/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?URI skos:broader ?item . "
 		]
@@ -170,9 +170,9 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## 7. List of concepts narrower than the one identified by this URI 
 svoc:narrowerThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than the one identified by this URI"
-		; api:uriTemplate "/gazetteer-au/concept/narrower?uri={URI}" 
+		; api:uriTemplate "/gazetteer-ga/concept/narrower?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
-		; api:exampleRequestPath  "/gazetteer-au/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/gazetteer-ga/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?URI skos:narrower ?item . "
 		]
@@ -183,9 +183,9 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## 8. List of concepts broaderTransitive than the one identified by this URI 
 svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
-		; api:uriTemplate "/gazetteer-au/concept/broaderTransitive?uri={URI}" 
+		; api:uriTemplate "/gazetteer-ga/concept/broaderTransitive?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
-		; api:exampleRequestPath  "/gazetteer-au/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/gazetteer-ga/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?URI skos:broaderTransitive ?item . "
 		]
@@ -196,9 +196,9 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## 9. List of concepts narrowerTransitive than the one identified by this URI 
 svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
-		; api:uriTemplate "/gazetteer-au/concept/narrowerTransitive?uri={URI}" 
+		; api:uriTemplate "/gazetteer-ga/concept/narrowerTransitive?uri={URI}" 
 		; api:variable  [ api:name "URI"; api:type rdfs:Resource ] 
-		; api:exampleRequestPath  "/gazetteer-au/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:exampleRequestPath  "/gazetteer-ga/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		; api:selector [ 
 				api:where " ?item a skos:Concept . ?URI skos:narrowerTransitive ?item . "
 		]
@@ -209,8 +209,8 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## 10. List of concepts broader than the one where a label matches the text, in English 
 svoc:broaderByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
-		; api:uriTemplate "/gazetteer-au/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept/broader?anylabel=Cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept/broader?anylabel={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept/broader?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
@@ -221,8 +221,8 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## 11. List of concepts narrower than the one where a label matches the text, in English 
 svoc:narrowerByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
-		; api:uriTemplate "/gazetteer-au/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept/narrower?anylabel=Cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept/narrower?anylabel={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept/narrower?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
@@ -233,8 +233,8 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
 svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
-		; api:uriTemplate "/gazetteer-au/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept/broaderTransitive?anylabel=Cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept/broaderTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept/broaderTransitive?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
@@ -245,8 +245,8 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
 svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
-		; api:uriTemplate "/gazetteer-au/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/gazetteer-au/concept/narrowerTransitive?anylabel=Cambrian" 
+		; api:uriTemplate "/gazetteer-ga/concept/narrowerTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/gazetteer-ga/concept/narrowerTransitive?anylabel=Cambrian" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
