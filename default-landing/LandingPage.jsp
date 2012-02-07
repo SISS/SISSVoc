@@ -53,7 +53,7 @@
 		//document.getElementById('conceptCollection_url').href = getAllResultOptions(conceptCollectionUrl);
 		//document.getElementById('concept_url').href = getAllResultOptions(conceptUrl);
 		//document.getElementById('conceptResource_url').href = getAllResultOptions(conceptSchemeUrl);
-		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptSchemeUrl);
+		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
 
 	}
 
