@@ -35,16 +35,21 @@
 	<head>
 	</head>
 	<title>API configuration</title>
-	<!--
-   <link rel="stylesheet" type="text/css" href="/sdx-api/styles/style.css" />
-   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-	-->
+
+	<link rel="stylesheet" href="sissvoc.css" type="text/css" media="all" />  
 
 	<script type="text/javascript">
 
 	function toggle(id) {
    	var div = document.getElementById( id );
 	   div.className = (div.className == "show" ? "hide" : "show");
+	}
+
+	function navigateTo(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
+
+		applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl);
+		window.location = getAllResultOptions(conceptUrl);
+
 	}
 
 	function applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
@@ -54,19 +59,10 @@
 		//document.getElementById('conceptCollection_url').href = getAllResultOptions(conceptCollectionUrl);
 		//document.getElementById('concept_url').href = getAllResultOptions(conceptUrl);
 		//document.getElementById('conceptResource_url').href = getAllResultOptions(conceptSchemeUrl);
-
-		window.location = getAllResultOptions(conceptUrl);
-		//document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
+		
+		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
 
 	}
-
-	/*
-	function testGet() {
-		alert('getRelationship = ' + getRelationship());
-		alert('getAllResultOptions1 = ' + getAllResultOptions('http://localhost:8082/elda/api/isc/concept'));
-		alert('getAllResultOptions2 = ' + getAllResultOptions('http://localhost:8082/elda/api/isc/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian'));
-
-	}*/
 
 	function updateUrl(conceptResource) {		
 		var resource = getResource();
@@ -123,7 +119,7 @@
 	}
 
 	function getResource() {
-		return document.forms['form_resource'].elements['resource'].value;
+		return document.forms['landingPage'].elements['resource'].value;
 	}
 
 	function getLabel() {
@@ -132,14 +128,14 @@
 		if(labelMatch == "includes")	labelMatch = "anylabel=";		
 		else if(labelMatch == "matches") labelMatch = "labelcontains=";
 		
-		var label = document.forms['form_label'].elements['label'].value;
+		var label = document.forms['landingPage'].elements['label'].value;
 		if(label) label = labelMatch+label;
 		else label = "";
 		return label;
 	}
 
 	function getLabelMatch() {
-		var form = document.forms['form_label'];
+		var form = document.forms['landingPage'];
 		var labelMatch = "";
 
 		for (var i = 0; i < form.labelMatch.length; i++) {
@@ -154,7 +150,7 @@
 	}
 
 	function getRelationship() {
-		var form = document.forms['form_result_options'];
+		var form = document.forms['landingPage'];
 		var relationship = "";
 
 		for (var i = 0; i < form.relationship.length; i++) {
@@ -169,22 +165,22 @@
 	}
 
 	function getLang() {
-		var form = document.forms['form_result_options'].elements['language'];
+		var form = document.forms['landingPage'].elements['language'];
 		return "_lang="+form.options[form.selectedIndex].value;
 	}
 
 	function getFormat() {
-		var form = document.forms['form_result_options'].elements['format'];
+		var form = document.forms['landingPage'].elements['format'];
 		return "."+form.options[form.selectedIndex].value;
 	}
 
 	function getPageSize() {
-		var form = document.forms['form_result_options'].elements['pagesize'];
+		var form = document.forms['landingPage'].elements['pagesize'];
 		return "_pageSize="+form.options[form.selectedIndex].value;
 	}
 
 	function getMetadata() {
-		var form = document.forms['form_result_options'];
+		var form = document.forms['landingPage'];
 		var metadata = "";
 		for (var i = 0; i < form.metadata.length; i++) {
 			if (form.metadata[i].checked) {
@@ -199,47 +195,30 @@
 		return metadata;		
 	}
 
-
 	</script>
 
 
 	<body>
+	<form id="landingPage">
 		<h2><%= repoName %></h2>
 		This service provides a <a href="<%= sissvoc3wiki %>">SISSVoc</a> interface to an OWL representation of the <a href="<%= isc2009 %>">2009</a> edition of the International Stratigraphic Chart</a>
 		<br>
 		<a><%= repoNote %></a>
 		<br>
 		<br>
-		<table border="1">
-			<tr>
-				<th>Query options</th>
-			</tr>
-			<tr>
-				<td>
-					<a id="conceptScheme_url" href="<%=conceptSchemes%>">All Concept Schemes</a>&nbsp
-					<a id="conceptCollection_url"href="<%=conceptCollections%>">All Concept Collections</a>&nbsp
-					<a id="concept_url" href="<%=concepts%>">All Concepts</a></td>&nbsp
-			</tr>
-			<tr>
-				<td style="vertical-align: middle;">&nbsp
-					<form id="form_resource">
-						<a id="conceptResource_url">Description of</a>: <input type="text" size="150" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
-					</form> 
-				</td>
-			</tr>		
-			<tr>
-				<td style="vertical-align: middle;">&nbsp
-					<form id="form_label">
-						<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="50" name="label" value="Cambrian"/> <input type="button" value="Go" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
-					</form> 
-				</td>
-			</tr>
-		</table> 
-		<table border="1">
-			<th>Result options</th>
-			<tr>
-				<td style="vertical-align: middle;">
-					<form id="form_result_options">
+			<legend>Query options</legend>
+				<a id="conceptScheme_url" href="<%=conceptSchemes%>">All Concept Schemes</a>&nbsp
+				<a id="conceptCollection_url"href="<%=conceptCollections%>">All Concept Collections</a>&nbsp
+				<a id="concept_url" href="<%=concepts%>">All Concepts</a>&nbsp
+				<br>
+				<br>
+				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
+				<br>
+				<br>
+				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+				<br>
+				<legend>Result options</legend>
+
 						<a>Concepts: </a>
 						<input type="radio" name="relationship" value="" checked="true" />exact
 						<input type="radio" name="relationship" value="narrower" />narrower
@@ -248,6 +227,7 @@
 						<input type="radio" name="relationship" value="broaderTransitive" />broaderTransitive
 						<br>
 						<br>
+						<div class="styled-select">
 						<a>Report result in</a>
 						<select name="language">
 							<option value="bg">bg</option>
@@ -290,17 +270,15 @@
 							<option value="20">20</option>
 							<option value="50">50</option>
 						</select>
+						</div>
 						<br>
 						<br>
 						<a>Metadata [flag full]</a> <input type="radio" name="metadata" value="no" checked="true" /> No	<input type="radio" name="metadata" value="yes"/> Yes
 						<br>
 						<br>
 						<input type="button" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
-						<!--input type="button" value="SUPER!" onclick="testGet();"/-->
-					</form>
-				</td>
-			</tr>
-		</table>
+		<br>
+		<br>
 		<br>
 		<br>
 		<a>SPARQL end-point: <%= sparqlEndPoint %></a>
