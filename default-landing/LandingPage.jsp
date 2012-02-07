@@ -16,7 +16,8 @@
 	 String concepts = serviceName+"/concept";
 	 String conceptResource = serviceName+"/resource";
 
-	 String sparqlEndPoint = "http://services-test.auscope.org/openrdf-workbench/repositories/ischart/summary";
+	 //String sparqlEndPoint = "http://services-test.auscope.org/openrdf-workbench/repositories/ischart/summary";
+    String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/ischart";
 
 	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3";
 	 String isc2010 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
@@ -53,7 +54,9 @@
 		//document.getElementById('conceptCollection_url').href = getAllResultOptions(conceptCollectionUrl);
 		//document.getElementById('concept_url').href = getAllResultOptions(conceptUrl);
 		//document.getElementById('conceptResource_url').href = getAllResultOptions(conceptSchemeUrl);
-		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
+
+		window.location = getAllResultOptions(conceptUrl);
+		//document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
 
 	}
 
@@ -66,8 +69,9 @@
 	}*/
 
 	function updateUrl(conceptResource) {		
-		var resource = getResource();		
-		document.getElementById('conceptResource_url').href = conceptResource+"?uri="+resource;
+		var resource = getResource();
+		window.location = conceptResource+"?uri="+resource;
+		//document.getElementById('conceptResource_url').href = conceptResource+"?uri="+resource;
 	}
 
 
@@ -211,25 +215,22 @@
 				<th>Query options</th>
 			</tr>
 			<tr>
-				<td><a id="conceptScheme_url" href="<%=conceptSchemes%>">All Concept Schemes</a></td>				
-			</tr>
-			<tr>
-				<td><a id="conceptCollection_url"href="<%=conceptCollections%>">All Concept Collections</a></td>
-			</tr>
-			<tr>
-				<td><a id="concept_url" href="<%=concepts%>">All Concepts</a></td>
+				<td>
+					<a id="conceptScheme_url" href="<%=conceptSchemes%>">All Concept Schemes</a>&nbsp
+					<a id="conceptCollection_url"href="<%=conceptCollections%>">All Concept Collections</a>&nbsp
+					<a id="concept_url" href="<%=concepts%>">All Concepts</a></td>&nbsp
 			</tr>
 			<tr>
 				<td style="vertical-align: middle;">&nbsp
 					<form id="form_resource">
-						<a id="conceptResource_url" href="<%=conceptResource%>">Description of</a>: <input type="text" size="150" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" value="Apply" onclick="updateUrl('<%=conceptResource%>');"/>
+						<a id="conceptResource_url">Description of</a>: <input type="text" size="150" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
 					</form> 
 				</td>
 			</tr>		
 			<tr>
 				<td style="vertical-align: middle;">&nbsp
 					<form id="form_label">
-						<a id="conceptLabel_url" href="<%=concepts%>">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="50" name="label" value="Cambrian"/> <input type="button" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+						<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="50" name="label" value="Cambrian"/> <input type="button" value="Go" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
 					</form> 
 				</td>
 			</tr>
@@ -302,15 +303,25 @@
 		</table>
 		<br>
 		<br>
-		<a href="<%= sparqlEndPoint %>">SPARQL end-point</a>
+		<a>SPARQL end-point: <%= sparqlEndPoint %></a>
 		<br>
 		<br>
 		Other versions of this vocabulary: <a href="<%= isc2010 %>">2010</a> <a href="<%= isc2008 %>">2008</a> <a href="<%= isc2006 %>">2006</a> <a href="<%= isc2005 %>">2005</a> <a href="<%= isc2004 %>">2004</a>
 		<br>
 		<br>
-		<a>Ontologies used by this service</a>
-
-
+		<a>Ontologies used by this vocabulary are:</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/geotime/geologictimescale">http://def.seegrid.csiro.au/ontology/geotime/geologictimescale</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/geotime/gtrs">http://def.seegrid.csiro.au/ontology/geotime/gtrs</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/sampling">http://def.seegrid.csiro.au/ontology/isotc211/sampling</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/temporal">http://def.seegrid.csiro.au/ontology/isotc211/temporal</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/spatial">http://def.seegrid.csiro.au/ontology/isotc211/spatial</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/feature">http://def.seegrid.csiro.au/ontology/isotc211/feature</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/bas</a><br>
+		<a href="http://www.opengis.net/def/geosparql">http://www.opengis.net/def/geosparql/</a><br>
+		<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
+		<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
+		<a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a><br>
+	
 	</body>
 
 
