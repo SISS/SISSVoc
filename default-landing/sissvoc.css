@@ -4,31 +4,13 @@ body {
 	font-size:14px;
 }
 
-
-
-input[type='button'] { 
-	font-family:  Helvetica Neue, Helvetica, sans-serif;
-	font-size: 20px;
-	color: #65A1DB;
-	padding: 9px;
-	border: solid 1px #E5E5E5;
-	outline: 0;
-	width: 65px;
-	background: #FFFFFF url('bg_form.png') left top repeat-x;
-	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
-	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
-	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	}
-
 input[type='text'] { 
 	font-family:  Helvetica Neue, Helvetica, sans-serif;
 	font-size: 18px;
-	padding: 9px;
+	padding: 8px;
 	border: solid 1px #E5E5E5;
 	outline: 0;
-	background: #FFFFFF url('bg_form.png') left top repeat-x;
+	background: #FFFFFF left top repeat-x;
 	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
 	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
 	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
@@ -79,8 +61,43 @@ input:focus, textarea:focus {
    width: 80px;
 	font-family:  Helvetica Neue, Helvetica, sans-serif;
 	font-size: 14px;
-	padding: 5px;
+	padding: 4px;
 }
-	
 
-	
+.styled-buttons { 
+	font-family:  Helvetica Neue, Helvetica, sans-serif;
+	font-size:14px;
+	color: #65A1DB;
+	padding: 4px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	width: 180px;
+	background: #FFFFFF left top repeat-x;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+.styled-buttons2 { 
+	font-family:  Helvetica Neue, Helvetica, sans-serif;
+	font-size: 20px;
+	color: #65A1DB;
+	padding: 8px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	width: 70px;
+	background: #FFFFFF left top repeat-x;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+.normal {
+	font-family:  Helvetica Neue, Helvetica, sans-serif;
+	font-size:14px;
+}
+}

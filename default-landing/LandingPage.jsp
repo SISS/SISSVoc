@@ -45,11 +45,14 @@
 	   div.className = (div.className == "show" ? "hide" : "show");
 	}
 
+	function go_to(url) {
+		window.location = url;
+	}
+
 	function navigateTo(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
 
 		applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl);
 		window.location = getAllResultOptions(conceptUrl);
-
 	}
 
 	function applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
@@ -207,15 +210,15 @@
 		<br>
 		<br>
 			<legend>Query options</legend>
-				<a id="conceptScheme_url" href="<%=conceptSchemes%>">All Concept Schemes</a>&nbsp
-				<a id="conceptCollection_url"href="<%=conceptCollections%>">All Concept Collections</a>&nbsp
-				<a id="concept_url" href="<%=concepts%>">All Concepts</a>&nbsp
+				<input type="button" id="conceptScheme_url" class="styled-buttons" value="All Concept Schemes" onclick="go_to('<%=conceptSchemes%>')";>&nbsp
+				<input type="button" id="conceptCollection_url" class="styled-buttons" value="All Concept Collections" onclick="go_to('<%=conceptCollections%>')";>&nbsp
+				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('<%=concepts%>')";>&nbsp
 				<br>
 				<br>
-				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
+				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
 				<br>
 				<br>
-				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
 				<br>
 				<legend>Result options</legend>
 
@@ -252,8 +255,6 @@
 							<option value="sv">sv</option>
 							<option value="zh">zh</option>
 						</select>
-						<br>
-						<br>
 						<a>Report result in</a>
 						<select name="format">
 							<option value="html" selected="selected">HTML</option> 
@@ -262,8 +263,6 @@
 							<option value="json" >JSON</option>
 							<option value="xml" >XML</option>
 						</select>
-						<br>
-						<br>
 						<a>Page size</a>
 						<select name="pagesize">
 							<option value="10" selected="selected">10</option>
@@ -272,11 +271,12 @@
 						</select>
 						</div>
 						<br>
-						<br>
-						<a>Metadata [flag full]</a> <input type="radio" name="metadata" value="no" checked="true" /> No	<input type="radio" name="metadata" value="yes"/> Yes
-						<br>
-						<br>
-						<input type="button" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+						<table border="0" cellspacing="0" cellpadding="0" class="normal">
+							<tr>
+								<td>Full Metadata <input type="radio" name="metadata" value="no" checked="true" /> No	<input type="radio" name="metadata" value="yes"/> Yes</td>
+								<td width="500" align="right"><input type="button" class="styled-buttons2" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/></td>
+							</tr>
+						</table>
 		<br>
 		<br>
 		<br>
