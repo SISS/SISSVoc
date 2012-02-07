@@ -8,7 +8,7 @@
     }
 	 
 	 String repoName = "Geologic Timescale";
-	 String serviceName = "api/isc2010";
+	 String serviceName = "api/isc2009";
 	 String repoNote = "*Single document view contains >10000 RDF triples";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
