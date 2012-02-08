@@ -128,8 +128,8 @@
 	function getLabel() {
 		var labelMatch = getLabelMatch();
 		
-		if(labelMatch == "includes")	labelMatch = "anylabel=";		
-		else if(labelMatch == "matches") labelMatch = "labelcontains=";
+		if(labelMatch == "includes")	labelMatch = "labelcontains=";
+		else if(labelMatch == "matches") labelMatch = "anylabel=";
 		
 		var label = document.forms['landingPage'].elements['label'].value;
 		if(label) label = labelMatch+label;
@@ -209,7 +209,7 @@
 		<a><%= repoNote %></a>
 		<br>
 		<br>
-			<legend>Query options</legend>
+			<legend>Queries</legend>
 				<input type="button" id="conceptScheme_url" class="styled-buttons" value="All Concept Schemes" onclick="go_to('<%=conceptSchemes%>')";>&nbsp
 				<input type="button" id="conceptCollection_url" class="styled-buttons" value="All Concept Collections" onclick="go_to('<%=conceptCollections%>')";>&nbsp
 				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('<%=concepts%>')";>&nbsp
@@ -220,12 +220,13 @@
 				<br>
 				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
 				<br>
+				<div STYLE="background-color:#C8CCE1"> 
 				<legend>Result options</legend>
 
-						<a>Concepts: </a>
-						<input type="radio" name="relationship" value="" checked="true" />exact
-						<input type="radio" name="relationship" value="narrower" />narrower
+						<a>Concepts: </a>						
 						<input type="radio" name="relationship" value="narrowerTransitive" />narrowerTransitive
+						<input type="radio" name="relationship" value="narrower" />narrower
+						<input type="radio" name="relationship" value="" checked="true" />exact
 						<input type="radio" name="relationship" value="broader" />broader
 						<input type="radio" name="relationship" value="broaderTransitive" />broaderTransitive
 						<br>
@@ -277,6 +278,7 @@
 								<td width="500" align="right"><input type="button" class="styled-buttons2" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/></td>
 							</tr>
 						</table>
+				</div>
 		<br>
 		<br>
 		<br>
