@@ -215,10 +215,10 @@
 				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('<%=concepts%>')";>&nbsp
 				<br>
 				<br>
-				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>
-				<br>
-				<br>
 				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+				<br>
+				<br>
+				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>	
 				<br>
 				<br>
 				<div STYLE="background-color:#ECF3FF; padding:5px"> 
@@ -297,7 +297,7 @@
 		<a href="http://def.seegrid.csiro.au/ontology/isotc211/temporal">http://def.seegrid.csiro.au/ontology/isotc211/temporal</a><br>
 		<a href="http://def.seegrid.csiro.au/ontology/isotc211/spatial">http://def.seegrid.csiro.au/ontology/isotc211/spatial</a><br>
 		<a href="http://def.seegrid.csiro.au/ontology/isotc211/feature">http://def.seegrid.csiro.au/ontology/isotc211/feature</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/bas</a><br>
+		<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/base</a><br>
 		<a href="http://www.opengis.net/def/geosparql">http://www.opengis.net/def/geosparql/</a><br>
 		<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
 		<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
