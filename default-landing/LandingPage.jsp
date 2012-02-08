@@ -220,8 +220,9 @@
 				<br>
 				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
 				<br>
-				<div STYLE="background-color:#C8CCE1"> 
-				<legend>Result options</legend>
+				<br>
+				<div STYLE="background-color:#ECF3FF; padding:5px"> 
+				<legend>Result Options</legend>
 
 						<a>Concepts: </a>						
 						<input type="radio" name="relationship" value="narrowerTransitive" />narrowerTransitive
