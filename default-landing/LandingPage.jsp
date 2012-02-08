@@ -64,17 +64,26 @@
 		//document.getElementById('conceptResource_url').href = getAllResultOptions(conceptSchemeUrl);
 		
 		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
-
 	}
 
-	function updateUrl(conceptResource) {		
+	//constructs getResourceByUri url
+	function updateUrl(serviceName) {		
 		var resource = getResource();
-		window.location = conceptResource+"?uri="+resource;
-		//document.getElementById('conceptResource_url').href = conceptResource+"?uri="+resource;
+		var lang = getLang();
+		var format = getFormat();
+		var relationship = getRelationship();
+		var metadata = getMetadata();
+
+		if(metadata !='') metadata = '&'+metadata;
+		if(relationship == "") relationship = "resource";
+		else relationship = "concept/"+relationship;
+
+		var url = serviceName + "/"+ relationship + format +"?uri="+resource +"&"+lang+metadata;
+
+		window.location = url
 	}
 
-
-
+	//constructs getConceptByLabel url
 	function getAllResultOptions(url) {
 		var label = getLabel();
 		var relationship = getRelationship();
@@ -218,7 +227,7 @@
 				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
 				<br>
 				<br>
-				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=conceptResource%>');"/>	
+				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=serviceName%>');"/>	
 				<br>
 				<br>
 				<div STYLE="background-color:#ECF3FF; padding:5px"> 
