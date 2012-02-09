@@ -50,20 +50,26 @@
 	}
 
 	function navigateTo(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
-
 		applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl);
 		window.location = getAllResultOptions(conceptUrl);
 	}
 
 	function applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
-
-
-		//document.getElementById('conceptScheme_url').href = getAllResultOptions(conceptSchemeUrl);
-		//document.getElementById('conceptCollection_url').href = getAllResultOptions(conceptCollectionUrl);
-		//document.getElementById('concept_url').href = getAllResultOptions(conceptUrl);
-		//document.getElementById('conceptResource_url').href = getAllResultOptions(conceptSchemeUrl);
-		
+		document.getElementById('conceptScheme_url').href = updateAllConceptUrls(conceptSchemeUrl);
+		document.getElementById('conceptCollection_url').href = updateAllConceptUrls(conceptCollectionUrl);
+		document.getElementById('concept_url').href = updateAllConceptUrls(conceptUrl);
 		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
+	}
+
+	
+	//updates url for "All Concept Scehemes", "All Concept Collections" and "All Concepts"
+	function updateAllConceptUrls(url) {
+		var lang = getLang();
+		var format = getFormat();
+		var metadata = getMetadata();
+		var pageSize = getPageSize();
+		if(metadata !='') metadata = '&'+metadata;
+		return url + format +"?"+lang+"&"+pageSize+metadata;
 	}
 
 	//constructs getResourceByUri url
@@ -127,7 +133,6 @@
 		else url = url+format+label+"&"+lang+pageSize+metadata
 
 		return url;
-
 	}
 
 	function getResource() {
