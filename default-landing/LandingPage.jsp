@@ -45,8 +45,8 @@
 	   div.className = (div.className == "show" ? "hide" : "show");
 	}
 
-	function go_to(url) {
-		window.location = url;
+	function go_to(id) {
+		window.location = document.getElementById(id).href;
 	}
 
 	function navigateTo(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
@@ -60,7 +60,6 @@
 		document.getElementById('concept_url').href = updateAllConceptUrls(conceptUrl);
 		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
 	}
-
 	
 	//updates url for "All Concept Scehemes", "All Concept Collections" and "All Concepts"
 	function updateAllConceptUrls(url) {
@@ -224,9 +223,9 @@
 		<br>
 		<br>
 			<legend>Queries</legend>
-				<input type="button" id="conceptScheme_url" class="styled-buttons" value="All Concept Schemes" onclick="go_to('<%=conceptSchemes%>')";>&nbsp
-				<input type="button" id="conceptCollection_url" class="styled-buttons" value="All Concept Collections" onclick="go_to('<%=conceptCollections%>')";>&nbsp
-				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('<%=concepts%>')";>&nbsp
+				<input type="button" id="conceptScheme_url" class="styled-buttons" value="All Concept Schemes" onclick="go_to('conceptScheme_url');")>&nbsp
+				<input type="button" id="conceptCollection_url" class="styled-buttons" value="All Concept Collections" onclick="go_to('conceptCollection_url');">&nbsp
+				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('concept_url')";>&nbsp
 				<br>
 				<br>
 				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
