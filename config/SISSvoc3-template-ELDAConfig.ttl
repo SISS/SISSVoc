@@ -74,7 +74,12 @@ svoc:test a api:API
 #			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
 			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
-	] 
+	]
+	; api:variable
+		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
+		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
+		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
 	; api:variable
 		[api:name "activeImageBase"; api:value "/elda-demo/images/green/16x16"]
 		, [api:name "inactiveImageBase"; api:value "/elda-demo/images/grey/16x16"]

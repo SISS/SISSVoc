@@ -74,6 +74,11 @@ svoc:isc2005 a api:API
 			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	] 
+	; api:variable
+		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
+		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
+		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		

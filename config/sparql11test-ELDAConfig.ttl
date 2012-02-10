@@ -48,10 +48,10 @@ svoc:sparql11test a api:API
 			; api:mimeType 'text/html' 
 	] 
 	; api:variable
-		[api:name "activeImageBase"; api:value "/elda-demo/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/elda-demo/images/grey/16x16"]
-		, [api:name "_resourceRoot"; api:value "/elda-demo/"]
-		, [api:name "webapp"; api:value "/elda-demo"]
+		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
+		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
+		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		

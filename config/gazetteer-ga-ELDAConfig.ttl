@@ -36,7 +36,12 @@ svoc:gazetteer-ga a api:API
 			; api:name 'html'
 			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
 			; api:mimeType 'text/html' 
-	] 
+	]
+	; api:variable
+		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
+		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
+		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		
