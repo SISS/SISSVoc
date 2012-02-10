@@ -44,7 +44,7 @@ svoc:sparql11test a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-			; api:stylesheet 'xsltsheets/asHtml.xsl' 
+			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	] 
 	; api:variable
