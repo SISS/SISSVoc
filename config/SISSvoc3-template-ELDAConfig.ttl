@@ -114,7 +114,7 @@ svoc:test a api:API
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ischart> 
+	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isc2009> 
 	.
 	
 ## end of TODO:
@@ -126,7 +126,7 @@ svoc:test a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://services-test.auscope.org/openrdf-sesame/repositories/ischart> elda:supportsNestedSelect true .
+<http://def.seegrid.csiro.au/sparql/isc2009> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
