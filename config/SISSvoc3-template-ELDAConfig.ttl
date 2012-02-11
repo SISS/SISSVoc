@@ -75,16 +75,19 @@ svoc:test a api:API
 			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
+	
+##############################################################
+##
+## TODO: deployer to make changes here
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 	; api:variable
 		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
-	; api:variable
-		[api:name "activeImageBase"; api:value "/elda-demo/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/elda-demo/images/grey/16x16"]
-		, [api:name "_resourceRoot"; api:value "/elda-demo/"]
-		, [api:name "webapp"; api:value "/elda-demo"]
+## end of TODO:
+##############################################################
+
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		
