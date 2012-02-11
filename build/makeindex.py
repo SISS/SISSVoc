@@ -3,7 +3,7 @@ import glob
 import os
 import fileinput
 
-apis = glob.glob('..\\config\\*ELDAConfig.ttl')
+apis = glob.glob('..'+os.sep+'config'+os.sep+'*ELDAConfig.ttl')
 apidata = ""
 
 template = re.compile('''api:uriTemplate.*?"(.*?)"''')
@@ -18,7 +18,7 @@ for file in apis:
     endpoints = {}
     data = open (file, 'r').readlines()
         
-    apidata += "<h2>%s</h2>" % file.split('\\')[2]
+    apidata += "<h2>%s</h2>" % file.split(os.sep)[2]
     apidata += "<table><tr><th>Description</th><th>Template</th><th>Sample URI</th>"
     lookHarder = False
     for line in data:
