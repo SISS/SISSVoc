@@ -9,7 +9,7 @@
 	 
 	 String repoName = "Geologic Timescale";
 	 String serviceName = "api/isc2009";
-	 String repoNote = "*Single document view contains >10000 RDF triples";
+     String title = "SISSVoc";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
 	 String conceptCollections = serviceName+"/collection";
@@ -19,14 +19,15 @@
 	 //String sparqlEndPoint = "http://services-test.auscope.org/openrdf-workbench/repositories/ischart/summary";
     String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/ischart";
 
+	 //links
 	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3";
+	 String isochart = "http://stratigraphy.org";
 	 String isc2010 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
 	 String isc2009 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
 	 String isc2008 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2008.ttl";
 	 String isc2006 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2006.ttl";
 	 String isc2005 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2005.ttl";
-	 String isc2004 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2004.ttl";
-
+	 String isc2004 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2004.ttl";	 
 
 %>
 
@@ -34,7 +35,7 @@
 	
 	<head>
 	</head>
-	<title>API configuration</title>
+	<title><%=title%></title>
 
 	<link rel="stylesheet" href="sissvoc.css" type="text/css" media="all" />  
 
@@ -217,9 +218,7 @@
 	<body>
 	<form id="landingPage">
 		<h2><%= repoName %></h2>
-		This service provides a <a href="<%= sissvoc3wiki %>">SISSVoc</a> interface to an OWL representation of the <a href="<%= isc2009 %>">2009</a> edition of the International Stratigraphic Chart</a>
-		<br>
-		<a><%= repoNote %></a>
+		This service provides a <a href="<%= sissvoc3wiki %>">SISSVoc</a> interface to an OWL representation of the <a href="<%= isc2009 %>">2009</a> edition of the <a href="<%= isochart %>">International Stratigraphic Chart</a>
 		<br>
 		<br>
 			<legend>Queries</legend>
@@ -293,7 +292,6 @@
 							</tr>
 						</table>
 				</div>
-		<br>
 		<br>
 		<br>
 		<br>
