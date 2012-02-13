@@ -214,7 +214,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ##############################################################
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
 		; api:defaultViewer  svoc:basicConceptSchemeViewer
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptSchemeViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
@@ -232,7 +232,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ##############################################################
 		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
 		; api:defaultViewer  svoc:basicCollectionViewer
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicCollectionViewer 
+		; api:viewer  api:basicViewer,svoc:basicCollectionViewer 
 		.
 		
 ## 3. List of concepts - basic-view 
@@ -252,7 +252,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . " 
 		] 
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 ## 4. List of concepts where a label matches the text, in English 
@@ -273,7 +273,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 ## 4a. List of concepts where a label contains the text, any language, case-insensitive 
@@ -294,7 +294,7 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
@@ -316,7 +316,7 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 		
@@ -339,7 +339,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:broader ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 7. List of concepts narrower than the one identified by this URI 
@@ -361,7 +361,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:narrower ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 8. List of concepts broaderTransitive than the one identified by this URI 
@@ -383,7 +383,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:broaderTransitive ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 9. List of concepts narrowerTransitive than the one identified by this URI 
@@ -405,7 +405,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:narrowerTransitive ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 10. List of concepts broader than the one where a label matches the text, in English 
@@ -426,7 +426,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 ## 11. List of concepts narrower than the one where a label matches the text, in English 
@@ -447,7 +447,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 ## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
@@ -468,7 +468,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
 ## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
@@ -489,7 +489,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
 #
