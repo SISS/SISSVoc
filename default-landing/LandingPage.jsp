@@ -1,23 +1,15 @@
 <%@ page import="java.util.*" %>
 <%!
-    Date theDate = new Date();
-    Date getDate()
-    {
-        System.out.println( "In getDate() method" );
-        return theDate;
-    }
-	 
 	 String repoName = "Geologic Timescale";
 	 String serviceName = "api/isc2009";
-     String title = "SISSVoc";
+    String title = "SISSVoc";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
 	 String conceptCollections = serviceName+"/collection";
 	 String concepts = serviceName+"/concept";
 	 String conceptResource = serviceName+"/resource";
 
-	 //String sparqlEndPoint = "http://services-test.auscope.org/openrdf-workbench/repositories/ischart/summary";
-    String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/ischart";
+    String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/isc2009";
 
 	 //links
 	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3";
@@ -47,7 +39,7 @@
 	}
 
 	function go_to(id) {
-		window.location = document.getElementById(id).href;
+		window.location = document.getElementById(id).value;
 	}
 
 	function navigateTo(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
@@ -56,9 +48,10 @@
 	}
 
 	function applyOptions(conceptSchemeUrl, conceptCollectionUrl, conceptUrl, conceptResourceUrl) {
-		document.getElementById('conceptScheme_url').href = updateAllConceptUrls(conceptSchemeUrl);
-		document.getElementById('conceptCollection_url').href = updateAllConceptUrls(conceptCollectionUrl);
-		document.getElementById('concept_url').href = updateAllConceptUrls(conceptUrl);
+		document.getElementById('conceptScheme_url').value = updateAllConceptUrls(conceptSchemeUrl);
+		document.getElementById('conceptCollection_url').value = updateAllConceptUrls(conceptCollectionUrl);
+		document.getElementById('concept_url').value = updateAllConceptUrls(conceptUrl);
+
 		document.getElementById('conceptLabel_url').href = getAllResultOptions(conceptUrl);
 	}
 	
@@ -222,99 +215,98 @@
 		<br>
 		<br>
 			<legend>Queries</legend>
-				<input type="button" id="conceptScheme_url" class="styled-buttons" value="All Concept Schemes" onclick="go_to('conceptScheme_url');")>&nbsp
-				<input type="button" id="conceptCollection_url" class="styled-buttons" value="All Concept Collections" onclick="go_to('conceptCollection_url');">&nbsp
-				<input type="button" id="concept_url" class="styled-buttons" value="All Concepts" onclick="go_to('concept_url')";>&nbsp
-				<br>
-				<br>
-				<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
-				<br>
-				<br>
-				<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=serviceName%>');"/>	
-				<br>
-				<br>
-				<div STYLE="background-color:#ECF3FF; padding:5px"> 
-				<legend>Result Options</legend>
+			<input type="button" class="styled-buttons" value="All Concept Schemes" onclick="go_to('conceptScheme_url');")><input type="hidden" id="conceptScheme_url" value="<%=conceptSchemes%>" />&nbsp
+			<input type="button" class="styled-buttons" value="All Concept Collections" onclick="go_to('conceptCollection_url');"><input type="hidden" id="conceptCollection_url" value="<%=conceptCollections%>"/>&nbsp
+			<input type="button" class="styled-buttons" value="All Concepts" onclick="go_to('concept_url')";><input type="hidden" id="concept_url" value="<%=concepts%>"/>&nbsp
+			<br>
+			<br>
+			<a id="conceptLabel_url">Concept whose label</a><input type="radio" name="labelMatch" value="matches" checked="true" />matches <input type="radio" name="labelMatch" value="includes" />includes the text: <input type="text" size="60" name="label" value="Cambrian"/> <input type="button" class="styled-buttons2" value="Go" onclick="navigateTo('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/>
+			<br>
+			<br>
+			<a id="conceptResource_url">Description of</a>: <input type="text" size="92" name="resource" value="http://resource.geosciml.org/classifier/ics/ischart/Furongian"/> <input type="button" class="styled-buttons2" value="Go" onclick="updateUrl('<%=serviceName%>');"/>	
+			<br>
+			<br>
+			<div STYLE="background-color:#ECF3FF; padding:5px"> 
+			<legend>Result Options</legend>
+					<a>Concepts: </a>						
+					<input type="radio" name="relationship" value="narrowerTransitive" />narrowerTransitive
+					<input type="radio" name="relationship" value="narrower" />narrower
+					<input type="radio" name="relationship" value="" checked="true" />exact
+					<input type="radio" name="relationship" value="broader" />broader
+					<input type="radio" name="relationship" value="broaderTransitive" />broaderTransitive
+					<br>
+					<br>
+					<div class="styled-select">
+					<a>Report result in</a>
+					<select name="language">
+						<option value="bg">bg</option>
+						<option value="cs">cs</option>
+						<option value="da">da</option>
+						<option value="de">de</option>
+						<option value="en" selected="selected">en</option>
+						<option value="es">es</option>
+						<option value="et">et</option>
+						<option value="fi">fi</option>
+						<option value="fr">fr</option>
+						<option value="hu">hu</option>
+						<option value="it">it</option>
+						<option value="ja">ja</option>
+						<option value="lt">lt</option>
+						<option value="nl">nl</option>
+						<option value="no">no</option>
+						<option value="pl">pl</option>
+						<option value="pt">pt</option>
+						<option value="sk">sk</option>
+						<option value="sl">sl</option>
+						<option value="sv">sv</option>
+						<option value="zh">zh</option>
+					</select>
+					<a>Report result in</a>
+					<select name="format">
+						<option value="html" selected="selected">HTML</option> 
+						<option value="rdf" >RDF/XML</option>
+						<option value="ttl" >Turtle</option>
+						<option value="json" >JSON</option>
+						<option value="xml" >XML</option>
+					</select>
+					<a>Page size</a>
+					<select name="pagesize">
+						<option value="10" selected="selected">10</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+					</select>
+					</div>
+					<br>
+					<table border="0" cellspacing="0" cellpadding="0" class="normal">
+						<tr>
+							<td>Full Metadata <input type="radio" name="metadata" value="no" checked="true" /> No	<input type="radio" name="metadata" value="yes"/> Yes</td>
+							<td width="500" align="right"><input type="button" class="styled-buttons2" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/></td>
+						</tr>
+					</table>
+			</div>
+	<br>
+	<br>
+	<br>
+	<a>SPARQL end-point: <%= sparqlEndPoint %></a>
+	<br>
+	<br>
+	Other versions of this vocabulary: <a href="<%= isc2010 %>">2010</a> <a href="<%= isc2008 %>">2008</a> <a href="<%= isc2006 %>">2006</a> <a href="<%= isc2005 %>">2005</a> <a href="<%= isc2004 %>">2004</a>
+	<br>
+	<br>
+	<a>Ontologies used by this vocabulary are:</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/geotime/geologictimescale">http://def.seegrid.csiro.au/ontology/geotime/geologictimescale</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/geotime/gtrs">http://def.seegrid.csiro.au/ontology/geotime/gtrs</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/isotc211/sampling">http://def.seegrid.csiro.au/ontology/isotc211/sampling</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/isotc211/temporal">http://def.seegrid.csiro.au/ontology/isotc211/temporal</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/isotc211/spatial">http://def.seegrid.csiro.au/ontology/isotc211/spatial</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/isotc211/feature">http://def.seegrid.csiro.au/ontology/isotc211/feature</a><br>
+	<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/base</a><br>
+	<a href="http://www.opengis.net/def/geosparql">http://www.opengis.net/def/geosparql/</a><br>
+	<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
+	<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
+	<a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a><br>
 
-						<a>Concepts: </a>						
-						<input type="radio" name="relationship" value="narrowerTransitive" />narrowerTransitive
-						<input type="radio" name="relationship" value="narrower" />narrower
-						<input type="radio" name="relationship" value="" checked="true" />exact
-						<input type="radio" name="relationship" value="broader" />broader
-						<input type="radio" name="relationship" value="broaderTransitive" />broaderTransitive
-						<br>
-						<br>
-						<div class="styled-select">
-						<a>Report result in</a>
-						<select name="language">
-							<option value="bg">bg</option>
-							<option value="cs">cs</option>
-							<option value="da">da</option>
-							<option value="de">de</option>
-							<option value="en" selected="selected">en</option>
-							<option value="es">es</option>
-							<option value="et">et</option>
-							<option value="fi">fi</option>
-							<option value="fr">fr</option>
-							<option value="hu">hu</option>
-							<option value="it">it</option>
-							<option value="ja">ja</option>
-							<option value="lt">lt</option>
-							<option value="nl">nl</option>
-							<option value="no">no</option>
-							<option value="pl">pl</option>
-							<option value="pt">pt</option>
-							<option value="sk">sk</option>
-							<option value="sl">sl</option>
-							<option value="sv">sv</option>
-							<option value="zh">zh</option>
-						</select>
-						<a>Report result in</a>
-						<select name="format">
-							<option value="html" selected="selected">HTML</option> 
-							<option value="rdf" >RDF/XML</option>
-							<option value="ttl" >Turtle</option>
-							<option value="json" >JSON</option>
-							<option value="xml" >XML</option>
-						</select>
-						<a>Page size</a>
-						<select name="pagesize">
-							<option value="10" selected="selected">10</option>
-							<option value="20">20</option>
-							<option value="50">50</option>
-						</select>
-						</div>
-						<br>
-						<table border="0" cellspacing="0" cellpadding="0" class="normal">
-							<tr>
-								<td>Full Metadata <input type="radio" name="metadata" value="no" checked="true" /> No	<input type="radio" name="metadata" value="yes"/> Yes</td>
-								<td width="500" align="right"><input type="button" class="styled-buttons2" value="Apply" onclick="applyOptions('<%=conceptSchemes%>','<%=conceptCollections%>','<%=concepts%>','<%=conceptResource%>');"/></td>
-							</tr>
-						</table>
-				</div>
-		<br>
-		<br>
-		<br>
-		<a>SPARQL end-point: <%= sparqlEndPoint %></a>
-		<br>
-		<br>
-		Other versions of this vocabulary: <a href="<%= isc2010 %>">2010</a> <a href="<%= isc2008 %>">2008</a> <a href="<%= isc2006 %>">2006</a> <a href="<%= isc2005 %>">2005</a> <a href="<%= isc2004 %>">2004</a>
-		<br>
-		<br>
-		<a>Ontologies used by this vocabulary are:</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/geotime/geologictimescale">http://def.seegrid.csiro.au/ontology/geotime/geologictimescale</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/geotime/gtrs">http://def.seegrid.csiro.au/ontology/geotime/gtrs</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/sampling">http://def.seegrid.csiro.au/ontology/isotc211/sampling</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/temporal">http://def.seegrid.csiro.au/ontology/isotc211/temporal</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/spatial">http://def.seegrid.csiro.au/ontology/isotc211/spatial</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/feature">http://def.seegrid.csiro.au/ontology/isotc211/feature</a><br>
-		<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/base</a><br>
-		<a href="http://www.opengis.net/def/geosparql">http://www.opengis.net/def/geosparql/</a><br>
-		<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
-		<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
-		<a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a><br>
-	
-	</body>
+</body>
 
 
 
