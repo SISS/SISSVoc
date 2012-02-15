@@ -1,15 +1,8 @@
 <%@ page import="java.util.*" %>
 <%!
-    Date theDate = new Date();
-    Date getDate()
-    {
-        System.out.println( "In getDate() method" );
-        return theDate;
-    }
-	 
 	 String repoName = "Geologic Timescale";
-	 String serviceName = "api/isc2009";
-     String title = "SISSVoc";
+	 String serviceName = "api/isc2010";
+    String title = "SISSVoc";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
 	 String conceptCollections = serviceName+"/collection";
@@ -22,7 +15,7 @@
 	 //links
 	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3";
 	 String isochart = "http://stratigraphy.org";
-	 String isc2010 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
+	 String isc2010 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2010.ttl";
 	 String isc2009 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
 	 String isc2008 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2008.ttl";
 	 String isc2006 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2006.ttl";
@@ -34,10 +27,11 @@
 <html>
 	
 	<head>
+		<style type="text/css">
+			<%@ include file="../../sissvoc.css" %>
+		</style>
 	</head>
 	<title><%=title%></title>
-
-	<link rel="stylesheet" href="sissvoc.css" type="text/css" media="all" />  
 
 	<script type="text/javascript">
 
@@ -218,7 +212,7 @@
 	<body>
 	<form id="landingPage">
 		<h2><%= repoName %></h2>
-		This service provides a <a href="<%= sissvoc3wiki %>">SISSVoc</a> interface to an OWL representation of the <a href="<%= isc2009 %>">2009</a> edition of the <a href="<%= isochart %>">International Stratigraphic Chart</a>
+		This service provides a <a href="<%= sissvoc3wiki %>">SISSVoc</a> interface to an OWL representation of the <a href="<%= isc2010 %>">2010</a> edition of the <a href="<%= isochart %>">International Stratigraphic Chart</a>
 		<br>
 		<br>
 			<legend>Queries</legend>
@@ -298,7 +292,7 @@
 		<a>SPARQL end-point: <%= sparqlEndPoint %></a>
 		<br>
 		<br>
-		Other versions of this vocabulary: <a href="<%= isc2010 %>">2010</a> <a href="<%= isc2008 %>">2008</a> <a href="<%= isc2006 %>">2006</a> <a href="<%= isc2005 %>">2005</a> <a href="<%= isc2004 %>">2004</a>
+		Other versions of this vocabulary: <a href="<%= isc2009 %>">2009</a> <a href="<%= isc2008 %>">2008</a> <a href="<%= isc2006 %>">2006</a> <a href="<%= isc2005 %>">2005</a> <a href="<%= isc2004 %>">2004</a>
 		<br>
 		<br>
 		<a>Ontologies used by this vocabulary are:</a><br>
