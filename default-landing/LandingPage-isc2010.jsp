@@ -28,7 +28,7 @@
 	
 	<head>
 		<style type="text/css">
-			<%@ include file="sissvoc.css" %>
+			<%@ include file="../../sissvoc.css" %>
 		</style>
 	</head>
 	<title><%=title%></title>
