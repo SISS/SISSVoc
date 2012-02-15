@@ -1,7 +1,7 @@
 <%@ page import="java.util.*" %>
 <%!
 	 String repoName = "Geologic Timescale";
-	 String serviceName = "/isc" + year;
+	 String serviceName = "isc" + year;
     String title = "SISSVoc";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
