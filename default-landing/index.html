@@ -1,41 +1,47 @@
 <html>
 <head>
-<title>Spatial Information Service Stack (SISSvoc 3) - Linked Data API</title>
-<link href="styles.css" type="text/css" rel="stylesheet"></link>
+<title>Elda -- an implementation of the Linked Data API</title>
+<link href="style.css" type="text/css" rel="stylesheet"></link>
 </head>
 <body>
-<link><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta></head><body><div class="bodyBlock"><div id="headerArea"></div><div id="contentArea">
-<div class="main">
-<div class="heading">
 
+<div class="main">
+
+<div class="heading">
+<a href="http://www.epimorphics.com">
+<img class="logo" src="epilogo-240.png">
+</a>
+<h1>Elda - %BUILDNUMBER%</h1>
+<h2>An implementation of the Linked Data API</h2>
 </div>
-<h1>
-Welcome to Spatial Information Services Stack Vocabulary Service (SISSVoc)
-</h1>
+
 <p>
-This service is deployed at CSIRO to support activities publishing RDF resources through Linked Data interfaces.
+RESTful vocabulary-service interface, following the Linked Data API.
 </p>
-<br>
-<br>
-<br>
+
 <h1>
-Built-in demonstration :
+URI Templates Available :
 </h1>
 <menu>
-<li type="circle"><a href="./LandingPage.jsp">International Stratigraphic Chart</a></li>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p>
-For more information visit the  <a href = "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Spec"> SISSVoc Wiki</a>
-</p>
+<!-- REPLACE ME -->
 </menu>
+
+<h1>
+Format negotiation using HTTP Accept Header :
+</h1>
+<p><b>Default format is HTML</b></p>
+<p>
+Format negotiation can be achieved by appending the request with :
+<li type="circle"><b>.json </b>(should return JSON formatted document) > <i> Example </i> <a href="api/isc/concept.json"> .json </a></li>
+<li type="circle"><b>.ttl </b>(should return Turtle formatted document) > <i> Example </i> <a href="api/isc/concept.ttl"> .ttl </a></li> 
+<li type="circle"><b> .rdf </b> (should return RDF/XML formatted document) > <i> Example </i> <a href="api/isc/concept.rdf"> .rdf </a></li> 
 <br>
 <br>
-<br>
-<br>
+
+</p>
+
+<p><i>Re-Engineering the SISSVoc Using Linked Data API :</i></p><a href = "https://www.seegrid.csiro.au/wiki/bin/view/Siss/VocabularyService3"> For detailed documentation click here:</a>
+
 
 </body>
 </html>
