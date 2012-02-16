@@ -255,7 +255,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/cgi/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/cgi/concept?anylabel=dip slip" 
+		; api:exampleRequestPath  "/cgi/concept?anylabel=dip%20slip" 
 		
 ## end of TODO:
 ##############################################################
@@ -408,7 +408,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/cgi/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/cgi/concept/broader?anylabel=dip slip" 
+		; api:exampleRequestPath  "/cgi/concept/broader?anylabel=dip%20slip" 
 		
 ## end of TODO:
 ##############################################################
@@ -429,7 +429,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/cgi/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/cgi/concept/narrower?anylabel=dip slip" 
+		; api:exampleRequestPath  "/cgi/concept/narrower?anylabel=dip%20slip" 
 		
 ## end of TODO:
 ##############################################################
@@ -450,7 +450,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/cgi/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/cgi/concept/broaderTransitive?anylabel=dip slip" 
+		; api:exampleRequestPath  "/cgi/concept/broaderTransitive?anylabel=dip%20slip" 
 		
 ## end of TODO:
 ##############################################################
@@ -471,7 +471,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/cgi/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/cgi/concept/narrowerTransitive?anylabel=dip slip" 
+		; api:exampleRequestPath  "/cgi/concept/narrowerTransitive?anylabel=dip%20slip" 
 		
 ## end of TODO:
 ##############################################################
