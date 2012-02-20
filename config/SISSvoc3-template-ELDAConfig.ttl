@@ -423,7 +423,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -444,7 +444,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -465,7 +465,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -486,7 +486,7 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -547,11 +547,6 @@ skos:member
 		rdfs:domain	skos:Collection ;
 		rdfs:range      skos:Concept .
 
-skos:memberList
-		api:label "memberList" ; 
-		rdfs:domain	skos:OrderedCollection ;
-		rdfs:range      skos:Concept .
-
 skos:prefLabel
 		api:label "prefLabel" ;
 		api:structured "true"^^xsd:boolean;
@@ -566,65 +561,5 @@ skos:altLabel
 skos:notation
 		a owl:DatatypeProperty; 
 		api:label "notation"  .
-
-skos:semanticRelation
-		api:label "semanticRelation" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:related
-		api:label "related" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:broader
-		api:label "broader" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:narrower
-		api:label "narrower" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:broaderTransitive
-		api:label "broaderTransitive" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:narrowerTransitive
-		api:label "narrowerTransitive" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-            
-skos:mappingRelation
-		api:label "mappingRelation" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:closeMatch
-		api:label "closeMatch" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:exactMatch
-		api:label "exactMatch" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:broadMatch
-		api:label "broadMatch" ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:narrowMatch 
-		api:label "narrowMatch " ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
-
-skos:relatedMatch 
-		api:label "relatedMatch " ; 
-		api:multiValued true ;
-		rdfs:range      skos:Concept .
 
 
