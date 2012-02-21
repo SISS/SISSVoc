@@ -46,7 +46,7 @@ $prefLabel, $altLabel, $title and $name variables.
 </xsl:template>
 
 <xsl:template match="result" mode="meta">
-	<link rel="shortcut icon" href="{$_resourceRoot}images/datagovuk_favicon.png" type="image/x-icon" /><!-- need a SISSvoc favicon here -->
+	<link rel="shortcut icon" href="{$_resourceRoot}images/datagovuk_favicon.png" type="image/x-icon" /> 
 	<xsl:apply-templates select="first | prev | next | last" mode="metalink" />
 	<xsl:apply-templates select="format/item" mode="metalink" />
 </xsl:template>
@@ -261,7 +261,7 @@ $prefLabel, $altLabel, $title and $name variables.
 		<xsl:apply-templates select="." mode="formats" />
 	</nav>
 	<header>
-		<h1><a href="/">Vocabulary Service Instance</a></h1><!-- adjust to taste -->
+		<h1><a href="/">Geologic Timescale</a></h1>
 	</header>
 </xsl:template>
 
