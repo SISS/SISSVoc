@@ -71,7 +71,7 @@ svoc:isc2004 a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-			; api:stylesheet 'xsltsheets/ashtml.xsl' 
+			; api:stylesheet 'xsltsheets/timescalehtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
 	; api:variable

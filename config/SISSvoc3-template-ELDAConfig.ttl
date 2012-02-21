@@ -72,9 +72,18 @@ svoc:test a api:API
 			a api:XsltFormatter
 			; api:name 'html'
 #			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "ashtml.xsl" to the path for the result stylesheet for this API
+
 			; api:stylesheet 'xsltsheets/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
+
+## end of TODO:
+##############################################################
 	
 ##############################################################
 ##
