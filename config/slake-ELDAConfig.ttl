@@ -192,7 +192,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 
 
 		; api:uriTemplate  "/slake/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept?anylabel=storage volume" 
+		; api:exampleRequestPath  "/slake/concept?anylabel=storage%20volume" 
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
