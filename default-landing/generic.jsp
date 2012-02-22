@@ -12,7 +12,7 @@
     String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/isc2009";
 
 	 //links
-	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3";
+	 String sissvoc3wiki = "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Spec";
 	 String isochart = "http://stratigraphy.org";
 	 String isc2010 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
 	 String isc2009 = "http://def.seegrid.csiro.au/ontology/geotime/isc-2009.ttl";
