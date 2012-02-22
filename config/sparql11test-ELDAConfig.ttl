@@ -35,7 +35,7 @@
 ## END of 1.1 'speed/size hacks'
 ##
 
-## Reference - https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
 
 svoc:sparql11test a api:API 
 # generic SISSvoc stuff
