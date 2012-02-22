@@ -1,7 +1,7 @@
 ##############################################################
 #
 # This is the template LDA configuration for a SISSvoc service
-# Reference - <https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3>
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview>
 #
 # Copyright (c) CSIRO 2012
 # Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0) 
