@@ -32,7 +32,7 @@
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-
+@prefix slake:   <http://vocabs.auscope.org/classifier/bom/slake/> .
 
 
 svoc:slake a api:API 
@@ -243,7 +243,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 svoc:narrowerThanURIEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than the one identified by this URI"
 		; api:uriTemplate  "/slake/concept/narrower?uri={baseConcept}" 
-		; api:exampleRequestPath  "/slake/concept/narrower?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML
+		; api:exampleRequestPath  "/slake/concept/narrower?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML"
 		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ] 
 		; api:selector [ 
 				api:where " ?baseConcept skos:narrower ?item . "
