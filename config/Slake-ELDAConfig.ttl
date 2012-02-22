@@ -317,7 +317,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/slake/concept/broader?uri={baseConcept}" 
-		; api:exampleRequestPath  "/slake/concept/broader?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML
+		; api:exampleRequestPath  "/slake/concept/broader?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML"
 		
 ## end of TODO:
 ##############################################################
