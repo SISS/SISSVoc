@@ -39,17 +39,7 @@
 ## other namespaces that appear in this vocabulary 
 
 @prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basictype/> .
-@prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
-@prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
-@prefix gml31:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.1/> .
-@prefix gml32:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.2/> .
-@prefix gtrs:    <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
-@prefix gts:     <http://resource.geosciml.org/schema/cgi/gts/3.0/> .
-@prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
-@prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
-@prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
-@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
-@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
+@prefix crs:     <http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
 
 ## end of TODO:
 ##############################################################
@@ -60,7 +50,7 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:test a api:API 
+svoc:ogc-def a api:API 
 
 ## end of TODO:
 ##############################################################
@@ -71,32 +61,19 @@ svoc:test a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-#			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
-
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "ashtml.xsl" to the path for the result stylesheet for this API
-
-			; api:stylesheet 'xsltsheets/ashtml.xsl' 
+			; api:stylesheet 'xsltsheets/defhtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
-
-## end of TODO:
-##############################################################
-	
-##############################################################
-##
-## TODO: deployer to make changes here
-## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 	; api:variable
 		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
-## end of TODO:
-##############################################################
-
+	; api:variable
+		[api:name "activeImageBase"; api:value "/elda-demo/images/green/16x16"]
+		, [api:name "inactiveImageBase"; api:value "/elda-demo/images/grey/16x16"]
+		, [api:name "_resourceRoot"; api:value "/elda-demo/"]
+		, [api:name "webapp"; api:value "/elda-demo"]
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		
@@ -104,7 +81,7 @@ svoc:test a api:API
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,
-		svoc:conceptByNotationEndpoint , 
+#		svoc:conceptByNotationEndpoint , 
 		svoc:broaderThanURIEndpoint ,
 		svoc:narrowerThanURIEndpoint ,
 		svoc:broaderTransitiveThanURIEndpoint ,
@@ -120,7 +97,7 @@ svoc:test a api:API
 ##
 ## set title of service
 
-	; rdfs:label "TEST - vocabulary service API"@en 
+	; rdfs:label "OGC Definitions - vocabulary service API"@en 
 	
 ####
 ## set service shortname - change value of "test" here
@@ -131,12 +108,12 @@ svoc:test a api:API
 ####
 # document the provenance of this vocabulary with links to the source
 
-	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
-	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
+#	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
+	; rdfs:seeAlso <http://www.opengeospatial.org> 
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isc2009> 
+	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/ogc-def> 
 	.
 	
 ## end of TODO:
@@ -148,7 +125,7 @@ svoc:test a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://def.seegrid.csiro.au/sparql/isc2009> elda:supportsNestedSelect true .
+<http://services-test.auscope.org/openrdf-sesame/repositories/ogc-def> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
@@ -197,14 +174,14 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## change "test" to vocab name
 ## set value of uri= to a URI from the vocabulary
 
-		; api:uriTemplate  "/test/resource?uri={URI}" 
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
+		; api:uriTemplate  "/ogc-def/resource?uri={URI}" 
+		; api:exampleRequestPath  "/ogc-def/resource?uri=http://www.opengis.net/def/ogc/inapplicable"
 		
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
 		; api:defaultViewer  api:labelledDescribeViewer
-		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
@@ -216,8 +193,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/conceptscheme" 
-		; api:exampleRequestPath  "/test/conceptscheme"
+		; api:uriTemplate  "/ogc-def/conceptscheme" 
+		; api:exampleRequestPath  "/ogc-def/conceptscheme"
 		
 ## end of TODO:
 ##############################################################
@@ -234,8 +211,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/collection" 
-		; api:exampleRequestPath  "/test/collection"
+		; api:uriTemplate  "/ogc-def/collection" 
+		; api:exampleRequestPath  "/ogc-def/collection"
 		
 ## end of TODO:
 ##############################################################
@@ -252,8 +229,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/concept" 
-		; api:exampleRequestPath  "/test/concept"
+		; api:uriTemplate  "/ogc-def/concept" 
+		; api:exampleRequestPath  "/ogc-def/concept"
 		
 ## end of TODO:
 ##############################################################
@@ -273,8 +250,8 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
+		; api:uriTemplate  "/ogc-def/concept?anylabel={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept?anylabel=West" 
 		
 ## end of TODO:
 ##############################################################
@@ -294,8 +271,8 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?labelcontains={text}" 
-		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
+		; api:uriTemplate  "/ogc-def/concept?labelcontains={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept?labelcontains=vertical" 
 		
 ## end of TODO:
 ##############################################################
@@ -307,17 +284,17 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		.
 
 ## 5. List of concepts where the skos:notation matches the quoted text  	 
-svoc:conceptByNotationEndpoint a api:ListEndpoint 
-		; rdfs:comment "List concepts where notation property has exact match to this string"
+# svoc:conceptByNotationEndpoint a api:ListEndpoint 
+# 		; rdfs:comment "List concepts where notation property has exact match to this string"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 ## change value of notation= to a code for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?notation={nn}" 
-		; api:exampleRequestPath  "/test/concept?notation=a1.1.3.6"
-		
+# 		; api:uriTemplate  "/ogc-def/concept?notation={nn}" 
+# 		; api:exampleRequestPath  "/ogc-def/concept?notation=a1.1.3.6"
+# 		
 ## end of TODO:
 ##############################################################
 		; api:selector [ 
@@ -338,8 +315,8 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/ogc-def/concept/broader?uri={baseConcept}" 
+		; api:exampleRequestPath  "/ogc-def/concept/broader?uri=http://www.opengis.net/def/ogc-eo/CoverageType/MULTIPASS"
 		
 ## end of TODO:
 ##############################################################
@@ -360,8 +337,8 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/ogc-def/concept/narrower?uri={baseConcept}" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrower?uri=http://www.opengis.net/def/ogc-eo/CoverageType"
 		
 ## end of TODO:
 ##############################################################
@@ -382,8 +359,8 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/ogc-def/concept/broaderTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/ogc-def/concept/broaderTransitive?uri=http://www.opengis.net/def/ogc-eo/CoverageType/MULTIPASS"
 		
 ## end of TODO:
 ##############################################################
@@ -404,8 +381,8 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/ogc-def/concept/narrowerTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrowerTransitive?uri=http://www.opengis.net/def/ogc-eo/CoverageType"
 		
 ## end of TODO:
 ##############################################################
@@ -426,13 +403,13 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broader?anylabel=Cambrian" 
+		; api:uriTemplate  "/ogc-def/concept/broader?anylabel={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept/broader?anylabel=MULTIPASS" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -447,13 +424,13 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrower?anylabel=Cambrian" 
+		; api:uriTemplate  "/ogc-def/concept/narrower?anylabel={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrower?anylabel=CoverageType" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -468,13 +445,13 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/ogc-def/concept/broaderTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept/broaderTransitive?anylabel=MULTIPASS" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -489,13 +466,13 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/ogc-def/concept/narrowerTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrowerTransitive?anylabel=CoverageType" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -528,14 +505,6 @@ rdfs:comment
     a           rdf:Property .
 
 ## SKOS
-skos:Concept
-		api:label "Concept" ;
-		a         rdfs:Class .
-             
-skos:ConceptScheme 
-		api:label "ConceptScheme" ;
-		a         rdfs:Class .
-
 skos:topConceptOf
 		api:label "topConceptOf" ;
 		rdfs:range      skos:ConceptScheme .
@@ -556,6 +525,11 @@ skos:member
 		rdfs:domain	skos:Collection ;
 		rdfs:range      skos:Concept .
 
+skos:memberList
+		api:label "memberList" ; 
+		rdfs:domain	skos:OrderedCollection ;
+		rdfs:range      skos:Concept .
+
 skos:prefLabel
 		api:label "prefLabel" ;
 		api:structured "true"^^xsd:boolean;
@@ -567,8 +541,5 @@ skos:altLabel
 		api:structured "true"^^xsd:boolean;
 		a         rdf:Property  .
             
-skos:notation
-		a owl:DatatypeProperty; 
-		api:label "notation"  .
 
 

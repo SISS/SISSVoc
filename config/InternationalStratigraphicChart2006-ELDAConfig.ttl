@@ -1,6 +1,6 @@
 ##############################################################
 #
-# This is the template LDA configuration for a SISSvoc service
+# This is based on the template LDA configuration for a SISSvoc service
 # Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
 #
 # Copyright (c) CSIRO 2012
@@ -60,7 +60,7 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:test a api:API 
+svoc:isc2006 a api:API 
 
 ## end of TODO:
 ##############################################################
@@ -71,32 +71,14 @@ svoc:test a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-#			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
-
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "ashtml.xsl" to the path for the result stylesheet for this API
-
-			; api:stylesheet 'xsltsheets/ashtml.xsl' 
+			; api:stylesheet 'xsltsheets/timescalehtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
-
-## end of TODO:
-##############################################################
-	
-##############################################################
-##
-## TODO: deployer to make changes here
-## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 	; api:variable
 		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
-		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
-## end of TODO:
-##############################################################
-
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]	
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		
@@ -120,7 +102,7 @@ svoc:test a api:API
 ##
 ## set title of service
 
-	; rdfs:label "TEST - vocabulary service API"@en 
+	; rdfs:label "International Stratigraphic Chart (2006) API"@en 
 	
 ####
 ## set service shortname - change value of "test" here
@@ -136,7 +118,7 @@ svoc:test a api:API
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isc2009> 
+	; api:sparqlEndpoint <http://services.auscope.org/openrdf-sesame/repositories/isc2006> 
 	.
 	
 ## end of TODO:
@@ -148,7 +130,7 @@ svoc:test a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://def.seegrid.csiro.au/sparql/isc2009> elda:supportsNestedSelect true .
+<http://services.auscope.org/openrdf-sesame/repositories/isc2006> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
@@ -195,10 +177,9 @@ svoc:URIEndpoint a api:ItemEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## set value of uri= to a URI from the vocabulary
 
-		; api:uriTemplate  "/test/resource?uri={URI}" 
-		; api:exampleRequestPath  "/test/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
+		; api:uriTemplate  "/isc2006/resource?uri={URI}" 
+		; api:exampleRequestPath  "/isc2006/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
 		
 ## end of TODO:
 ##############################################################
@@ -216,8 +197,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/conceptscheme" 
-		; api:exampleRequestPath  "/test/conceptscheme"
+		; api:uriTemplate  "/isc2006/conceptscheme" 
+		; api:exampleRequestPath  "/isc2006/conceptscheme"
 		
 ## end of TODO:
 ##############################################################
@@ -234,8 +215,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/collection" 
-		; api:exampleRequestPath  "/test/collection"
+		; api:uriTemplate  "/isc2006/collection" 
+		; api:exampleRequestPath  "/isc2006/collection"
 		
 ## end of TODO:
 ##############################################################
@@ -252,8 +233,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/test/concept" 
-		; api:exampleRequestPath  "/test/concept"
+		; api:uriTemplate  "/isc2006/concept" 
+		; api:exampleRequestPath  "/isc2006/concept"
 		
 ## end of TODO:
 ##############################################################
@@ -271,10 +252,9 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2006/concept?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2006/concept?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -292,10 +272,9 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?labelcontains={text}" 
-		; api:exampleRequestPath  "/test/concept?labelcontains=cambrian" 
+		; api:uriTemplate  "/isc2006/concept?labelcontains={text}" 
+		; api:exampleRequestPath  "/isc2006/concept?labelcontains=cambrian" 
 		
 ## end of TODO:
 ##############################################################
@@ -313,15 +292,13 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of notation= to a code for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept?notation={nn}" 
-		; api:exampleRequestPath  "/test/concept?notation=a1.1.3.6"
+		; api:uriTemplate  "/isc2006/concept?notation={nn}" 
+		; api:exampleRequestPath  "/isc2006/concept?notation=a1.1.3.6"
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [ 
-## this match isn't quite right - it is not exact, but must use regex and str() because in general don't know the datatype
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 		]
 		; api:defaultViewer svoc:basicConceptViewer 
@@ -336,10 +313,9 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2006/concept/broader?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2006/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -358,10 +334,9 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2006/concept/narrower?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2006/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -380,10 +355,9 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2006/concept/broaderTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2006/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -402,10 +376,9 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?uri={baseConcept}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+		; api:uriTemplate  "/isc2006/concept/narrowerTransitive?uri={baseConcept}" 
+		; api:exampleRequestPath  "/isc2006/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 		
 ## end of TODO:
 ##############################################################
@@ -424,15 +397,14 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broader?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2006/concept/broader?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2006/concept/broader?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -445,15 +417,14 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrower?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2006/concept/narrower?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2006/concept/narrower?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -466,15 +437,14 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/broaderTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2006/concept/broaderTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2006/concept/broaderTransitive?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -487,15 +457,14 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/test/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/test/concept/narrowerTransitive?anylabel=Cambrian" 
+		; api:uriTemplate  "/isc2006/concept/narrowerTransitive?anylabel={text}" 
+		; api:exampleRequestPath  "/isc2006/concept/narrowerTransitive?anylabel=Cambrian" 
 		
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -556,6 +525,11 @@ skos:member
 		rdfs:domain	skos:Collection ;
 		rdfs:range      skos:Concept .
 
+skos:memberList
+		api:label "memberList" ; 
+		rdfs:domain	skos:OrderedCollection ;
+		rdfs:range      skos:Concept .
+
 skos:prefLabel
 		api:label "prefLabel" ;
 		api:structured "true"^^xsd:boolean;
@@ -570,5 +544,65 @@ skos:altLabel
 skos:notation
 		a owl:DatatypeProperty; 
 		api:label "notation"  .
+
+skos:semanticRelation
+		api:label "semanticRelation" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:related
+		api:label "related" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broader
+		api:label "broader" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrower
+		api:label "narrower" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broaderTransitive
+		api:label "broaderTransitive" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+            
+skos:mappingRelation
+		api:label "mappingRelation" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:closeMatch
+		api:label "closeMatch" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:exactMatch
+		api:label "exactMatch" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broadMatch
+		api:label "broadMatch" ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrowMatch 
+		api:label "narrowMatch " ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:relatedMatch 
+		api:label "relatedMatch " ; 
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
 
 

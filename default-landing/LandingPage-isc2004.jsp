@@ -1,5 +1,5 @@
 <%!
- 	int year = 2010;
+ 	int year = 2004;
 %>
 
 <%@ include file="generic.jsp" %>

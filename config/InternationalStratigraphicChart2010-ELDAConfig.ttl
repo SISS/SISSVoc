@@ -1,7 +1,7 @@
 ##############################################################
 #
 # This is based on the template LDA configuration for a SISSvoc service
-# Reference - <https://www.seegrid.csiro.au/wiki/Siss/VocabularyService3>
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
 #
 # Copyright (c) CSIRO 2012
 # Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0) 
@@ -68,10 +68,17 @@ svoc:isc2010 a api:API
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
+	
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "ashtml.xsl" to the path for the result stylesheet for this API
+## change %DEPLOYPATH% to find the images and css for the stylesheet 
+
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-			; api:stylesheet 'xsltsheets/ashtml.xsl' 
+			; api:stylesheet 'xsltsheets/timescalehtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
 	; api:variable
@@ -79,6 +86,10 @@ svoc:isc2010 a api:API
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]	
+
+## end of TODO:
+##############################################################
+
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint , 		
