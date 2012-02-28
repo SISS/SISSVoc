@@ -99,12 +99,12 @@ svoc:test a api:API
 
 	; api:endpoint
 		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint , 		
-		svoc:conceptCollectionEndpoint , 	
-		svoc:conceptListEndpoint , 
-		svoc:conceptByLabelEndpoint , 
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
+		svoc:conceptListEndpoint ,
+		svoc:conceptByLabelEndpoint ,
 		svoc:conceptByLabelLooseEndpoint ,
-		svoc:conceptByNotationEndpoint , 
+		svoc:conceptByNotationEndpoint ,
 		svoc:broaderThanURIEndpoint ,
 		svoc:narrowerThanURIEndpoint ,
 		svoc:broaderTransitiveThanURIEndpoint ,

@@ -80,8 +80,8 @@ svoc:cgi a api:API
 
 	; api:endpoint
 		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint , 		
-		svoc:conceptCollectionEndpoint , 	
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,

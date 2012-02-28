@@ -85,15 +85,15 @@ svoc:isc2010 a api:API
 		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
-		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]	
+		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
 
 ## end of TODO:
 ##############################################################
 
 	; api:endpoint
 		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint , 		
-		svoc:conceptCollectionEndpoint , 	
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,

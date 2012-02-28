@@ -81,8 +81,8 @@ svoc:isc2004 a api:API
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]	
 	; api:endpoint
 		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint , 		
-		svoc:conceptCollectionEndpoint , 	
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,
