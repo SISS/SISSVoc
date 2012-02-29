@@ -1,7 +1,7 @@
 <%@ page import="java.util.*" %>
 <%!
 	 String serviceTitle = "Open Geospatial Consortium definitions";
-	 String serviceName = "ogc-def";
+	 String serviceName = "api/ogc-def";
 	 String title = "SISSVoc - OGC def";
 	 String description = "definitions maintained by Open Geospatial Consortium";
 	 String exampleLabel = "East";
