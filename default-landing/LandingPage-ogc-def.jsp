@@ -265,9 +265,11 @@
 	<br>
 	<br>
 	<br>
-	<h2>SPARQL end-point</h2>
+	<legend>SPARQL end-point used by this service</legend>
 	<%= sparqlEndPoint %>
-	<h2>Related ontologies:</h2>
+	<br>
+	<br>
+	<legend>Related ontologies:</legend>
 	<%= related %>
 
 </body>
