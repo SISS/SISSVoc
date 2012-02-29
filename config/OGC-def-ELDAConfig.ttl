@@ -133,12 +133,12 @@ svoc:viewerNone a api:Viewer
 
 svoc:basicConceptSchemeViewer a api:Viewer 
     ; api:name "conceptScheme" 
-    ; api:property rdfs:label
+    ; api:property rdfs:label, skos:hasTopConcept
     .
 
 svoc:basicCollectionViewer a api:Viewer 
     ; api:name "collection" 
-    ; api:property rdfs:label
+    ; api:property rdfs:label, skos:member
     .
 
 svoc:basicConceptViewer a api:Viewer 
