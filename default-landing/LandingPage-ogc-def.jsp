@@ -12,18 +12,12 @@
 	 String concepts = serviceName+"/concept";
 	 String conceptResource = serviceName+"/resource";
 
-	 String sparqlEndPoint = "http://http://services-test.auscope.org/openrdf-sesame/repositories/ogc-def";
+	 String sparqlEndPoint = "http://services-test.auscope.org/openrdf-sesame/repositories/ogc-def";
 	 
-	 String languageChoice = "
-		<option value='en' selected='selected'>en</option>
-		";
+	 String languageChoice = " <option value='en' selected='selected'>en</option>	";
 
 	 //links
-	 String related = "
-	<br/><a href='http://xmlns.com/foaf/0.1/'>http://xmlns.com/foaf/0.1/</a>
-	<br/><a href='http://www.w3.org/2004/02/skos/core'>http://www.w3.org/2004/02/skos/core</a>
-	<br/><a href='http://www.w3.org/2002/07/owl'>http://www.w3.org/2002/07/owl</a>
-	";
+	 String related = " <br/><a href='http://xmlns.com/foaf/0.1/'>http://xmlns.com/foaf/0.1/</a>	<br/><a href='http://www.w3.org/2004/02/skos/core'>http://www.w3.org/2004/02/skos/core</a>	<br/><a href='http://www.w3.org/2002/07/owl'>http://www.w3.org/2002/07/owl</a>	";
 
 %>
 
