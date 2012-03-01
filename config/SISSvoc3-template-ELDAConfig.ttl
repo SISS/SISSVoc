@@ -94,6 +94,10 @@ svoc:test a api:API
 		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
+		, [api:name "serviceTitle"; api:value "Custom Title"]
+		, [api:name "serviceAuthor"; api:value "Custom Author"] 
+		, [api:name "serviceAuthorEmail"; api:value "new.author@csiro.au"] 
+		, [api:name "serviceHomePage"; api:value "http://test.homepage/here"] 
 ## end of TODO:
 ##############################################################
 
