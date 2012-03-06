@@ -3,6 +3,14 @@ import os
 import fileinput
 import fnmatch
 
+'''runtime detection'''
+if ('WEB-INF' in os.listdir('.')):
+    '''we are inside the webapp dir'''
+    rootFindPath = '.'
+else:
+    rootFindPath = '..'+os.sep
+
+print "I am looking for configs in %s" % rootFindPath
 
 html_top = '''<html>
 <head>
@@ -31,11 +39,16 @@ html_bottom = '''
 </body>
 </html>'''
 
+
+
 apis = []
-for root, dirnames, filenames in os.walk('..'+os.sep):
+for root, dirnames, filenames in os.walk(rootFindPath):
   for filename in fnmatch.filter(filenames, '*ELDAConfig.ttl'):
       apis.append(root + os.sep + filename)
 apidata = ""
+
+for item in apis:
+	print "Config Found %s" % item
 
 template = re.compile('''api:uriTemplate.*?"(.*?)"''')
 comment = re.compile('''rdfs:comment.*?"(.*?)"''')
@@ -72,3 +85,5 @@ for file in apis:
 outputfile = open("verbose.html", 'w')
 outputfile.write(html_top + apidata + html_bottom)
 outputfile.close()
+
+print "verbose.html generated and ready"
