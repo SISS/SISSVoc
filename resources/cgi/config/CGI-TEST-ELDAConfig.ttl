@@ -52,6 +52,17 @@
 
 svoc:cgi a api:API 
 
+## TODO: deployer to make changes here
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+	; api:variable [api:name "webapp"; api:value "/%DEPLOYPATH%"]
+	; api:variable
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/cgi/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/"]
+		, [api:name "serviceTitle"; api:value "CGI Definitions "]
+		, [api:name "serviceAuthor"; api:value "GILLY!"] 
+		, [api:name "serviceAuthorEmail"; api:value "Guillaume.Duclaux@csiro.au"] 
+		, [api:name "serviceHomePage"; api:value "http://www.cgi.org/"]
 ## end of TODO:
 ##############################################################
 
@@ -62,22 +73,9 @@ svoc:cgi a api:API
 			a api:XsltFormatter
 			; api:name 'html'
 #			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
-			; api:stylesheet 'xsltsheets/ashtml.xsl' 
+			; api:stylesheet '{SISSDefaultResourceDirBase}transform/ashtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
-	
-##############################################################
-##
-## TODO: deployer to make changes here
-## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
-	; api:variable
-		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
-		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
-		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
-## end of TODO:
-##############################################################
-
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint ,
