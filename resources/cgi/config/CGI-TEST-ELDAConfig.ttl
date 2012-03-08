@@ -72,9 +72,9 @@ svoc:cgi a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-#			; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
-			; api:stylesheet '{SISSDefaultResourceDirBase}transform/ashtml.xsl' 
+			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
 			; api:mimeType 'text/html' 
+			; elda:metadataOptions "versions,formats"
 	]
 	; api:endpoint
 		svoc:URIEndpoint ,
