@@ -1,54 +1,14 @@
 import re
+import fnmatch
 import os
 import fileinput
-import fnmatch
-
-'''runtime detection'''
-if ('WEB-INF' in os.listdir('.')):
-    '''we are inside the webapp dir'''
-    rootFindPath = '.'
-else:
-    rootFindPath = '..'+os.sep
-
-print "I am looking for configs in %s" % rootFindPath
-
-html_top = '''<html>
-<head>
-<title>Elda -- an implementation of the Linked Data API</title>
-<link href="style.css" type="text/css" rel="stylesheet"></link>
-</head>
-<body>
-<div class="main">
-<div class="heading">
-<a href="http://www.epimorphics.com">
-<img class="logo" src="epilogo-240.png">
-</a>
-<h1>Elda - %BUILDNUMBER%</h1>
-<h2>An implementation of the Linked Data API</h2>
-</div>
-<h4>RESTful vocabulary-service interface, following the Linked Data API.</h4>
-<h1>
-URI Templates Available :
-</h1>
-<menu>
-'''
-
-html_bottom = '''
-</menu>
-<p><i>Re-Engineering the SISSVoc Using Linked Data API :</i></p><a href = "https://www.seegrid.csiro.au/wiki/bin/view/Siss/VocabularyService3"> For detailed documentation click here:</a>
-</body>
-</html>'''
-
-
 
 apis = []
-for root, dirnames, filenames in os.walk(rootFindPath):
+for root, dirnames, filenames in os.walk('..'+os.sep):
   for filename in fnmatch.filter(filenames, '*ELDAConfig.ttl'):
       apis.append(root + os.sep + filename)
-apidata = ""
 
-for item in apis:
-	print "Config Found %s" % item
+apidata = ""
 
 template = re.compile('''api:uriTemplate.*?"(.*?)"''')
 comment = re.compile('''rdfs:comment.*?"(.*?)"''')
@@ -58,11 +18,11 @@ startSection = re.compile('''a api:(Item|List)Endpoint''')
 
 relativePath = "./api"
 
-for file in apis:
+for file in sorted(apis):
     endpoints = {}
     data = open (file, 'r').readlines()
-    nicefile = '/'.join(file.split(os.sep)[1:])
-    apidata += "<h2><a href='%s'>%s</a></h2>" % (nicefile, nicefile)
+
+    apidata += "<h2><a href='%s'>%s</a></h2>" % (file.split(os.sep, 1)[1], file.split(os.sep, 1)[1])
     apidata += "<table><tr><th>Description</th><th>Template</th><th>Sample URI</th>"
     lookHarder = False
     for line in data:
@@ -82,8 +42,5 @@ for file in apis:
   
     apidata += "</table><hr/><br/>"
 
-outputfile = open("verbose.html", 'w')
-outputfile.write(html_top + apidata + html_bottom)
-outputfile.close()
-
-print "verbose.html generated and ready"
+for line in fileinput.input("verbose.html", inplace = 1): 
+      print line.replace("<!-- REPLACE ME -->", apidata),

@@ -7,7 +7,8 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:import href="linked-data-api.xsl" />
+
+<xsl:import href="../../../xsltsheets/linked-data-api.xsl" />
 
 <xsl:param name="_resourceRoot">/</xsl:param> 
 
@@ -15,6 +16,19 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:param name="visibleSparqlForm"/>
 <xsl:param name="activeImageBase" select="concat($_resourceRoot,'images/green/16x16')" />
 <xsl:param name="inactiveImageBase" select="concat($_resourceRoot,'images/grey/16x16')" />
+
+<xsl:param name="serviceTitle">Test Title</xsl:param> 
+<xsl:param name="serviceAuthor">Test Author</xsl:param> 
+<xsl:param name="serviceAuthorEmail">test.author@csiro.au</xsl:param> 
+<xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param> 
+
+<xsl:param name="SISSDefaultResourceDirBase" />
+
+<xsl:param name="myResourceDirBase" />
+<xsl:param name="myResourceCSSBase" select="concat($myResourceDirBase, 'css/')" />
+<xsl:param name="myResourceImagesBase" select="concat($myResourceDirBase, 'images/')" />
+<xsl:param name="myResourceJsBase" select="concat($myResourceDirBase, 'js/')" />
+<xsl:param name="myResourceCSSResultFile" select="concat($myResourceCSSBase, 'mystyle.css')" />
 
 <xsl:param name="graphColour" select="'#577D00'" />
 <xsl:variable name="openSpaceAPIkey" select="'your openspace API key here.'" />
@@ -46,7 +60,7 @@ $prefLabel, $altLabel, $title and $name variables.
 </xsl:template>
 
 <xsl:template match="result" mode="meta">
-	<link rel="shortcut icon" href="{$_resourceRoot}images/datagovuk_favicon.png" type="image/x-icon" /> 
+	<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon" /> 
 	<xsl:apply-templates select="first | prev | next | last" mode="metalink" />
 	<xsl:apply-templates select="format/item" mode="metalink" />
 </xsl:template>
@@ -64,6 +78,7 @@ $prefLabel, $altLabel, $title and $name variables.
 	<link rel="stylesheet" href="{$_resourceRoot}css/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/smoothness/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/result.css" type="text/css" />
+	<link rel="stylesheet" href="{$myResourceCSSResultFile}" type="text/css" />
 	<xsl:comment>
 		<xsl:text>[if lt IE 9]&gt;</xsl:text>
 		<xsl:text>&lt;link rel="stylesheet" href="</xsl:text><xsl:value-of select='$_resourceRoot'/><xsl:text>css/ie.css" type="text/css">&lt;/link></xsl:text>
@@ -261,7 +276,7 @@ $prefLabel, $altLabel, $title and $name variables.
 		<xsl:apply-templates select="." mode="formats" />
 	</nav>
 	<header>
-		<h1><a href="/">OGC Definitions</a></h1>
+		<h1><a href="{$serviceHomePage}"><xsl:value-of select="$serviceTitle"/></a></h1>
 	</header>
 </xsl:template>
 
@@ -269,6 +284,7 @@ $prefLabel, $altLabel, $title and $name variables.
 	<footer>
 		<xsl:apply-templates select="wasResultOf" mode="footer" />
 		<p>
+			Contact <a href="mailto:{$serviceAuthorEmail}"><xsl:value-of select="$serviceAuthor"/></a><br/>
 			<xsl:text>Powered by </xsl:text>
 			<xsl:apply-templates select="wasResultOf/processor" mode="footer" />
 			<xsl:text>an implementation of the </xsl:text>

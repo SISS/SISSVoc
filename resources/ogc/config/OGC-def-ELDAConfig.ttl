@@ -61,18 +61,28 @@ svoc:ogc-def a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-			; api:stylesheet 'xsltsheets/defhtml.xsl' 
+			; api:stylesheet 'resources/ogc/transform/defhtml.xsl' 
 			; api:mimeType 'text/html' 
 	]
+##############################################################
+##
+## TODO: deployer to make changes here
+## set variables up!
 	; api:variable
-		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
+		[api:name "SISSDefaultResourceDirBase"; api:value "/%DEPLOYPATH%/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "/%DEPLOYPATH%/resources/ogc/"]
 		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
 		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
+		, [api:name "serviceTitle"; api:value "OGC Definitions Linked Data Service"]
+		, [api:name "serviceAuthor"; api:value "Simon Cox"] 
+		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"] 
+		, [api:name "serviceHomePage"; api:value "http://www.opengeospatial.org/"]
+## end of TODO:
+##############################################################		
 	; api:endpoint
 		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint , 		
-		svoc:conceptCollectionEndpoint , 	
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
 		svoc:conceptListEndpoint , 
 		svoc:conceptByLabelEndpoint , 
 		svoc:conceptByLabelLooseEndpoint ,

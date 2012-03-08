@@ -16,11 +16,6 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:param name="activeImageBase" select="concat($_resourceRoot,'images/green/16x16')" />
 <xsl:param name="inactiveImageBase" select="concat($_resourceRoot,'images/grey/16x16')" />
 
-<xsl:param name="serviceTitle">Test Title</xsl:param> 
-<xsl:param name="serviceAuthor">Test Author</xsl:param> 
-<xsl:param name="serviceAuthorEmail">test.author@csiro.au</xsl:param> 
-<xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param> 
-
 <xsl:param name="graphColour" select="'#577D00'" />
 <xsl:variable name="openSpaceAPIkey" select="'your openspace API key here.'" />
 
@@ -266,15 +261,14 @@ $prefLabel, $altLabel, $title and $name variables.
 		<xsl:apply-templates select="." mode="formats" />
 	</nav>
 	<header>
-		<h1><a href="{$serviceHomePage}"><xsl:value-of select="$serviceTitle"/></a></h1>
-		</header>
+		<h1><a href="/">Vocabulary Service Instance</a></h1><!-- adjust to taste -->
+	</header>
 </xsl:template>
 
 <xsl:template match="result" mode="footer">
 	<footer>
 		<xsl:apply-templates select="wasResultOf" mode="footer" />
 		<p>
-			Contact <a href="mailto:{$serviceAuthorEmail}"><xsl:value-of select="$serviceAuthor"/></a><br/>
 			<xsl:text>Powered by </xsl:text>
 			<xsl:apply-templates select="wasResultOf/processor" mode="footer" />
 			<xsl:text>an implementation of the </xsl:text>
