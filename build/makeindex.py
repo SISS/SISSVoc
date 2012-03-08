@@ -3,8 +3,15 @@ import fnmatch
 import os
 import fileinput
 
+if ('WEB-INF' in os.listdir('.')):
+	basedir='.'
+else:
+	basedir='..' + os.sep
+
+print "Searching for configs here: %s" % (basedir)
+	
 apis = []
-for root, dirnames, filenames in os.walk('..'+os.sep):
+for root, dirnames, filenames in os.walk(basedir):
   for filename in fnmatch.filter(filenames, '*ELDAConfig.ttl'):
       apis.append(root + os.sep + filename)
 
@@ -19,6 +26,7 @@ startSection = re.compile('''a api:(Item|List)Endpoint''')
 relativePath = "./api"
 
 for file in sorted(apis):
+    print "Found config file: %s" % (file)
     endpoints = {}
     data = open (file, 'r').readlines()
 
