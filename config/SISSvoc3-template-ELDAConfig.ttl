@@ -92,16 +92,16 @@ svoc:test a api:API
 		svoc:conceptSchemeEndpoint ,
 		svoc:conceptCollectionEndpoint ,
 		svoc:conceptListEndpoint ,
-		svoc:conceptByLabelEndpoint ,
-		svoc:conceptByLabelLooseEndpoint ,
+		svoc:conceptLabelEndpoint ,
+		svoc:conceptLabelContainsEndpoint ,
 		svoc:broaderThanURIEndpoint ,
 		svoc:narrowerThanURIEndpoint ,
 		svoc:broaderTransitiveThanURIEndpoint ,
 		svoc:narrowerTransitiveThanURIEndpoint , 
-		svoc:broaderByLabelEndpoint ,
-		svoc:narrowerByLabelEndpoint ,
-		svoc:broaderTransitiveByLabelEndpoint ,
-		svoc:narrowerTransitiveByLabelEndpoint 
+		svoc:broaderLabelEndpoint ,
+		svoc:narrowerLabelEndpoint ,
+		svoc:broaderTransitiveLabelEndpoint ,
+		svoc:narrowerTransitiveLabelEndpoint 
 	; api:defaultViewer api:describeViewer 
 	
 ##############################################################
@@ -245,7 +245,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		.
 		
 ## 4. List of concepts where a label matches the text, in English 
-svoc:conceptByLabelEndpoint a api:ListEndpoint 
+svoc:conceptLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
 ##############################################################
 ##
@@ -272,7 +272,7 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 		.
 		
 ## 5. List of concepts where a label contains the text, any language, case-insensitive 
-svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
+svoc:conceptLabelContainsEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
 ##############################################################
 ##
@@ -286,7 +286,13 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+				api:where 
+					""" { ?item skos:prefLabel ?l } 
+							UNION 
+							{ ?item skos:altLabel ?l } 
+							UNION 
+							{ ?item rdfs:label ?l } 
+							FILTER regex( str(?l) , ?text , 'i' ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -381,7 +387,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		.
 
 ## 10. List of concepts broader than the one where a label matches the text, in English 
-svoc:broaderByLabelEndpoint a api:ListEndpoint 
+svoc:broaderLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
 ##############################################################
 ##
@@ -402,7 +408,7 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 		.
 		
 ## 11. List of concepts narrower than the one where a label matches the text, in English 
-svoc:narrowerByLabelEndpoint a api:ListEndpoint 
+svoc:narrowerLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
 ##############################################################
 ##
@@ -423,7 +429,7 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 		.
 
 ## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
-svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint 
+svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
 ##############################################################
 ##
@@ -444,7 +450,7 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 		.
 		
 ## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
-svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint 
+svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
 ##############################################################
 ##
