@@ -72,7 +72,7 @@ svoc:test a api:API
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
 # the following setting causes dct:hasVersion to have short-name of “version”. required for generic XSLT stylesheet, which looks for “version” rather than “hasVersion” in order to create links for the different renderings (.ttl, .html, .json etc) 
-	; api:variable [ api:name "_strip_has"; api:value "yes" ]
+#	; api:variable [ api:name "_strip_has"; api:value "yes" ]
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
