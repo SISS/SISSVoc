@@ -161,19 +161,8 @@ svoc:basicConceptViewer a api:Viewer
     ; api:name "concept" 
     ; api:property skos:prefLabel
     .
-
-################
-##
-## LDA documentation is unclear about syntax for api_template, and in particular how to pass in the URI for the item
-##
-#svoc:labelledDescribeConceptViewer a api:Viewer
-#    ; api:name "conceptFull"
-#    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
-#    .
-#
-##
-################
-
+    
+    
 #ENDPOINTS
 
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request. 
@@ -227,7 +216,10 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 		
 ## end of TODO:
 ##############################################################
-		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
+		; api:selector [ 
+				api:where 
+					"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }" 
+			] 
 		; api:defaultViewer  svoc:basicCollectionViewer
 		; api:viewer  api:basicViewer,svoc:basicCollectionViewer 
 		.
@@ -471,6 +463,8 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## if the vocabulary contains 'skos:notation' values and these are available for queries, 
 ## change "gts:EraCode" to the type used for notation values in this vocabulary
+
+### PROBLEM WITH gts:EraCode - fix later - maybe ask on SKOS list?
 
 skos:notation	rdfs:range	gts:EraCode .
 gts:EraCode	a	rdfs:DataType .
