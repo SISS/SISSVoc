@@ -259,7 +259,13 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where 
+					""" { ?item skos:prefLabel ?l } 
+							UNION 
+							{ ?item skos:altLabel ?l } 
+							UNION 
+							{ ?item rdfs:label ?l } 
+							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
