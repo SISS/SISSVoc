@@ -78,7 +78,7 @@ svoc:test a api:API
 			; api:name 'html'
 			; api:mimeType 'text/html' 
 # the following setting enables view and format linkages and hyperlinked properties to appear on HTML pages
-#			; elda:metadataOptions "bindings,versions,execution,formats"
+			; elda:metadataOptions "bindings,versions,execution,formats"
 
 ##############################################################
 ##
@@ -86,7 +86,6 @@ svoc:test a api:API
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
 			; api:stylesheet 'xsltsheets/ashtml.xsl' 
-			; api:mimeType 'text/html' 
 	]
 
 ## end of TODO:
