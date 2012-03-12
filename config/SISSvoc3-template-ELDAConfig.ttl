@@ -89,11 +89,11 @@ svoc:test a api:API
 ##
 ## TODO: deployer to make changes here
 ## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+
+	; api:variable [api:name "webapp"; api:value "/elda-demo-head"]
 	; api:variable
-		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
-		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
-		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
+		[api:name "_resourceRoot"; api:value "{webapp}/"]
+
 ## end of TODO:
 ##############################################################
 
@@ -136,7 +136,7 @@ svoc:test a api:API
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isc2009> 
+	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isc-test> 
 	.
 	
 ## end of TODO:
@@ -148,7 +148,7 @@ svoc:test a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://def.seegrid.csiro.au/sparql/isc2009> elda:supportsNestedSelect true .
+<http://def.seegrid.csiro.au/sparql/isc-test> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
