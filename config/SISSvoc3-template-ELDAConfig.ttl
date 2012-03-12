@@ -107,7 +107,7 @@ svoc:test a api:API
 ##############################################################
 ##
 ## TODO: deployer to make changes here
-## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+## replace elda-demo-head to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 
 	; api:variable [api:name "webapp"; api:value "/elda-demo-head"]
 	; api:variable
@@ -244,9 +244,9 @@ svoc:conceptListEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
-## 4. List of concepts where a label matches the text, in English 
+## 4. List of concepts where a label matches the text 
 svoc:conceptLabelEndpoint a api:ListEndpoint 
-		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
+		; rdfs:comment "List concepts where a skos label property has exact match to text"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
@@ -386,7 +386,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
-## 10. List of concepts broader than the one where a label matches the text, in English 
+## 10. List of concepts broader than the one where a label matches the text 
 svoc:broaderLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
 ##############################################################
@@ -414,7 +414,7 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
-## 11. List of concepts narrower than the one where a label matches the text, in English 
+## 11. List of concepts narrower than the one where a label matches the text 
 svoc:narrowerLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
 ##############################################################
@@ -429,6 +429,7 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
+				api:where
 					""" ?i0 skos:narrower ?item .	
 							{ ?i0 rdfs:label ?l }	
 							UNION	
@@ -441,7 +442,7 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 
-## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
+## 12. List of concepts broaderTransitive than the one where a label matches the text 
 svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
 ##############################################################
@@ -456,6 +457,7 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
+				api:where
 					""" ?i0 skos:broaderTransitive ?item .	
 							{ ?i0 rdfs:label ?l }	
 							UNION	
@@ -468,7 +470,7 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
 		.
 		
-## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
+## 13. List of concepts narrowerTransitive than the one where a label matches the text 
 svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint 
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
 ##############################################################
@@ -483,6 +485,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
+				api:where
 					""" ?i0 skos:narrowerTransitive ?item .	
 							{ ?i0 rdfs:label ?l }	
 							UNION	
