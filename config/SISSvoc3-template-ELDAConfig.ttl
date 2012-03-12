@@ -87,18 +87,6 @@ svoc:test a api:API
 ## end of TODO:
 ##############################################################
 	
-##############################################################
-##
-## TODO: deployer to make changes here
-## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
-
-	; api:variable [api:name "webapp"; api:value "/elda-demo-head"]
-	; api:variable
-		[api:name "_resourceRoot"; api:value "{webapp}/"]
-
-## end of TODO:
-##############################################################
-
 	; api:endpoint
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint ,
@@ -116,21 +104,20 @@ svoc:test a api:API
 		svoc:broaderTransitiveByLabelEndpoint ,
 		svoc:narrowerTransitiveByLabelEndpoint 
 	; api:defaultViewer api:describeViewer 
+	
 ##############################################################
 ##
 ## TODO: deployer to make changes here
-##
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+
+	; api:variable [api:name "webapp"; api:value "/elda-demo-head"]
+	; api:variable
+		[api:name "_resourceRoot"; api:value "{webapp}/"]
+
 ## set title of service
 
 	; rdfs:label "TEST - vocabulary service API"@en 
 	
-####
-## set service shortname - change value of "test" here
-#	; api:variable 
-#			[	api:name "vocab" ; api:value "test"	]
-## was trying to set constant here to be inserted as the first step of the uriTemplates below
-## but the {variable} syntax in uriTemplates is for catching values, not expanding them, so this approach failed
-####
 # document the provenance of this vocabulary with links to the source
 
 	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale> 
@@ -163,12 +150,12 @@ svoc:viewerNone a api:Viewer
 
 svoc:basicConceptSchemeViewer a api:Viewer 
     ; api:name "conceptScheme" 
-    ; api:property rdfs:label
+    ; api:property rdfs:label, skos:hasTopConcept
     .
 
 svoc:basicCollectionViewer a api:Viewer 
     ; api:name "collection" 
-    ; api:property rdfs:label
+    ; api:property rdfs:label, skos:member
     .
 
 svoc:basicConceptViewer a api:Viewer 
