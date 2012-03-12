@@ -401,7 +401,14 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+				api:where	
+					""" ?i0 skos:broader ?item .	
+							{ ?i0 rdfs:label ?l }	
+							UNION	
+							{ ?i0 skos:prefLabel ?l }	
+							UNION	
+							{ ?i0 skos:altLabel ?l }	
+							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -422,7 +429,13 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+					""" ?i0 skos:narrower ?item .	
+							{ ?i0 rdfs:label ?l }	
+							UNION	
+							{ ?i0 skos:prefLabel ?l }	
+							UNION	
+							{ ?i0 skos:altLabel ?l }	
+							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -443,7 +456,13 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+					""" ?i0 skos:broaderTransitive ?item .	
+							{ ?i0 rdfs:label ?l }	
+							UNION	
+							{ ?i0 skos:prefLabel ?l }	
+							UNION	
+							{ ?i0 skos:altLabel ?l }	
+							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
@@ -464,7 +483,13 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+					""" ?i0 skos:narrowerTransitive ?item .	
+							{ ?i0 rdfs:label ?l }	
+							UNION	
+							{ ?i0 skos:prefLabel ?l }	
+							UNION	
+							{ ?i0 skos:altLabel ?l }	
+							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
