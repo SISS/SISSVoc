@@ -509,7 +509,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## if the vocabulary contains 'skos:notation' values and these are available for queries, 
 ## change "gts:EraCode" to the type used for notation values in this vocabulary
 
-### PROBLEM WITH gts:EraCode - fix later - maybe ask on SKOS list?
+### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
 
 skos:notation	rdfs:range	gts:EraCode .
 gts:EraCode	a	rdfs:DataType .
