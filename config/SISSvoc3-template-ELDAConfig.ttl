@@ -71,14 +71,10 @@ svoc:test a api:API
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10" 
-# the following setting causes dct:hasVersion to have short-name of “version”. required for generic XSLT stylesheet, which looks for “version” rather than “hasVersion” in order to create links for the different renderings (.ttl, .html, .json etc) 
-#	; api:variable [ api:name "_strip_has"; api:value "yes" ]
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
 			; api:mimeType 'text/html' 
-# the following setting enables view and format linkages and hyperlinked properties to appear on HTML pages
-#			; elda:metadataOptions "bindings,versions,execution,formats"
 
 ##############################################################
 ##
