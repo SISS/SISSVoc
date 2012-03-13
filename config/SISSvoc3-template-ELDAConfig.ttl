@@ -78,7 +78,7 @@ svoc:test a api:API
 			; api:name 'html'
 			; api:mimeType 'text/html' 
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
-			; api:metadataOptions 
+			; elda:metadataOptions 
 		      "bindings,versions,execution,formats"
 
 ##############################################################
