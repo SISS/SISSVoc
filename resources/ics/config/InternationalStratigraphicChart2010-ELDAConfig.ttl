@@ -160,7 +160,7 @@ svoc:viewerNone a api:Viewer
 
 svoc:basicConceptSchemeViewer a api:Viewer 
     ; api:name "conceptScheme" 
-    ; api:property rdfs:label, skos:hasTopConcept, 
+    ; api:property rdfs:label, skos:hasTopConcept
     .
 
 svoc:basicCollectionViewer a api:Viewer 
@@ -210,8 +210,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
-		; api:defaultViewer  api:describeViewer
-		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptSchemeViewer 
+		; api:defaultViewer  svoc:basicConceptSchemeViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
