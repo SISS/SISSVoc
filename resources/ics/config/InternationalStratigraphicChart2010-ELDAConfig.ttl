@@ -119,14 +119,14 @@ svoc:isc2010 a api:API
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/ics/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/"]
-		, [api:name "serviceTitle"; api:value "Intl. Stratigraphic Chart (2010)"]
+		, [api:name "serviceTitle"; api:value "Geologic timescale (2010)"]
 		, [api:name "serviceAuthor"; api:value "Simon Cox"] 
 		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"] 
 		, [api:name "serviceHomePage"; api:value "http://www.stratigraphy.org/"]
 
 ## set title of service
 
-	; rdfs:label "Intl. Stratigraphic Chart (2010)"@en 
+	; rdfs:label "International Stratigraphic Chart (2010 edition)"@en 
 	
 # document the provenance of this vocabulary with links to the source
 
@@ -160,7 +160,7 @@ svoc:viewerNone a api:Viewer
 
 svoc:basicConceptSchemeViewer a api:Viewer 
     ; api:name "conceptScheme" 
-    ; api:property rdfs:label, skos:hasTopConcept
+    ; api:property rdfs:label, skos:hasTopConcept, 
     .
 
 svoc:basicCollectionViewer a api:Viewer 
@@ -210,8 +210,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
-		; api:defaultViewer  svoc:basicConceptSchemeViewer
-		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer 
+		; api:defaultViewer  api:describeViewer
+		; api:viewer  api:basicViewer,api:describeViewer,svoc:basicConceptSchemeViewer 
 		.
 		
 ## 2. List of concept collections - basic-view 	 
