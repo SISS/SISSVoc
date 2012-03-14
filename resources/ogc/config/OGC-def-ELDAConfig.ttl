@@ -396,7 +396,7 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/ogc-def/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/ogc-def/concept/broader?anylabel=MULTIPASS" 
+		; api:exampleRequestPath  "/ogc-def/concept/broader?anylabel=Multi-Pass" 
 		
 ## end of TODO:
 ##############################################################
@@ -424,7 +424,7 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/ogc-def/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/ogc-def/concept/narrower?anylabel=CoverageType" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrower?anylabel=Coverage Type" 
 		
 ## end of TODO:
 ##############################################################
@@ -452,7 +452,7 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/ogc-def/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/ogc-def/concept/broaderTransitive?anylabel=MULTIPASS" 
+		; api:exampleRequestPath  "/ogc-def/concept/broaderTransitive?anylabel=Multi-Pass" 
 		
 ## end of TODO:
 ##############################################################
@@ -480,7 +480,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/ogc-def/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/ogc-def/concept/narrowerTransitive?anylabel=CoverageType" 
+		; api:exampleRequestPath  "/ogc-def/concept/narrowerTransitive?anylabel=Coverage Type" 
 		
 ## end of TODO:
 ##############################################################
