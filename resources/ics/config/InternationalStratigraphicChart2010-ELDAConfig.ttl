@@ -119,14 +119,14 @@ svoc:isc2010 a api:API
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/ics/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/"]
-		, [api:name "serviceTitle"; api:value "Intl. Stratigraphic Chart (2010 ed.)"]
+		, [api:name "serviceTitle"; api:value "Intl. Stratigraphic Chart (2010)"]
 		, [api:name "serviceAuthor"; api:value "Simon Cox"] 
 		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"] 
 		, [api:name "serviceHomePage"; api:value "http://www.stratigraphy.org/"]
 
 ## set title of service
 
-	; rdfs:label "Intl. Stratigraphic Chart (2010 ed.)"@en 
+	; rdfs:label "Intl. Stratigraphic Chart (2010)"@en 
 	
 # document the provenance of this vocabulary with links to the source
 
