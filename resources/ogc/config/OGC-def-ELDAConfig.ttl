@@ -263,8 +263,6 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 					""" { ?item skos:prefLabel ?l } 
 							UNION 
 							{ ?item skos:altLabel ?l } 
-							UNION 
-							{ ?item rdfs:label ?l } 
 							FILTER ( str(?l)=?text ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
@@ -290,8 +288,6 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 					""" { ?item skos:prefLabel ?l } 
 							UNION 
 							{ ?item skos:altLabel ?l } 
-							UNION 
-							{ ?item rdfs:label ?l } 
 							FILTER regex( str(?l) , ?text , 'i' ) """
 		] 		
 		; api:defaultViewer svoc:basicConceptViewer 
@@ -403,8 +399,6 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 		; api:selector [
 				api:where	
 					""" ?i0 skos:broader ?item .	
-							{ ?i0 rdfs:label ?l }	
-							UNION	
 							{ ?i0 skos:prefLabel ?l }	
 							UNION	
 							{ ?i0 skos:altLabel ?l }	
@@ -431,8 +425,6 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 		; api:selector [
 				api:where
 					""" ?i0 skos:narrower ?item .	
-							{ ?i0 rdfs:label ?l }	
-							UNION	
 							{ ?i0 skos:prefLabel ?l }	
 							UNION	
 							{ ?i0 skos:altLabel ?l }	
@@ -459,8 +451,6 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 		; api:selector [
 				api:where
 					""" ?i0 skos:broaderTransitive ?item .	
-							{ ?i0 rdfs:label ?l }	
-							UNION	
 							{ ?i0 skos:prefLabel ?l }	
 							UNION	
 							{ ?i0 skos:altLabel ?l }	
@@ -487,8 +477,6 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 		; api:selector [
 				api:where
 					""" ?i0 skos:narrowerTransitive ?item .	
-							{ ?i0 rdfs:label ?l }	
-							UNION	
 							{ ?i0 skos:prefLabel ?l }	
 							UNION	
 							{ ?i0 skos:altLabel ?l }	
