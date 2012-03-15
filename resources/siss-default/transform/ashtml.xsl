@@ -22,6 +22,7 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param> 
 
 <xsl:param name="SISSDefaultResourceDirBase" />
+<xsl:param name="SISSResourceCSSResultFile" select="concat($SISSDefaultResourceDirBase, 'css/sissstyle.css')" />
 
 <xsl:param name="myResourceDirBase" />
 <xsl:param name="myResourceCSSBase" select="concat($myResourceDirBase, 'css/')" />
@@ -77,6 +78,7 @@ $prefLabel, $altLabel, $title and $name variables.
 	<link rel="stylesheet" href="{$_resourceRoot}css/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/smoothness/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/result.css" type="text/css" />
+	<link rel="stylesheet" href="{$SISSResourceCSSResultFile}" type="text/css" />
 	<link rel="stylesheet" href="{$myResourceCSSResultFile}" type="text/css" />
 	<xsl:comment>
 		<xsl:text>[if lt IE 9]&gt;</xsl:text>
