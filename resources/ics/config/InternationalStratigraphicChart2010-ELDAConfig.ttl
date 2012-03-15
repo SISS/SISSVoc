@@ -86,7 +86,7 @@ svoc:isc2010 a api:API
 ## TODO: deployer to make changes here
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
-			; api:stylesheet 'resources/ics/transform/ashtml.xsl' 
+			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
 	]
 
 ## end of TODO:
@@ -114,7 +114,7 @@ svoc:isc2010 a api:API
 ## TODO: deployer to make changes here
 ## replace elda-demo-head to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 
-	; api:variable [api:name "webapp"; api:value "/elda-demo"]
+	; api:variable [api:name "webapp"; api:value "/sissvoc"]
 	; api:variable
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/ics/"]
