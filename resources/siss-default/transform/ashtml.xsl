@@ -40,6 +40,7 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:template match="result">
 	<html>
 		<head>
+			<meta http-equiv="X-UA-Compatible" value="IE=8" />
 			<xsl:apply-templates select="." mode="title" />
 			<xsl:apply-templates select="." mode="meta" />
 			<xsl:apply-templates select="." mode="script" />
