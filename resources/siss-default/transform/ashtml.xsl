@@ -57,7 +57,6 @@ $prefLabel, $altLabel, $title and $name variables.
 
 <xsl:template match="result" mode="title">
 	<title>Search Results</title>
-	<meta http-equiv="X-UA-Compatible" value="IE=8">
 </xsl:template>
 
 <xsl:template match="result" mode="meta">
