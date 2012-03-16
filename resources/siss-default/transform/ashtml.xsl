@@ -57,11 +57,11 @@ $prefLabel, $altLabel, $title and $name variables.
 
 <xsl:template match="result" mode="title">
 	<title>Search Results</title>
+	<meta http-equiv="X-UA-Compatible" value="IE=8">
 </xsl:template>
 
 <xsl:template match="result" mode="meta">
 	<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon" /> 
-	<meta http-equiv="X-UA-Compatible" value="IE=8">
 	<xsl:apply-templates select="first | prev | next | last" mode="metalink" />
 	<xsl:apply-templates select="format/item" mode="metalink" />
 </xsl:template>
