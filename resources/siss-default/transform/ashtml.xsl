@@ -22,6 +22,10 @@ $prefLabel, $altLabel, $title and $name variables.
 	<xsl:param name="myResourceImagesBase" select="concat($myResourceDirBase, 'images/')"/>
 	<xsl:param name="myResourceJsBase" select="concat($myResourceDirBase, 'js/')"/>
 	<xsl:param name="myResourceCSSResultFile" select="concat($myResourceCSSBase, 'mystyle.css')"/>
+
+	<xsl:param name="graphColour" select="'#577D00'" />
+	<xsl:variable name="openSpaceAPIkey" select="'your openspace API key here.'" />
+
 	<xsl:template match="/">
 		<xsl:apply-templates select="result"/>
 	</xsl:template>
