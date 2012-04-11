@@ -49,7 +49,7 @@ $prefLabel, $altLabel, $title and $name variables.
 		<title>Search Results</title>
 	</xsl:template>
 	<xsl:template match="result" mode="meta">
-		<link rel="shortcut icon" href="{$_resourceRoot}images/datagovuk_favicon.png" type="image/x-icon"/>
+		<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon"/>
 		<xsl:apply-templates select="first | prev | next | last" mode="metalink"/>
 		<xsl:apply-templates select="format/item" mode="metalink"/>
 	</xsl:template>
