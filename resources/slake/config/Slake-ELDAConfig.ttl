@@ -49,7 +49,7 @@ svoc:slake a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name 'html'
-		; api:stylesheet 'xsltsheets/XmlRdfRenderer.xsl' 
+			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
 
 ##############################################################
 ##
@@ -66,11 +66,15 @@ svoc:slake a api:API
 ##
 ## TODO: deployer to make changes here
 ## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+	; api:variable [api:name "webapp"; api:value "/sissvoc"]
 	; api:variable
-		[api:name "activeImageBase"; api:value "/%DEPLOYPATH%/images/green/16x16"]
-		, [api:name "inactiveImageBase"; api:value "/%DEPLOYPATH%/images/grey/16x16"]
-		, [api:name "_resourceRoot"; api:value "/%DEPLOYPATH%/"]
-		, [api:name "webapp"; api:value "/%DEPLOYPATH%"]
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/slake/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/"]
+		, [api:name "serviceTitle"; api:value "Slake Vocabulary"]
+		, [api:name "serviceAuthor"; api:value "Florence Tan"] 
+		, [api:name "serviceAuthorEmail"; api:value "Florence.Tan@csiro.au"] 
+		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/ASRDC/SlakeUOMVocabulary-FormalisationDeploymentGuide"]
 ## end of TODO:
 ##############################################################
 
