@@ -115,7 +115,7 @@ svoc:cgi a api:API
 	
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/cgi> 
+	; api:sparqlEndpoint <http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/cgi201202> 
 	.
 	
 ## end of TODO:
@@ -127,7 +127,7 @@ svoc:cgi a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/cgi> elda:supportsNestedSelect true .
+<http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/cgi201202> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
