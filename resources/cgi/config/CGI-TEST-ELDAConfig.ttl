@@ -506,6 +506,12 @@ rdfs:comment
     api:structured "true"^^xsd:boolean;
     a           rdf:Property .
 
+## DC
+dc:source
+	api:label "source" ;
+	api:structured "true"^^xsd:boolean;
+	a          rdf:Property .
+
 ## SKOS
 skos:Concept
 		api:label "Concept" ;
