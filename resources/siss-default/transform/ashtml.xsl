@@ -2399,35 +2399,13 @@ $prefLabel, $altLabel, $title and $name variables.
 		<xsl:param name="content"/>
 		<xsl:choose>
 			<xsl:when test="@href and not(starts-with(@href, 'http://api.talis.com'))">
-				<!-- skw removed repeated highestDescription computation (very bad on large pages)
-            <xsl:variable name="highestDescription">
-                <xsl:apply-templates select="." mode="highestDescription" />
-            </xsl:variable>
-            <xsl:choose>
-                <xsl:when test="$highestDescription != generate-id(.)">
-                    <a href="#{$highestDescription}" title="view on this page">
-                        <xsl:copy-of select="$content" />
-                    </a>
-                </xsl:when>
-                <xsl:otherwise>
--->
 				<xsl:variable name="adjustedHref">
 					<xsl:apply-templates select="@href" mode="uri"/>
 				</xsl:variable>
 				<xsl:choose>
 					<xsl:when test="$adjustedHref = @href">
 						<a href="{@href}">
-							<xsl:choose>
-								<xsl:when test="@href = $content">
-									<xsl:attribute name="class">outlink</xsl:attribute>
-									<xsl:call-template name="lastURIpart">
-										<xsl:with-param name="uri" select="@href"/>
-									</xsl:call-template>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:copy-of select="$content"/>
-								</xsl:otherwise>
-							</xsl:choose>
+							<xsl:copy-of select="$content"/>
 						</a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -2440,10 +2418,7 @@ $prefLabel, $altLabel, $title and $name variables.
 						</xsl:if>
 					</xsl:otherwise>
 				</xsl:choose>
-				<!--  skw                   
-                </xsl:otherwise>
-            </xsl:choose>
--->
+
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:copy-of select="$content"/>
