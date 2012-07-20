@@ -48,15 +48,15 @@ svoc:slake a api:API
 	; api:defaultPageSize "10" 
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
-			; api:name 'html'
-			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
+			; api:name "html"
+			; api:stylesheet "resources/siss-default/transform/ashtml.xsl" 
 
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
-			; api:mimeType 'text/html' 
+			; api:mimeType "text/html" 
 	]
 
 ## end of TODO:

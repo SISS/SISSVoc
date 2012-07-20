@@ -71,9 +71,9 @@ svoc:cgi a api:API
 	; api:defaultPageSize "10" 
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
-			; api:name 'html'
-			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
-			; api:mimeType 'text/html' 
+			; api:name "html"
+			; api:stylesheet "resources/siss-default/transform/ashtml.xsl" 
+			; api:mimeType "text/html" 
 			; elda:metadataOptions "versions,formats"
 	]
 	; api:endpoint
