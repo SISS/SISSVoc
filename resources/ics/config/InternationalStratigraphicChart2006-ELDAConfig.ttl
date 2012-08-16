@@ -75,8 +75,8 @@ svoc:isc2006 a api:API
 	; api:variable [ api:name "_strip_has"; api:value "yes" ] 
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
-			; api:name 'html'
-			; api:mimeType 'text/html' 
+			; api:name "html"
+			; api:mimeType "text/html" 
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
 			; elda:metadataOptions 
 		      "bindings,versions,execution,formats"
@@ -86,7 +86,7 @@ svoc:isc2006 a api:API
 ## TODO: deployer to make changes here
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
-			; api:stylesheet 'resources/siss-default/transform/ashtml.xsl' 
+			; api:stylesheet "resources/siss-default/transform/ashtml.xsl" 
 	]
 
 ## end of TODO:
