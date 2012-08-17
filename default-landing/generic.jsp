@@ -1,7 +1,7 @@
 <%@ page import="java.util.*" %>
 <%!
 	 String repoName = "Geologic Timescale";
-	 String serviceName = "isc" + year;
+	 String serviceName = "api/isc" + year;
     String title = "SISSVoc";
 
 	 String conceptSchemes = serviceName+"/conceptscheme";
@@ -30,14 +30,14 @@
 	 else if(year == 2005) isc = isc2005;
 	 else if(year == 2004) isc = isc2004;
  %>
-<html>
-	
+ <!DOCTYPE html>
+ <html>
 	<head>
+		<title><%=title%></title>
 		<style type="text/css">
 			<%@ include file="../../sissvoc.css" %>
 		</style>
 	</head>
-	<title><%=title%></title>
 
 	<script type="text/javascript">
 
@@ -313,9 +313,5 @@
 	<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
 	<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
 	<a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a><br>
-
 </body>
-
-
-
 </html>
