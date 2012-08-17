@@ -302,16 +302,26 @@
 	<br>
 	<br>
 	<a>Ontologies used by this vocabulary are:</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/geotime/geologictimescale">http://def.seegrid.csiro.au/ontology/geotime/geologictimescale</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/geotime/gtrs">http://def.seegrid.csiro.au/ontology/geotime/gtrs</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/isotc211/sampling">http://def.seegrid.csiro.au/ontology/isotc211/sampling</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/isotc211/temporal">http://def.seegrid.csiro.au/ontology/isotc211/temporal</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/isotc211/spatial">http://def.seegrid.csiro.au/ontology/isotc211/spatial</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/isotc211/feature">http://def.seegrid.csiro.au/ontology/isotc211/feature</a><br>
-	<a href="http://def.seegrid.csiro.au/ontology/isotc211/base">http://def.seegrid.csiro.au/ontology/isotc211/base</a><br>
-	<a href="http://www.opengis.net/def/geosparql">http://www.opengis.net/def/geosparql/</a><br>
-	<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a><br>
-	<a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a><br>
-	<a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a><br>
+	<ul>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2004">http://resource.geosciml.org/vocabulary/timescale/isc-2004</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2005">http://resource.geosciml.org/vocabulary/timescale/isc-2005</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2006">http://resource.geosciml.org/vocabulary/timescale/isc-2006</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2008">http://resource.geosciml.org/vocabulary/timescale/isc-2008</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2009">http://resource.geosciml.org/vocabulary/timescale/isc-2009</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2010">http://resource.geosciml.org/vocabulary/timescale/isc-2010</a></li>
+		<li><a href="http://resource.geosciml.org/vocabulary/timescale/isc-2012">http://resource.geosciml.org/vocabulary/timescale/isc-2012</a></li>
+		<li><a href="http://resource.geosciml.org/ontology/timescale/gts-30">http://resource.geosciml.org/ontology/timescale/gts-30</a> </li>
+		<li><a href="http://resource.geosciml.org/ontology/timescale/gtrs-30">http://resource.geosciml.org/ontology/timescale/gtrs-30</a></li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling">http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling</a></li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject">http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject</a> </li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry">http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry</a></li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19109/2005/feature">http://def.seegrid.csiro.au/isotc211/iso19109/2005/feature</a></li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic">http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic</a></li>
+		<li><a href="http://def.seegrid.csiro.au/isotc211/iso19150/2012/hm2owl">http://def.seegrid.csiro.au/isotc211/iso19150/2012/hm2owl</a></li>
+		<li><a href="http://www.opengis.net/ont/geosparql/">http://www.opengis.net/ont/geosparql/</a> </li>
+		<li><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></li>
+		<li><a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a></li>
+		<li><a href="http://www.w3.org/2002/07/owl">http://www.w3.org/2002/07/owl</a></li>
+	</ul>
 </body>
 </html>
