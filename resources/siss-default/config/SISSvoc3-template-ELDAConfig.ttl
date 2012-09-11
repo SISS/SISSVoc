@@ -75,12 +75,16 @@ svoc:test a api:API
 	; api:variable [ api:name "_strip_has"; api:value "yes" ] 
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
+<<<<<<< .mine
+			; api:name "html"
+			; api:mimeType "text/html"
+=======
 			; api:name "html"
 			; api:mimeType "text/html" 
+>>>>>>> .r311
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
 # remove the ones you don't want
-			; elda:metadataOptions 
-		      "bindings,versions,execution,formats"
+			; elda:metadataOptions "bindings,versions,execution,formats"
 # bindings	-	causes the inclusion of shortname to URI term bindings.
 # versions	-	causes the inclusion of links for configured alternate views (as in api:viewer) in the result page metadata.
 # execution	-	causes the inclusion of details about the LDA implementation and the executed sparql queries that produced the result.
@@ -91,7 +95,11 @@ svoc:test a api:API
 ## TODO: deployer to make changes here
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
+<<<<<<< .mine
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+=======
 			; api:stylesheet "resources/siss-default/transform/ashtml.xsl" 
+>>>>>>> .r311
 	]
 
 ## end of TODO:

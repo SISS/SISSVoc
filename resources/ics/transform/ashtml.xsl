@@ -7,7 +7,8 @@ $prefLabel, $altLabel, $title and $name variables.
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:import href="../../../xsltsheets/linked-data-api.xsl" />
+<xsl:import href="../../../xslt/linked-data-api.xsl" />
+
 
 <xsl:param name="_resourceRoot">/</xsl:param> 
 

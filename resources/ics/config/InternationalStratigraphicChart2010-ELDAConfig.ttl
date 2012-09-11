@@ -76,17 +76,10 @@ svoc:isc2010 a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name "html"
-			; api:mimeType "text/html" 
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+			; api:mimeType "text/html"
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
-			; elda:metadataOptions 
-		      "bindings,versions,execution,formats"
-
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "ashtml.xsl" to the path for the result stylesheet for this API
-
-			; api:stylesheet "resources/siss-default/transform/ashtml.xsl" 
+			; elda:metadataOptions "bindings,versions,execution,formats"
 	]
 
 ## end of TODO:
