@@ -38,8 +38,8 @@
 ## TODO: deployer to make changes here
 ## other namespaces that appear in this vocabulary 
 
-@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basictype/> .
-@prefix crs:     <http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
+@prefix crs:   <http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
+@prefix def:     <http://www.opengis.net/def/> .
 
 ## end of TODO:
 ##############################################################
@@ -488,7 +488,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ##############################################################
 ##
 ## TODO: deployer to make changes here
-## if the vocabulary contains 'skos:notation' values and these are available for queries, 
+## if the vocabulary contains "skos:notation" values and these are available for queries, 
 ## change "gts:EraCode" to the type used for notation values in this vocabulary
 
 ### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
