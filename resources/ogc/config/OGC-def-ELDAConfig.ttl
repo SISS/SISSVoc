@@ -38,8 +38,8 @@
 ## TODO: deployer to make changes here
 ## other namespaces that appear in this vocabulary 
 
-@prefix crs:   <http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
-@prefix def:     <http://www.opengis.net/def/> .
+@prefix crs:   	<http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
+@prefix def:    <http://www.opengis.net/def/> .
 
 ## end of TODO:
 ##############################################################
@@ -67,18 +67,11 @@ svoc:ogc-def a api:API
 			a api:XsltFormatter
 			; api:name "html"
 			; api:mimeType "text/html"
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
 			; elda:metadataOptions "bindings,versions,execution,formats"
-
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "ashtml.xsl" to the path for the result stylesheet for this API
-
-			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 	]
 
-## end of TODO:
 ##############################################################
 	
 	; api:endpoint
@@ -569,5 +562,34 @@ skos:altLabel
 skos:notation
 		a owl:DatatypeProperty; 
 		api:label "notation"  .
+
+skos:definition
+		a owl:AnnotationProperty; 
+		api:label "definition" .
+            
+skos:broaderTransitive
+		api:label "broaderTransitive" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:broader
+		api:label "broader" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:narrower
+		api:label "narrower" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
 
 
