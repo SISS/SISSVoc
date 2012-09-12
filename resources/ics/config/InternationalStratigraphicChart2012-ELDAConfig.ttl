@@ -74,16 +74,10 @@ svoc:isc2012 a api:API
 	; api:defaultFormatter [ 
 			a api:XsltFormatter
 			; api:name "html"
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 			; api:mimeType "text/html"
 # the following property enables the stylesheet to work better, including linking the item properties to their definitions
 			; elda:metadataOptions "bindings,versions,execution,formats"
-
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "ashtml.xsl" to the path for the result stylesheet for this API
-
-			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 	]
 
 ## end of TODO:
@@ -581,4 +575,28 @@ skos:notation
 		a owl:DatatypeProperty; 
 		api:label "notation"  .
 
+skos:broaderTransitive
+		api:label "broaderTransitive" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:broader
+		api:label "broader" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:narrower
+		api:label "narrower" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ; 
+		api:multiValued true ;
+		rdfs:domain     skos:Concept ;
+		rdfs:range      skos:Concept .
+            
 
