@@ -60,7 +60,7 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:test a api:API 
+svoc:nerc a api:API 
 
 ## it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
 #	; api:base "http://def.seegrid.csiro.au/sissvoc/test"
