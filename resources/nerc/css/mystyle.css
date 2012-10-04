@@ -2,7 +2,5 @@
 
 /* replace the icon near the title. */ 
 header h1 {
-    background: url("http://www.nerc.ac.uk/images/logos/nerc/logo.gif") no-repeat scroll 0 0 transparent;
-    margin: 150px;
-    font-size: 80%;
+    background: url("http://www.nerc.ac.uk/images/logos/nerc/logo.gif") no-repeat scroll 0 0 transparent
 }
