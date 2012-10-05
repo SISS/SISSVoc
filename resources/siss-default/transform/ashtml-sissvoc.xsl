@@ -871,12 +871,7 @@ $prefLabel, $altLabel, $title and $name variables.
 		<ul>
 			<xsl:choose>
 				<xsl:when test="$orderBy != ''">
-					<xsl:variable name="description">
-						<xsl:choose>
-							<xsl:when test="starts-with($orderBy, concat('(((?', $easting, ' - ')) or starts-with($orderBy, concat('desc(((?', $easting, ' - '))"> proximity to centre of map</xsl:when>
-							<xsl:otherwise> custom sort</xsl:otherwise>
-						</xsl:choose>
-					</xsl:variable>
+					<xsl:variable name="description"> custom sort</xsl:variable>
 					<li class="selected">
 						<a rel="nofollow" title="remove this sort" href="{$baseURI}">
 							<img src="{$activeImageBase}/Cancel.png" alt="remove this sort" />
@@ -1655,10 +1650,6 @@ $prefLabel, $altLabel, $title and $name variables.
 				<xsl:sort select="*[name(.) = $title]" />
 				<xsl:sort select="*[name(.) = $label]" />
 				<xsl:sort select="*[name(.) = $altLabel]" />
-				<xsl:sort select="*[name(.) = $easting]" order="descending" />
-				<xsl:sort select="*[name(.) = $northing]" order="descending" />
-				<xsl:sort select="*[name(.) = $lat]" order="descending" />
-				<xsl:sort select="*[name(.) = $long]" order="descending" />
 				<xsl:sort select="@href" />
 				<xsl:apply-templates select="." mode="content">
 					<xsl:with-param name="nested" select="$nested" />
@@ -1673,10 +1664,6 @@ $prefLabel, $altLabel, $title and $name variables.
 					<xsl:sort select="*[name(.) = $title]" />
 					<xsl:sort select="*[name(.) = $label]" />
 					<xsl:sort select="*[name(.) = $altLabel]" />
-					<xsl:sort select="*[name(.) = $easting]" order="descending" />
-					<xsl:sort select="*[name(.) = $northing]" order="descending" />
-					<xsl:sort select="*[name(.) = $lat]" order="descending" />
-					<xsl:sort select="*[name(.) = $long]" order="descending" />
 					<xsl:sort select="@href" />
 					<xsl:apply-templates select="." mode="row" />
 				</xsl:for-each>
