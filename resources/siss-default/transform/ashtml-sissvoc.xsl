@@ -457,17 +457,7 @@ $prefLabel, $altLabel, $title and $name variables.
 		<div class="panel">
 			<xsl:choose>
 				<xsl:when test="items">
-					<header> form
-						<!-- Disable search
-						<xsl:if test="items/item">
-							<p id="openSearch">Show Search Form</p>
-						</xsl:if>
-						-->
-						<h1>Search Results</h1>
-					</header>
-					<xsl:if test="items/item">
-						<xsl:apply-templates select="." mode="search" />
-					</xsl:if>
+					<header><h1>Search Results</h1></header>
 					<xsl:apply-templates select="items" mode="content" />
 				</xsl:when>
 				<xsl:otherwise>
