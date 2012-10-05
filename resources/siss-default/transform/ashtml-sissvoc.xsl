@@ -322,6 +322,9 @@
 			<xsl:choose>
 				<xsl:when test="items">
 					<header><h1>Search Results</h1></header>
+					<xsl:if test="items/item">
+						<xsl:apply-templates select="." mode="search" />
+					</xsl:if>
 					<xsl:apply-templates select="items" mode="content" />
 				</xsl:when>
 				<xsl:otherwise>
