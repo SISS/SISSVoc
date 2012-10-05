@@ -345,7 +345,6 @@ $prefLabel, $altLabel, $title and $name variables.
 	<xsl:variable name="hasResults" select="items/item[@href]" />
 	<xsl:variable name="isItem" select="not(items) and primaryTopic" />
 	<nav class="topnav">
-		<xsl:apply-templates select="." mode="moreinfo" />
 		<xsl:if test="$hasResults">
 			<xsl:apply-templates select="." mode="summary" />
 		</xsl:if>
