@@ -337,6 +337,7 @@
 	<xsl:variable name="hasResults" select="items/item[@href]" />
 	<xsl:variable name="isItem" select="not(items) and primaryTopic" />
 	<nav class="topnav">
+		<xsl:apply-templates select="." mode="moreinfo" />
 		<xsl:if test="$hasResults">
 			<xsl:apply-templates select="." mode="summary" />
 		</xsl:if>
@@ -422,7 +423,29 @@
 	</xsl:if>
 </xsl:template>
 
+<xsl:template match="result" mode="moreinfo">
+	<xsl:variable name="links">
+		<xsl:apply-templates select="primaryTopic | isPartOf" mode="moreinfo" />
+	</xsl:variable>
+</xsl:template>
 
+<xsl:template match="primaryTopic | items" mode="moreinfo" />
+
+<xsl:template name="moreinfoLink">
+	<xsl:param name="uri" />
+	<xsl:param name="current" />
+	<xsl:param name="label" />
+	<li>
+		<xsl:choose>
+			<xsl:when test="$uri = $current">
+				<span class="current"><xsl:value-of select="$label" /></span>
+			</xsl:when>
+			<xsl:otherwise>
+				<a href="{$uri}"><xsl:value-of select="$label" /></a>
+			</xsl:otherwise>
+		</xsl:choose>
+	</li>
+</xsl:template>
 
 <xsl:template match="*" mode="name">
 	<xsl:variable name="bestLabelParam">
