@@ -60,7 +60,7 @@ svoc:slake a api:API
 ##
 ## TODO: deployer to make changes here
 ## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
-	; api:variable [api:name "webapp"; api:value "/sissvoc"]
+	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
 	; api:variable
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/slake/"]

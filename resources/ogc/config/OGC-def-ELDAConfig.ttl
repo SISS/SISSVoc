@@ -62,8 +62,8 @@ svoc:ogc-def a api:API
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10"
 # the following variable modifies dct:hasVersion label to help generic stylesheet
-
-	; api:defaultFormatter [
+	; api:variable [ api:name "_strip_has"; api:value "yes" ]
+ 	; api:defaultFormatter [
 			a api:XsltFormatter
 			; api:name "html"
 			; api:mimeType "text/html"
@@ -95,9 +95,9 @@ svoc:ogc-def a api:API
 ##############################################################
 ##
 ## TODO: deployer to make changes here
-## replace elda-demo-head to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 
-	; api:variable [api:name "webapp"; api:value "/sissvoc"]
+	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
 	; api:variable
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/ogc/"]
