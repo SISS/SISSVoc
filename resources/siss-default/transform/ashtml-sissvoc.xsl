@@ -1,15 +1,7 @@
-<!--
-Note: in at least some versions of libxslt (used by PHP), you can't set global
-variables based on values retrieved by a key. Therefore this code contains
-lots of redeclarations of the $northing, $easting, $lat, $long, $label,
-$prefLabel, $altLabel, $title and $name variables.
--->
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="../../../xslt/linked-data-api.xsl" />
-
-
 <xsl:param name="_resourceRoot">/</xsl:param> 
 
 <xsl:param name="visibleSparqlEndpoint"/>
@@ -539,10 +531,6 @@ $prefLabel, $altLabel, $title and $name variables.
 </xsl:template>
 
 <xsl:template match="result" mode="viewnav">
-
-
-
-
 	<xsl:variable name="label" select="key('propertyTerms', $label-uri)/label" />
 	<xsl:variable name="prefLabel" select="key('propertyTerms', $prefLabel-uri)/label" />
 	<xsl:variable name="altLabel" select="key('propertyTerms', $altLabel-uri)/label" />
@@ -801,10 +789,6 @@ $prefLabel, $altLabel, $title and $name variables.
 </xsl:template>
 
 <xsl:template match="result" mode="sortnav">
-
-
-
-
 	<xsl:variable name="label" select="key('propertyTerms', $label-uri)/label" />
 	<xsl:variable name="prefLabel" select="key('propertyTerms', $prefLabel-uri)/label" />
 	<xsl:variable name="altLabel" select="key('propertyTerms', $altLabel-uri)/label" />
@@ -1291,10 +1275,6 @@ $prefLabel, $altLabel, $title and $name variables.
 </xsl:template>
 
 <xsl:template match="*" mode="table">
-
-
-
-
 	<xsl:variable name="label" select="key('propertyTerms', $label-uri)/label" />
 	<xsl:variable name="prefLabel" select="key('propertyTerms', $prefLabel-uri)/label" />
 	<xsl:variable name="altLabel" select="key('propertyTerms', $altLabel-uri)/label" />
@@ -1361,7 +1341,6 @@ $prefLabel, $altLabel, $title and $name variables.
 			<xsl:sort select="boolean(@href)" />
 			<xsl:sort select="local-name()" />
 			<xsl:apply-templates select="." mode="row">
-				<xsl:with-param name="showMap" select="$showMap" />
 				<xsl:with-param name="properties" select="$properties" />
 				<xsl:with-param name="bestLabelParam" select="$bestLabelParam" />
 				<xsl:with-param name="last" select="position() = last()" />
@@ -1442,6 +1421,26 @@ $prefLabel, $altLabel, $title and $name variables.
 					<xsl:with-param name="addLink" select="true()" />
 				</xsl:apply-templates>
 			</th>
+			<xsl:choose>
+				<xsl:when test="$hasNonLabelProperties = 'true' or item">
+					<td class="value nested">
+						<xsl:attribute name="colspan">2</xsl:attribute>
+						<xsl:apply-templates select="." mode="display">
+							<xsl:with-param name="nested" select="true()" />
+						</xsl:apply-templates>
+					</td>
+				</xsl:when>
+				<xsl:otherwise>
+					<td class="value">
+						<xsl:apply-templates select="." mode="display" />
+					</td>
+					<td class="filter">
+						<xsl:apply-templates select="." mode="filter">
+							<xsl:with-param name="paramName" select="$paramName" />
+						</xsl:apply-templates>
+					</td>
+				</xsl:otherwise>
+			</xsl:choose>
 		</tr>
 	</xsl:if>
 </xsl:template>
@@ -1623,10 +1622,6 @@ $prefLabel, $altLabel, $title and $name variables.
 
 <xsl:template match="*[item]" mode="content" priority="4">
 	<xsl:param name="nested" select="false()" />
-
-
-
-
 	<xsl:variable name="label" select="key('propertyTerms', $label-uri)/label" />
 	<xsl:variable name="prefLabel" select="key('propertyTerms', $prefLabel-uri)/label" />
 	<xsl:variable name="altLabel" select="key('propertyTerms', $altLabel-uri)/label" />
