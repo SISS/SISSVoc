@@ -93,6 +93,7 @@ svoc:cgi a api:API
 		svoc:broaderTransitiveByLabelEndpoint ,
 		svoc:narrowerTransitiveByLabelEndpoint
 	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
 ##############################################################
 ##
 ## TODO: deployer to make changes here

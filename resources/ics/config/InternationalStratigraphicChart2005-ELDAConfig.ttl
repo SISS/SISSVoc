@@ -99,6 +99,7 @@ svoc:isc2005 a api:API
 		svoc:broaderTransitiveLabelEndpoint ,
 		svoc:narrowerTransitiveLabelEndpoint
 	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
 
 ##############################################################
 ##

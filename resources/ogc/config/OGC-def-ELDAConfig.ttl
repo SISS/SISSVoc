@@ -90,6 +90,7 @@ svoc:ogc-def a api:API
 		svoc:broaderTransitiveLabelEndpoint ,
 		svoc:narrowerTransitiveLabelEndpoint
 	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
 
 ##############################################################
 ##
