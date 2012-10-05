@@ -4,10 +4,10 @@
 # Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
 #
 # Copyright (c) CSIRO 2012
-# Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0) 
+# Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
 # see <http://creativecommons.org/licenses/by/3.0/au/>
 #
-# Contact: Simon J D Cox 
+# Contact: Simon J D Cox
 #          CSIRO Earth Science and Resource Engineering
 #          PO Box 1130
 #          Bentley
@@ -38,15 +38,15 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:slake a api:API 
+svoc:slake a api:API
 
 ## end of TODO:
 ##############################################################
 
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
-	; api:defaultPageSize "10" 
-	; api:defaultFormatter [ 
+	; api:defaultPageSize "10"
+	; api:defaultFormatter [
 			a api:XsltFormatter
 			; api:name "html"
 			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
@@ -55,7 +55,7 @@ svoc:slake a api:API
 
 ## end of TODO:
 ##############################################################
-	
+
 ##############################################################
 ##
 ## TODO: deployer to make changes here
@@ -66,8 +66,8 @@ svoc:slake a api:API
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/slake/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/"]
 		, [api:name "serviceTitle"; api:value "Slake Vocabulary"]
-		, [api:name "serviceAuthor"; api:value "Florence Tan"] 
-		, [api:name "serviceAuthorEmail"; api:value "Florence.Tan@csiro.au"] 
+		, [api:name "serviceAuthor"; api:value "Florence Tan"]
+		, [api:name "serviceAuthorEmail"; api:value "Florence.Tan@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/ASRDC/SlakeUOMVocabulary-FormalisationDeploymentGuide"]
 ## end of TODO:
 ##############################################################
@@ -76,44 +76,44 @@ svoc:slake a api:API
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint ,
 		svoc:conceptCollectionEndpoint ,
-		svoc:conceptListEndpoint , 
-		svoc:conceptByLabelEndpoint , 
+		svoc:conceptListEndpoint ,
+		svoc:conceptByLabelEndpoint ,
 		svoc:conceptByLabelLooseEndpoint ,
-		svoc:conceptByNotationEndpoint , 
+		svoc:conceptByNotationEndpoint ,
 		svoc:broaderThanURIEndpoint ,
 		svoc:narrowerThanURIEndpoint ,
 		svoc:broaderTransitiveThanURIEndpoint ,
-		svoc:narrowerTransitiveThanURIEndpoint , 
+		svoc:narrowerTransitiveThanURIEndpoint ,
 		svoc:broaderByLabelEndpoint ,
 		svoc:narrowerByLabelEndpoint ,
 		svoc:broaderTransitiveByLabelEndpoint ,
-		svoc:narrowerTransitiveByLabelEndpoint 
-	; api:defaultViewer api:describeViewer 
+		svoc:narrowerTransitiveByLabelEndpoint
+	; api:defaultViewer api:describeViewer
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ##
 ## set title of service
 
-	; rdfs:label "slake - vocabulary service API"@en 
-	
+	; rdfs:label "slake - vocabulary service API"@en
+
 ####
 ## set service shortname - change value of "test" here
-#	; api:variable 
+#	; api:variable
 #			[	api:name "vocab" ; api:value "test"	]
 ## was trying to set constant here to be inserted as the first step of the uriTemplates below
 ## but the {variable} syntax in uriTemplates is for catching values, not expanding them, so this approach failed
 ####
 # document the provenance of this vocabulary with links to the source
 
-	; foaf:primaryTopic <http://www.bom.gov.au/water/waterstorage/glossary.shtml> 
-	; rdfs:seeAlso <http://www.bom.gov.au/water/waterstorage/glossary.shtml> 
-	
+	; foaf:primaryTopic <http://www.bom.gov.au/water/waterstorage/glossary.shtml>
+	; rdfs:seeAlso <http://www.bom.gov.au/water/waterstorage/glossary.shtml>
+
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/slake> 
+	; api:sparqlEndpoint <http://auscope-services-test.arrc.csiro.au/openrdf-sesame/repositories/slake>
 	.
-	
+
 ## end of TODO:
 ##############################################################
 
@@ -130,22 +130,22 @@ svoc:slake a api:API
 
 #VIEWERS
 
-svoc:viewerNone a api:Viewer 
+svoc:viewerNone a api:Viewer
     ; api:name "none"
     .
 
-svoc:basicConceptSchemeViewer a api:Viewer 
-    ; api:name "conceptScheme" 
+svoc:basicConceptSchemeViewer a api:Viewer
+    ; api:name "conceptScheme"
     ; api:property rdfs:label
     .
 
-svoc:basicCollectionViewer a api:Viewer 
-    ; api:name "collection" 
+svoc:basicCollectionViewer a api:Viewer
+    ; api:name "collection"
     ; api:property rdfs:label
     .
 
-svoc:basicConceptViewer a api:Viewer 
-    ; api:name "concept" 
+svoc:basicConceptViewer a api:Viewer
+    ; api:name "concept"
     ; api:property skos:prefLabel
     .
 
@@ -163,18 +163,18 @@ svoc:basicConceptViewer a api:Viewer
 
 #ENDPOINTS
 
-## 0. This is the basic "tell me what you know about the resource identified by this URI" request. 
+## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
 svoc:URIEndpoint a api:ItemEndpoint
-		; rdfs:comment "Describe this resource" 
+		; rdfs:comment "Describe this resource"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 ## set value of uri= to a URI from the vocabulary
 
-		; api:uriTemplate  "/slake/resource?uri={URI}" 
+		; api:uriTemplate  "/slake/resource?uri={URI}"
 		; api:exampleRequestPath  "/slake/resource?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML"
-		
+
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
@@ -183,64 +183,64 @@ svoc:URIEndpoint a api:ItemEndpoint
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
-## 1. List of concept schemes - basic-view 
-svoc:conceptSchemeEndpoint a api:ListEndpoint 
-		; rdfs:comment "List all concept-schemes" 
+## 1. List of concept schemes - basic-view
+svoc:conceptSchemeEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept-schemes"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/slake/conceptscheme" 
+		; api:uriTemplate  "/slake/conceptscheme"
 		; api:exampleRequestPath  "/slake/conceptscheme"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:selector [	api:where " ?item a skos:ConceptScheme . " ] 
+		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
 		; api:defaultViewer  svoc:basicConceptSchemeViewer
-		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer 
+		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer
 		.
-		
-## 2. List of concept collections - basic-view 	 
-svoc:conceptCollectionEndpoint a api:ListEndpoint 
-		; rdfs:comment "List all concept collections" 
+
+## 2. List of concept collections - basic-view
+svoc:conceptCollectionEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept collections"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/slake/collection" 
+		; api:uriTemplate  "/slake/collection"
 		; api:exampleRequestPath  "/slake/collection"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ] 
+		; api:selector [ api:where " ?item a ?type . FILTER ( ?type = skos:Collection || ?type = skos:OrderedCollection ) " ]
 		; api:defaultViewer  svoc:basicCollectionViewer
-		; api:viewer  api:basicViewer,svoc:basicCollectionViewer 
+		; api:viewer  api:basicViewer,svoc:basicCollectionViewer
 		.
-		
-## 3. List of concepts - basic-view 
-svoc:conceptListEndpoint a api:ListEndpoint 
-		; rdfs:comment "List all concepts" 
+
+## 3. List of concepts - basic-view
+svoc:conceptListEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concepts"
 ##############################################################
 ##
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-		; api:uriTemplate  "/slake/concept" 
+		; api:uriTemplate  "/slake/concept"
 		; api:exampleRequestPath  "/slake/concept"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:selector [ 
-				api:where " ?item a skos:Concept . " 
-		] 
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:selector [
+				api:where " ?item a skos:Concept . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
-		
-## 4. List of concepts where a label matches the text, in English 
-svoc:conceptByLabelEndpoint a api:ListEndpoint 
+
+## 4. List of concepts where a label matches the text, in English
+svoc:conceptByLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
 ##############################################################
 ##
@@ -248,20 +248,20 @@ svoc:conceptByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept?anylabel=storage%20volume" 
-		
+		; api:uriTemplate  "/slake/concept?anylabel={text}"
+		; api:exampleRequestPath  "/slake/concept?anylabel=storage%20volume"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
-		
-## 4a. List of concepts where a label contains the text, any language, case-insensitive 
-svoc:conceptByLabelLooseEndpoint a api:ListEndpoint 
+
+## 4a. List of concepts where a label contains the text, any language, case-insensitive
+svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
 ##############################################################
 ##
@@ -269,20 +269,20 @@ svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept?labelcontains={text}" 
-		; api:exampleRequestPath  "/slake/concept?labelcontains=volume" 
-		
+		; api:uriTemplate  "/slake/concept?labelcontains={text}"
+		; api:exampleRequestPath  "/slake/concept?labelcontains=volume"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 5. List of concepts where the skos:notation matches the quoted text  	 
-svoc:conceptByNotationEndpoint a api:ListEndpoint 
+## 5. List of concepts where the skos:notation matches the quoted text
+svoc:conceptByNotationEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where notation property has exact match to this string"
 ##############################################################
 ##
@@ -290,22 +290,22 @@ svoc:conceptByNotationEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of notation= to a code for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept?notation={nn}" 
+		; api:uriTemplate  "/slake/concept?notation={nn}"
 		; api:exampleRequestPath  "/slake/concept?notation=67"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:selector [ 
+		; api:selector [
 ## this match isn't quite right - it is not exact, but must use regex and str() because in general don't know the datatype
 				api:where " ?item a skos:Concept . ?item skos:notation ?n . FILTER regex( str(?n),?nn ) "
 		]
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
-		
-		
-## 6. List of concepts broader than the one identified by this URI 
-svoc:broaderThanURIEndpoint a api:ListEndpoint 
+
+
+## 6. List of concepts broader than the one identified by this URI
+svoc:broaderThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broader than the one identified by this URI"
 ##############################################################
 ##
@@ -313,21 +313,21 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/broader?uri={baseConcept}" 
+		; api:uriTemplate  "/slake/concept/broader?uri={baseConcept}"
 		; api:exampleRequestPath  "/slake/concept/broader?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ] 
-		; api:selector [ 
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
 				api:where " ?baseConcept skos:broader ?item . "
 		]
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 7. List of concepts narrower than the one identified by this URI 
-svoc:narrowerThanURIEndpoint a api:ListEndpoint 
+## 7. List of concepts narrower than the one identified by this URI
+svoc:narrowerThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrower than the one identified by this URI"
 ##############################################################
 ##
@@ -335,21 +335,21 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/narrower?uri={baseConcept}" 
+		; api:uriTemplate  "/slake/concept/narrower?uri={baseConcept}"
 		; api:exampleRequestPath  "/slake/concept/narrower?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/uom/ML"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ] 
-		; api:selector [ 
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
 				api:where " ?baseConcept skos:narrower ?item . "
 		]
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 8. List of concepts broaderTransitive than the one identified by this URI 
-svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint 
+## 8. List of concepts broaderTransitive than the one identified by this URI
+svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
 ##############################################################
 ##
@@ -357,21 +357,21 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/broaderTransitive?uri={baseConcept}" 
+		; api:uriTemplate  "/slake/concept/broaderTransitive?uri={baseConcept}"
 		; api:exampleRequestPath  "/slake/concept/broaderTransitive?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/observedproperty/accessiblecapacity"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ] 
-		; api:selector [ 
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
 				api:where " ?baseConcept skos:broaderTransitive ?item . "
 		]
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 9. List of concepts narrowerTransitive than the one identified by this URI 
-svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint 
+## 9. List of concepts narrowerTransitive than the one identified by this URI
+svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
 ##############################################################
 ##
@@ -379,21 +379,21 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/narrowerTransitive?uri={baseConcept}" 
+		; api:uriTemplate  "/slake/concept/narrowerTransitive?uri={baseConcept}"
 		; api:exampleRequestPath  "/slake/concept/narrowerTransitive?uri=http://vocabs.auscope.org/classifier/bom/slake/0.1/observedproperty/accessiblecapacity"
-		
+
 ## end of TODO:
 ##############################################################
-		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ] 
-		; api:selector [ 
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
 				api:where " ?baseConcept skos:narrowerTransitive ?item . "
 		]
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 10. List of concepts broader than the one where a label matches the text, in English 
-svoc:broaderByLabelEndpoint a api:ListEndpoint 
+## 10. List of concepts broader than the one where a label matches the text, in English
+svoc:broaderByLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
 ##############################################################
 ##
@@ -401,20 +401,20 @@ svoc:broaderByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/broader?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept/broader?anylabel=ML" 
-		
+		; api:uriTemplate  "/slake/concept/broader?anylabel={text}"
+		; api:exampleRequestPath  "/slake/concept/broader?anylabel=ML"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
-		
-## 11. List of concepts narrower than the one where a label matches the text, in English 
-svoc:narrowerByLabelEndpoint a api:ListEndpoint 
+
+## 11. List of concepts narrower than the one where a label matches the text, in English
+svoc:narrowerByLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
 ##############################################################
 ##
@@ -422,20 +422,20 @@ svoc:narrowerByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/narrower?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept/narrower?anylabel=storage%20volume" 
-		
+		; api:uriTemplate  "/slake/concept/narrower?anylabel={text}"
+		; api:exampleRequestPath  "/slake/concept/narrower?anylabel=storage%20volume"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
-## 12. List of concepts broaderTransitive than the one where a label matches the text, in English 
-svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint 
+## 12. List of concepts broaderTransitive than the one where a label matches the text, in English
+svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
 ##############################################################
 ##
@@ -443,20 +443,20 @@ svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/broaderTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept/broaderTransitive?anylabel=meter" 
-		
+		; api:uriTemplate  "/slake/concept/broaderTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/slake/concept/broaderTransitive?anylabel=meter"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
-		
-## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English 
-svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint 
+
+## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English
+svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
 ##############################################################
 ##
@@ -464,16 +464,16 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-		; api:uriTemplate  "/slake/concept/narrowerTransitive?anylabel={text}" 
-		; api:exampleRequestPath  "/slake/concept/narrowerTransitive?anylabel=ML" 
-		
+		; api:uriTemplate  "/slake/concept/narrowerTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/slake/concept/narrowerTransitive?anylabel=ML"
+
 ## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
-		] 		
-		; api:defaultViewer svoc:basicConceptViewer 
-		; api:viewer  api:basicViewer,svoc:basicConceptViewer 
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
 #
@@ -484,21 +484,21 @@ svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
 # name Q has range type T, then a query parameters Q=V is translated to
 # a WHERE clause fragment ?item P V' where V' is a literal which is V
 # with type T. This is especially important for numbers and booleans.
-# 
+#
 
 ## RDF
 rdf:type
-    api:label "type" ; 
+    api:label "type" ;
     rdfs:range rdfs:Class .
-  
+
 ## RDFS
-rdfs:label 
-    api:label "label" ; 
+rdfs:label
+    api:label "label" ;
     api:structured "true"^^xsd:boolean;
     a           rdf:Property .
 
-rdfs:comment 
-    api:label "comment" ; 
+rdfs:comment
+    api:label "comment" ;
     api:structured "true"^^xsd:boolean;
     a           rdf:Property .
 
@@ -506,27 +506,27 @@ rdfs:comment
 skos:Concept
 		api:label "Concept" ;
 		a         rdfs:Class .
-             
-skos:ConceptScheme 
+
+skos:ConceptScheme
 		api:label "ConceptScheme" ;
 		a         rdfs:Class .
 
 skos:topConceptOf
 		api:label "topConceptOf" ;
 		rdfs:range      skos:ConceptScheme .
-            
+
 skos:hasTopConcept
-		api:label "hasTopConcept" ; 
+		api:label "hasTopConcept" ;
 		api:multiValued true ;
 		rdfs:range      skos:Concept .
-            
+
 skos:inScheme
-		api:label "inScheme" ; 
+		api:label "inScheme" ;
 		rdfs:domain	skos:Concept ;
 		rdfs:range      skos:ConceptScheme .
 
 skos:member
-		api:label "member" ; 
+		api:label "member" ;
 		api:multiValued true ;
 		rdfs:domain	skos:Collection ;
 		rdfs:range      skos:Concept .
@@ -535,15 +535,15 @@ skos:prefLabel
 		api:label "prefLabel" ;
 		api:structured "true"^^xsd:boolean;
 		a           rdf:Property .
-            
+
 skos:altLabel
-		api:label "altLabel" ; 
+		api:label "altLabel" ;
 		api:multiValued true ;
 		api:structured "true"^^xsd:boolean;
 		a         rdf:Property  .
-            
+
 skos:notation
-		a owl:DatatypeProperty; 
+		a owl:DatatypeProperty;
 		api:label "notation"  .
 
 
