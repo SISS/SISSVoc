@@ -69,14 +69,12 @@ svoc:cgi a api:API
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10"
-# the following variable modifies dct:hasVersion label to help generic stylesheet
-	; api:variable [ api:name "_strip_has"; api:value "yes" ]
 	; api:defaultFormatter [
 			a api:XsltFormatter
 			; api:name "html"
 			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 			; api:mimeType "text/html"
-			; elda:metadataOptions "versions,formats"
+			; elda:metadataOptions "bindings,versions,execution,formats"
 	]
 	; api:endpoint
 		svoc:URIEndpoint ,

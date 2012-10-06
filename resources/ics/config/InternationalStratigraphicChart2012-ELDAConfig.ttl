@@ -69,8 +69,6 @@ svoc:isc2012 a api:API
 # generic SISSvoc stuff
 	; api:maxPageSize "50"
 	; api:defaultPageSize "10"
-# the following variable modifies dct:hasVersion label to help generic stylesheet
-	; api:variable [ api:name "_strip_has"; api:value "yes" ]
  	; api:defaultFormatter [
 			a api:XsltFormatter
 			; api:name "html"
