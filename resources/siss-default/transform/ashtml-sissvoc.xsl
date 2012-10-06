@@ -54,15 +54,15 @@
 <xsl:template match="result" mode="meta">
 	<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon" /> 
 	<xsl:apply-templates select="first | prev | next | last" mode="metalink" />
-	<xsl:apply-templates select="format/item" mode="metalink" />
+	<xsl:apply-templates select="hasFormat/item" mode="metalink" />
 </xsl:template>
 
 <xsl:template match="first | prev | next | last" mode="metalink">
 	<link rel="{local-name(.)}" href="{@href}" />
 </xsl:template>
 
-<xsl:template match="format/item" mode="metalink">
-	<link rel="alternate" href="{@href}" type="{format/label}" />
+<xsl:template match="hasFormat/item" mode="metalink">
+	<link rel="alternate" href="{@href}" type="{hasFormat/label}" />
 </xsl:template>
 
 <xsl:template match="result" mode="style">
@@ -94,25 +94,7 @@
 						.attr('src', '<xsl:value-of select="$activeImageBase"/>/Question.png')
 						.next().fadeOut('slow');
 				});
-			
-			$('input[type=date]').datepicker({
-				changeMonth: true,
-				changeYear: true,
-				dateFormat: 'yy-mm-dd',
-				autoSize: true
-			});
-			
-			$('#search').hide();
-			
-			$('#openSearch')
-				.toggle(function () {
-					$(this).text('Hide Search Form');
-					$('#search').slideDown('slow');
-				}, function () {
-					$(this).text('Show Search Form');
-					$('#search').slideUp('slow');
-				});
-			
+
 			$('.provenance textarea')
 				.each(function () {
 					var skipLines = parseFloat($(this).attr('data-skip-lines'), 10);
@@ -293,7 +275,7 @@
 <xsl:template match="result" mode="formats">
 	<section class="formats">
 		<ul>
-			<xsl:for-each select="format/item">
+			<xsl:for-each select="hasFormat/item">
 			<xsl:sort select="label"/>
 				<li>
 					<xsl:if test="position() = 1">
@@ -322,9 +304,6 @@
 			<xsl:choose>
 				<xsl:when test="items">
 					<header><h1>Search Results</h1></header>
-					<xsl:if test="items/item">
-						<xsl:apply-templates select="." mode="search" />
-					</xsl:if>
 					<xsl:apply-templates select="items" mode="content" />
 				</xsl:when>
 				<xsl:otherwise>
@@ -602,7 +581,7 @@
 			</p>
 		</xsl:if>
 		<ul>
-			<xsl:for-each select="version/item | version[not(item)]">
+			<xsl:for-each select="hasVersion/item | hasVersion[not(item)]">
 				<li>
 					<xsl:apply-templates select="." mode="nav">
 						<xsl:with-param name="current" select="$view" />
@@ -1198,16 +1177,16 @@
 	</a>
 </xsl:template>
 
-<xsl:template match="format/item" mode="nav">
+<xsl:template match="hasFormat/item" mode="nav">
 	<xsl:variable name="name">
 		<xsl:apply-templates select="." mode="name" />
 	</xsl:variable>
-	<a href="{@href}" type="{format/label}" rel="alternate" title="view in {$name} format">
+	<a href="{@href}" type="{hasFormat/label}" rel="alternate" title="view in {$name} format">
 		<xsl:value-of select="label" />
 	</a>
 </xsl:template>
 
-<xsl:template match="version/item | version[not(item)]" mode="nav">
+<xsl:template match="hasVersion/item | hasVersion[not(item)]" mode="nav">
 	<xsl:param name="current" />
 	<xsl:variable name="label">
 		<xsl:choose>
@@ -1233,13 +1212,9 @@
 
 <xsl:template match="/result/primaryTopic" mode="content" priority="10">
 	<header>
-		<!-- Disable Search Form
-		<p id="openSearch">Show Search Form</p>
-		-->
 		<h1><xsl:apply-templates select="." mode="name" /></h1>
 		<p class="id"><a href="{@href}"><xsl:value-of select="@href" /></a></p>
 	</header>
-	<xsl:apply-templates select="/result" mode="search" />
 	<section>
 		<xsl:apply-templates select="." mode="header" />
 		<xsl:apply-templates select="." mode="table" />
@@ -1999,82 +1974,9 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="result" mode="search">
-
-
-
-
-	<xsl:variable name="label" select="key('propertyTerms', $label-uri)/label" />
-	<xsl:variable name="prefLabel" select="key('propertyTerms', $prefLabel-uri)/label" />
-	<xsl:variable name="altLabel" select="key('propertyTerms', $altLabel-uri)/label" />
-	<xsl:variable name="name" select="key('propertyTerms', $name-uri)/label" />
-	<xsl:variable name="title" select="key('propertyTerms', $title-uri)/label" />
-	<xsl:variable name="searchURI">
-		<xsl:apply-templates select="/result" mode="searchURI" />
-	</xsl:variable>
-	<section id="search">
-		<xsl:if test="items/item[@href] or (not(items) and primaryTopic)">
-			<form action="{$searchURI}">
-				<xsl:call-template name="hiddenInputs">
-					<xsl:with-param name="params" select="substring-after($searchURI, '?')" />
-				</xsl:call-template>
-				<table>
-					<colgroup>
-						<col width="25%" />
-						<col width="70%" />
-					</colgroup>
-					<xsl:for-each select="(items/item/* | primaryTopic/*)[generate-id(key('properties', name(.))[1]) = generate-id(.)]">
-						<xsl:sort select="name(.) = $prefLabel" order="descending" />
-						<xsl:sort select="name(.) = $name" order="descending" />
-						<xsl:sort select="name(.) = $title" order="descending" />
-						<xsl:sort select="name(.) = $label" order="descending" />
-						<xsl:sort select="name(.) = $altLabel" order="descending" />
-						<xsl:sort select="boolean(@datatype)" order="descending" />
-						<xsl:sort select="@datatype" />
-						<xsl:sort select="boolean(@href)" />
-						<xsl:sort select="name(.)" />
-						<xsl:apply-templates select="." mode="formrow" />
-					</xsl:for-each>
-				</table>
-				<p>
-					<button type="submit">Search</button>
-				</p>
-			</form>
-		</xsl:if>
-	</section>
-</xsl:template>
-	
-<xsl:template name="hiddenInputs">
-	<xsl:param name="params" />
-	<xsl:variable name="param">
-		<xsl:choose>
-			<xsl:when test="contains($params, '&amp;')">
-				<xsl:value-of select="substring-before($params, '&amp;')" />
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$params" />
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
-	<xsl:if test="starts-with($param, '_')">
-		<xsl:variable name="paramName" select="substring-before($param, '=')" />
-		<xsl:variable name="paramValue" select="substring-after($param, '=')" />
-		<input name="{$paramName}" value="{$paramValue}" type="hidden" />
-	</xsl:if>
-	<xsl:if test="contains($params, '&amp;')">
-		<xsl:call-template name="hiddenInputs">
-			<xsl:with-param name="params" select="substring-after($params, '&amp;')" />
-		</xsl:call-template>
-	</xsl:if>
-</xsl:template>
-
 <xsl:template match="*" mode="formrow">
 	<xsl:param name="parentName" select="''" />
 	<xsl:param name="last" select="false()" />
-
-
-
-
 	<xsl:variable name="propertyName">
 		<xsl:if test="$parentName != ''">
 			<xsl:value-of select="$parentName" />
@@ -2142,125 +2044,7 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="*" mode="input">
-	<xsl:param name="name" />
-	<xsl:variable name="default">
-		<xsl:call-template name="paramValue">
-			<xsl:with-param name="uri">
-				<xsl:apply-templates select="/result" mode="searchURI" />
-			</xsl:with-param>
-			<xsl:with-param name="param" select="$name" />
-		</xsl:call-template>
-	</xsl:variable>
-	<xsl:choose>
-		<xsl:when test="@datatype = 'boolean'">
-			<select name="{$name}">
-				<option value="">
-					<xsl:if test="$default = ''">
-						<xsl:attribute name="selected">selected</xsl:attribute>
-					</xsl:if>
-				</option>
-				<option>
-					<xsl:if test="$default = 'true'">
-						<xsl:attribute name="selected">selected</xsl:attribute>
-					</xsl:if>
-					<xsl:text>true</xsl:text>
-				</option>
-				<option>
-					<xsl:if test="$default = 'false'">
-						<xsl:attribute name="selected">selected</xsl:attribute>
-					</xsl:if>
-					<xsl:text>false</xsl:text>
-				</option>
-			</select>
-		</xsl:when>
-		<xsl:when test="@datatype = 'integer' or @datatype = 'decimal' or @datatype = 'float' or @datatype = 'double' or @datatype = 'int' or @datatype = 'date' or @datatype = 'dateTime' or @datatype = 'time'">
-			<xsl:variable name="min">
-				<xsl:call-template name="paramValue">
-					<xsl:with-param name="uri">
-						<xsl:apply-templates select="/result" mode="searchURI" />
-					</xsl:with-param>
-					<xsl:with-param name="param" select="concat('min-', $name)" />
-				</xsl:call-template>
-			</xsl:variable>
-			<xsl:variable name="max">
-				<xsl:call-template name="paramValue">
-					<xsl:with-param name="uri">
-						<xsl:apply-templates select="/result" mode="searchURI" />
-					</xsl:with-param>
-					<xsl:with-param name="param" select="concat('max-', $name)" />
-				</xsl:call-template>
-			</xsl:variable>
-			<xsl:text>exactly: </xsl:text>
-			<input name="{$name}" type="number" size="7">
-				<xsl:apply-templates select="." mode="inputAtts" />
-				<xsl:if test="$default != ''">
-					<xsl:attribute name="value">
-						<xsl:value-of select="$default" />
-					</xsl:attribute>
-				</xsl:if>
-			</input>
-			<br />
-			<br />
-			<em>or</em>
-			<xsl:text> between: </xsl:text>
-			<input name="min-{$name}">
-				<xsl:apply-templates select="." mode="inputAtts" />
-				<xsl:if test="$min != ''">
-					<xsl:attribute name="value">
-						<xsl:value-of select="$min" />
-					</xsl:attribute>
-				</xsl:if>
-			</input>
-			<br />
-			<xsl:text>and </xsl:text>
-			<input name="max-{$name}">
-				<xsl:apply-templates select="." mode="inputAtts" />
-				<xsl:if test="$max != ''">
-					<xsl:attribute name="value">
-						<xsl:value-of select="$max" />
-					</xsl:attribute>
-				</xsl:if>
-			</input>
-		</xsl:when>
-		<xsl:otherwise>
-			<input name="{$name}" size="25">
-				<xsl:if test="$default != ''">
-					<xsl:attribute name="value">
-						<xsl:value-of select="$default" />
-					</xsl:attribute>
-				</xsl:if>
-			</input>
-		</xsl:otherwise>
-	</xsl:choose>
-</xsl:template>
 
-<xsl:template match="*" mode="inputAtts">
-	<xsl:choose>
-		<xsl:when test="@datatype = 'date'">
-			<xsl:attribute name="type">date</xsl:attribute>
-			<xsl:attribute name="size">10</xsl:attribute>
-			<xsl:attribute name="placeholder">YYYY-MM-DD</xsl:attribute>
-			<xsl:attribute name="pattern">[0-9]{4}-[0-9]{2}-[0-9]{2}</xsl:attribute>
-		</xsl:when>
-		<xsl:when test="@datatype = 'time'">
-			<xsl:attribute name="type">time</xsl:attribute>
-			<xsl:attribute name="size">8</xsl:attribute>
-			<xsl:attribute name="placeholder">hh:mm:ss</xsl:attribute>
-			<xsl:attribute name="pattern">[0-9]{2}:[0-9]{2}:[0-9]{2}</xsl:attribute>
-		</xsl:when>
-		<xsl:when test="@datatype = 'dateTime'">
-			<xsl:attribute name="type">datetime</xsl:attribute>
-			<xsl:attribute name="size">19</xsl:attribute>
-			<xsl:attribute name="placeholder">YYYY-MM-DDThh:mm:ss</xsl:attribute>
-			<xsl:attribute name="pattern">[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}</xsl:attribute>
-		</xsl:when>
-		<xsl:when test="@datatype = 'integer' or @datatype = 'decimal' or @datatype = 'float' or @datatype = 'double' or @datatype = 'int'">
-			<xsl:attribute name="type">number</xsl:attribute>
-			<xsl:attribute name="size">7</xsl:attribute>
-		</xsl:when>
-	</xsl:choose>
-</xsl:template>
 
 <xsl:template match="*" mode="header" />
 <xsl:template match="*" mode="footer" />
