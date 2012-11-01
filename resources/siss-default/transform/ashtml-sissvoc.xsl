@@ -319,6 +319,7 @@
 	<xsl:variable name="hasResults" select="items/item[@href]" />
 	<xsl:variable name="isItem" select="not(items) and primaryTopic" />
 	<nav class="topnav">
+		<xsl:apply-templates select="." mode="findconcepts" />
 		<xsl:apply-templates select="." mode="moreinfo" />
 		<xsl:if test="$hasResults">
 			<xsl:apply-templates select="." mode="summary" />
@@ -405,6 +406,34 @@
 	</xsl:if>
 </xsl:template>
 
+<xsl:template match="result" mode="findconcepts">
+	<section>
+		<h1>Find Concepts</h1>
+		<xsl:call-template name="createInfo">
+			<xsl:with-param name="text">Use this form to find concepts by 1) having the exact same text as input 2) having words containing the text input.		
+			</xsl:with-param>
+		</xsl:call-template>
+	
+		<table>
+			<tbody>
+				<tr>
+					<th> 
+						<form action="{_resourceRoot}concept" method="get">
+							Exact label <br />
+							<input type="text" name="anylabel" size="27"  />
+							<input type="submit" value="Find" /><br />
+						</form>
+						<form action="{_resourceRoot}concept" method="get">
+							Text within label<br />
+							<input type="text" name="labelcontains"  size="27" />
+							<input type="submit" value="Find" /><br />
+						</form>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</xsl:template>
 <xsl:template match="result" mode="moreinfo">
 	<xsl:variable name="links">
 		<xsl:apply-templates select="primaryTopic | isPartOf" mode="moreinfo" />
