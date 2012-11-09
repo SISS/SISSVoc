@@ -82,6 +82,32 @@
 	<script type="text/javascript" src="{$_resourceRoot}scripts/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="{$_resourceRoot}scripts/jquery.sparkline.js"></script>
 	<script type="text/javascript" src="{$_resourceRoot}scripts/codemirror/codemirror_min.js"></script>
+
+	<script type="text/javascript">
+	<![CDATA[	 
+	$(document).ready(function() {
+	    var AlreadyRun = false;
+		$("#rewrite_onsite").dblclick(function() {
+			var urlPattern = /^http:\/\/unsdi\.arrc\.csiro\.au/;
+			var hostPattern = /(^https?:\/\/[^\/]*)/
+			var url = document.URL;
+			
+			if (AlreadyRun != true) {
+			    AlreadyRun = true;
+				$("a[class=outlink]").each( function(a) {
+				  var replacement = /.*[?&=#].*/.test(this.href) ? encodeURIComponent(this.href) : encodeURI(this.href);]]> 
+				  this.href = this.href.replace(this.href,'<xsl:value-of select="$resourceEndPoint"/>'+"?uri="+replacement);
+				});
+				alert("OutLinks have been rewritten internal to the VOCAB!");
+			}
+			else {
+				alert("OutLinks have ALREADY been rewritten!");
+			}
+		});
+	});	
+	</script>
+
+
 	<script type="text/javascript">
 		$(function() {
 			$('.info img')
@@ -129,7 +155,7 @@
 <xsl:template match="result" mode="footer">
 	<footer>
 		<xsl:apply-templates select="wasResultOf" mode="footer" />
-		<p>
+		<p> <span id="rewrite_onsite">DoubleClick HERE to stay onsite</span><br/>
 			Contact <a href="mailto:{$serviceAuthorEmail}"><xsl:value-of select="$serviceAuthor"/></a><br/>
 			<xsl:text>Powered by </xsl:text>
 			<xsl:apply-templates select="wasResultOf/processor" mode="footer" />
