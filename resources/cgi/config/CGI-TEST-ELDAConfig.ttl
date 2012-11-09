@@ -77,6 +77,7 @@ svoc:cgi a api:API
 			; elda:metadataOptions "bindings,versions,execution,formats"
 	]
 	; api:endpoint
+		svoc:LandingPage,
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint ,
 		svoc:conceptCollectionEndpoint ,
@@ -167,6 +168,17 @@ svoc:basicConceptViewer a api:Viewer
 ################
 
 #ENDPOINTS
+
+## 000.000. This is the metadata identifier for the vocabulary content.
+svoc:LandingPage a api:ItemEndpoint
+		; rdfs:comment "Landing Page for this resource"
+		; api:uriTemplate  "/cgi"
+		; api:exampleRequestPath  "/cgi"
+		; api:itemTemplate  "http://resource.geosciml.org/classifierscheme/cgi/201202/faultmovementtype"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		.
+
 
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
 svoc:URIEndpoint a api:ItemEndpoint

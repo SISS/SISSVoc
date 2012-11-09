@@ -82,6 +82,7 @@ svoc:isc2006 a api:API
 ##############################################################
 
 	; api:endpoint
+		svoc:LandingPage,
 		svoc:URIEndpoint ,
 		svoc:conceptSchemeEndpoint ,
 		svoc:conceptCollectionEndpoint ,
@@ -165,6 +166,18 @@ svoc:basicConceptViewer a api:Viewer
 
 
 #ENDPOINTS
+
+## 000.000. This is the metadata identifier for the vocabulary content.
+svoc:LandingPage a api:ItemEndpoint
+		; rdfs:comment "Landing Page for this resource"
+		; api:uriTemplate  "/isc2006"
+		; api:exampleRequestPath  "/isc2006"
+		; api:itemTemplate  "http://resource.geosciml.org/vocabulary/timescale/isc-2006"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		.
+
+
 
 ## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
 svoc:URIEndpoint a api:ItemEndpoint
