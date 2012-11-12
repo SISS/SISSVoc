@@ -22,6 +22,8 @@
 <xsl:param name="myResourceJsBase" select="concat($myResourceDirBase, 'js/')" />
 <xsl:param name="myResourceCSSResultFile" select="concat($myResourceCSSBase, 'mystyle.css')" />
 
+<xsl:param name="resourceEndPoint" /> 
+
 <xsl:param name="graphColour" select="'#577D00'" />
 <xsl:variable name="openSpaceAPIkey" select="'your openspace API key here.'" />
 
