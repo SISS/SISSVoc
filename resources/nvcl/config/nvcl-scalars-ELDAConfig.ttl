@@ -1,0 +1,496 @@
+##############################################################
+#
+# This is the template LDA configuration for a SISSvoc service
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
+#
+# Copyright (c) CSIRO 2012
+# Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
+# see <http://creativecommons.org/licenses/by/3.0/au/>
+#
+# Contact: Simon J D Cox
+#          CSIRO Earth Science and Resource Engineering
+#          PO Box 1130
+#          Bentley
+#          WA 6102
+#          Australia
+#          simon.cox@csiro.au
+#
+# The configuration must be customized for each vocabulary
+# Sections that must be customized are bracketted by rows of hashes similar to the line below which ends this comment block
+#
+##############################################################
+
+## Common prefixes - don't change these.
+@prefix api:     <http://purl.org/linked-data/api/vocab#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## other namespaces that appear in this vocabulary
+
+@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basictype/> .
+@prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
+@prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
+@prefix gml31:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.1/> .
+@prefix gml32:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.2/> .
+@prefix gtrs:    <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
+@prefix gts:     <http://resource.geosciml.org/schema/cgi/gts/3.0/> .
+@prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
+@prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
+@prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
+@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
+@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
+
+
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
+
+svoc:nvcl-scalars a api:API
+
+## it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
+#	; api:base "http://def.seegrid.csiro.au/sissvoc/test"
+
+
+# generic SISSvoc stuff
+	; api:maxPageSize "1000"
+	; api:defaultPageSize "10"
+	; api:defaultFormatter [
+			a api:XsltFormatter
+			; api:name "html"
+			; api:mimeType "text/html"
+# the following property enables the stylesheet to work better, including linking the item properties to their definitions
+# remove the ones you don't want
+			; elda:metadataOptions "bindings,versions,execution,formats"
+# bindings	-	causes the inclusion of shortname to URI term bindings.
+# versions	-	causes the inclusion of links for configured alternate views (as in api:viewer) in the result page metadata.
+# execution	-	causes the inclusion of details about the LDA implementation and the executed sparql queries that produced the result.
+# formats		-	causes the inclusion of links to build-in and configured format versions of the rendered page (.html, .ttl, .json etc. variants).
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "ashtml.xsl" to the path for the result stylesheet for this API
+
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+	]
+
+
+	; api:endpoint
+		svoc:LandingPage,
+		svoc:URIEndpoint ,
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
+		svoc:conceptListEndpoint ,
+		svoc:conceptLabelEndpoint ,
+		svoc:conceptLabelContainsEndpoint ,
+		svoc:broaderThanURIEndpoint ,
+		svoc:narrowerThanURIEndpoint ,
+		svoc:broaderTransitiveThanURIEndpoint ,
+		svoc:narrowerTransitiveThanURIEndpoint ,
+		svoc:broaderLabelEndpoint ,
+		svoc:narrowerLabelEndpoint ,
+		svoc:broaderTransitiveLabelEndpoint ,
+		svoc:narrowerTransitiveLabelEndpoint
+	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+
+	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
+	; api:variable
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/"]
+		, [api:name "serviceTitle"; api:value "National Virtual Core Library - Scalars"]
+		, [api:name "serviceAuthor"; api:value "Simon Cox"]
+		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"]
+		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
+
+## set title of service
+
+	; rdfs:label "National Virtual Core Library - Scalars"@en
+
+# document the provenance of this vocabulary with links to the source
+
+	; foaf:primaryTopic <http://nvcl.csiro.au/>
+	; rdfs:seeAlso <http://nvcl.csiro.au/>
+
+# set the SPARQL endpoint
+
+	; api:sparqlEndpoint <http://services-test.auscope.org/openrdf-sesame/repositories/nvcl-scalars>
+	.
+
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## SPARQL 1.1 endpoints ONLY!
+## remove this if the endpoint does not support SPARQL 1.1
+
+<http://services-test.auscope.org/openrdf-sesame/repositories/nvcl-scalars> elda:supportsNestedSelect true .
+
+
+#VIEWERS
+
+svoc:viewerNone a api:Viewer
+    ; api:name "none"
+    .
+
+svoc:basicConceptSchemeViewer a api:Viewer
+    ; api:name "conceptScheme"
+    ; api:property rdfs:label, skos:hasTopConcept
+    .
+
+svoc:basicCollectionViewer a api:Viewer
+    ; api:name "collection"
+    ; api:property rdfs:label, skos:member
+    .
+
+svoc:basicConceptViewer a api:Viewer
+    ; api:name "concept"
+    ; api:property skos:prefLabel
+    .
+
+
+#ENDPOINTS
+
+## 000.000. This is the metadata identifier for the vocabulary content.
+svoc:LandingPage a api:ItemEndpoint
+		; rdfs:comment "Landing Page for this resource"
+		; api:uriTemplate  "/nvcl-scalars"
+		; api:exampleRequestPath  "/nvcl-scalars"
+		; api:itemTemplate  "http://resource.geosciml.org/classifierscheme/cgi/201202/faultmovementtype"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		.
+
+
+## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
+svoc:URIEndpoint a api:ItemEndpoint
+		; rdfs:comment "Describe this resource"
+		; api:uriTemplate  "/nvcl-scalars/resource?uri={URI}"
+		; api:exampleRequestPath  "/nvcl-scalars/resource?uri=http://vocabs.auscope.org/ontology/vocabs/nvcl-scalars/0.2/TSA_S_Mineral1"
+		; api:itemTemplate  "{URI}"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
+#		; api:viewer  svoc:labelledDescribeConceptViewer
+		.
+
+## 1. List of concept schemes - basic-view
+svoc:conceptSchemeEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept-schemes"
+		; api:uriTemplate  "/nvcl-scalars/conceptscheme"
+		; api:exampleRequestPath  "/nvcl-scalars/conceptscheme"
+		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
+		; api:defaultViewer  svoc:basicConceptSchemeViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer
+		.
+
+## 2. List of concept collections - basic-view
+svoc:conceptCollectionEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept collections"
+		; api:uriTemplate  "/nvcl-scalars/collection"
+		; api:exampleRequestPath  "/nvcl-scalars/collection"
+		; api:selector [
+				api:where
+					"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }"
+			]
+		; api:defaultViewer  svoc:basicCollectionViewer
+		; api:viewer  api:basicViewer,svoc:basicCollectionViewer
+		.
+
+## 3. List of concepts - basic-view
+svoc:conceptListEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concepts"
+		; api:uriTemplate  "/nvcl-scalars/concept"
+		; api:exampleRequestPath  "/nvcl-scalars/concept"
+		; api:selector [
+				api:where " ?item a skos:Concept . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 4. List of concepts where a label matches the text
+svoc:conceptLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property has exact match to text"
+		; api:uriTemplate  "/nvcl-scalars/concept?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 5. List of concepts where a label contains the text, any language, case-insensitive
+svoc:conceptLabelContainsEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
+
+		; api:uriTemplate  "/nvcl-scalars/concept?labelcontains={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept?labelcontains=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER regex( str(?l) , ?text , 'i' ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 6. List of concepts broader than the one identified by this URI
+svoc:broaderThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than the one identified by this URI"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/broader?uri={baseConcept}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/broader?uri=http://vocabs.auscope.org/ontology/vocabs/nvcl-scalars/0.2/TSA_S_Mineral1"
+
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broader ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 7. List of concepts narrower than the one identified by this URI
+svoc:narrowerThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than the one identified by this URI"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/narrower?uri={baseConcept}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/narrower?uri=http://vocabs.auscope.org/ontology/vocabs/nvcl-scalars/0.2/TSA_S_Mineral1"
+
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrower ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 8. List of concepts broaderTransitive than the one identified by this URI
+svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/broaderTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/broaderTransitive?uri=http://vocabs.auscope.org/ontology/vocabs/nvcl-scalars/0.2/TSA_S_Mineral1"
+
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broaderTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 9. List of concepts narrowerTransitive than the one identified by this URI
+svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/narrowerTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/narrowerTransitive?uri=http://vocabs.auscope.org/ontology/vocabs/nvcl-scalars/0.2/TSA_S_Mineral1"
+
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrowerTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 10. List of concepts broader than the one where a label matches the text
+svoc:broaderLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than any concepts with this exact label"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/broader?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/broader?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" ?i0 skos:broader ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 11. List of concepts narrower than the one where a label matches the text
+svoc:narrowerLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than any concepts with this exact label"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/narrower?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/narrower?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" ?i0 skos:narrower ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 12. List of concepts broaderTransitive than the one where a label matches the text
+svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/broaderTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/broaderTransitive?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" ?i0 skos:broaderTransitive ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 13. List of concepts narrowerTransitive than the one where a label matches the text
+svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
+
+		; api:uriTemplate  "/nvcl-scalars/concept/narrowerTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/concept/narrowerTransitive?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" ?i0 skos:narrowerTransitive ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## if the vocabulary contains 'skos:notation' values and these are available for queries,
+## change "gts:EraCode" to the type used for notation values in this vocabulary
+
+### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
+
+skos:notation	rdfs:range	gts:EraCode .
+gts:EraCode	a	rdfs:DataType .
+
+
+
+#
+# VOCABULARY
+#
+# The vocabulary declarations say which properties can be used in queries
+# and by what short name those properties are known. If property P with short
+# name Q has range type T, then a query parameters Q=V is translated to
+# a WHERE clause fragment ?item P V' where V' is a literal which is V
+# with type T. This is especially important for numbers and booleans.
+#
+
+## RDF
+rdf:type
+    api:label "type" ;
+    rdfs:range rdfs:Class .
+
+## RDFS
+rdfs:label
+    api:label "label" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:comment
+    api:label "comment" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+## SKOS
+skos:Concept
+		api:label "Concept" ;
+		a         rdfs:Class .
+
+skos:ConceptScheme
+		api:label "ConceptScheme" ;
+		a         rdfs:Class .
+
+skos:topConceptOf
+		api:label "topConceptOf" ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:hasTopConcept
+		api:label "hasTopConcept" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:inScheme
+		api:label "inScheme" ;
+		rdfs:domain	skos:Concept ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:member
+		api:label "member" ;
+		api:multiValued true ;
+		rdfs:domain	skos:Collection ;
+		rdfs:range      skos:Concept .
+
+skos:prefLabel
+		api:label "prefLabel" ;
+		api:structured "true"^^xsd:boolean;
+		a           rdf:Property .
+
+skos:altLabel
+		api:label "altLabel" ;
+		api:multiValued true ;
+		api:structured "true"^^xsd:boolean;
+		a         rdf:Property  .
+
+skos:notation
+		a owl:DatatypeProperty;
+		api:label "notation"  .
+
+
