@@ -7,13 +7,13 @@
 # Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
 # see <http://creativecommons.org/licenses/by/3.0/au/>
 #
-# Contact: Simon J D Cox
+# Contact: Andrew Rodger
 #          CSIRO Earth Science and Resource Engineering
 #          PO Box 1130
 #          Bentley
 #          WA 6102
 #          Australia
-#          simon.cox@csiro.au
+#          aaron.rodger@csiro.au
 #
 # The configuration must be customized for each vocabulary
 # Sections that must be customized are bracketted by rows of hashes similar to the line below which ends this comment block
@@ -103,7 +103,10 @@ svoc:nvcl-scalars a api:API
 		svoc:broaderLabelEndpoint ,
 		svoc:narrowerLabelEndpoint ,
 		svoc:broaderTransitiveLabelEndpoint ,
-		svoc:narrowerTransitiveLabelEndpoint
+		svoc:narrowerTransitiveLabelEndpoint ,
+        svoc:scalarLabelContainsEndpoint ,
+		svoc:scalarLabelEndpoint ,
+		svoc:scalarListEndpoint
 	; api:defaultViewer api:describeViewer
 	; elda:enableETags true
 
@@ -118,8 +121,8 @@ svoc:nvcl-scalars a api:API
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/"]
 		, [api:name "serviceTitle"; api:value "National Virtual Core Library - Scalars"]
-		, [api:name "serviceAuthor"; api:value "Simon Cox"]
-		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"]
+		, [api:name "serviceAuthor"; api:value "Aaron Rodger"]
+		, [api:name "serviceAuthorEmail"; api:value "Aaron.Rodger@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
 
 ## set title of service
@@ -167,6 +170,10 @@ svoc:basicConceptViewer a api:Viewer
     ; api:property skos:prefLabel
     .
 
+svoc:basicScalarViewer a api:Viewer
+    ; api:name "scalar"
+    ; api:property skos:prefLabel, skos:definition
+    .
 
 #ENDPOINTS
 
@@ -410,6 +417,57 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer
 		.
 
+## 14. List of scalars - basic-view
+svoc:scalarListEndpoint a api:ListEndpoint
+		; rdfs:comment "List all scalars"
+		; api:uriTemplate  "/nvcl-scalars/scalar"
+		; api:exampleRequestPath  "/nvcl-scalars/scalar"
+		; api:selector [
+				api:where " ?item a skos:Concept . "
+		]
+		; api:defaultViewer svoc:basicScalarViewer
+		; api:viewer  api:basicViewer,svoc:basicScalarViewer
+		.
+
+## 15. List of scalars where a label matches the text
+svoc:scalarLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List scalars where a skos label property has exact match to text"
+		; api:uriTemplate  "/nvcl-scalars/scalar?anylabel={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/scalar?anylabel=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicScalarViewer
+		; api:viewer  api:basicViewer,svoc:basicScalarViewer
+		.
+
+## 16. List of scalars where a label contains the text, any language, case-insensitive
+svoc:scalarLabelContainsEndpoint a api:ListEndpoint
+		; rdfs:comment "List scalars where a skos label property contains this text, case-insensitive"
+
+		; api:uriTemplate  "/nvcl-scalars/scalar?labelcontains={text}"
+		; api:exampleRequestPath  "/nvcl-scalars/scalar?labelcontains=TSA_S_Mineral1"
+
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER regex( str(?l) , ?text , 'i' ) """
+		]
+		; api:defaultViewer svoc:basicScalarViewer
+		; api:viewer  api:basicViewer,svoc:basicScalarViewer
+		.
+        
 ##############################################################
 ##
 ## TODO: deployer to make changes here
@@ -493,4 +551,6 @@ skos:notation
 		a owl:DatatypeProperty;
 		api:label "notation"  .
 
-
+skos:definition
+		api:label "definition" ;
+		a           rdf:Property .
