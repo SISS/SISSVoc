@@ -122,7 +122,7 @@ svoc:eeaeuropa a api:API
 	; api:variable
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/eea-europa/"]
-		, [api:name "_resourceRoot"; api:value "{webapp}/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
 		, [api:name "serviceTitle"; api:value "EEA Europa-SISSVoc Test"]
 		, [api:name "serviceAuthor"; api:value "Prahaladhan Venkatesan"]
 		, [api:name "serviceAuthorEmail"; api:value "Prahaladhan.Venkatesan@csiro.au"]

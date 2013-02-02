@@ -122,7 +122,7 @@ svoc:test a api:API
 	; api:variable
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
-		, [api:name "_resourceRoot"; api:value "{webapp}/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
 		, [api:name "serviceTitle"; api:value "SISSvoc Test Service"]
 		, [api:name "serviceAuthor"; api:value "Simon Cox"]
 		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"]
