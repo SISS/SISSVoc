@@ -1,0 +1,617 @@
+##############################################################
+#
+# This is the template LDA configuration for a SISSvoc service
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
+#
+# Copyright (c) CSIRO 2012
+# Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
+# see <http://creativecommons.org/licenses/by/3.0/au/>
+#
+# Contact: Simon J D Cox
+#          CSIRO Earth Science and Resource Engineering
+#          PO Box 1130
+#          Bentley
+#          WA 6102
+#          Australia
+#          simon.cox@csiro.au
+#
+# The configuration must be customized for each vocabulary
+# Sections that must be customized are bracketted by rows of hashes similar to the line below which ends this comment block
+#
+##############################################################
+
+## Common prefixes - don't change these.
+@prefix api:     <http://purl.org/linked-data/api/vocab#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://def.seegrid.csiro.au/isotc211//owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## other namespaces that appear in this vocabulary
+
+@prefix cgi:     <http://resource.geosciml.org/classifier/cgi/> .
+
+
+## end of TODO:
+##############################################################
+
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
+
+svoc:cgi201211 a api:API
+
+## TODO: deployer to make changes here
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
+	; api:variable
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/cgi/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
+		, [api:name "serviceTitle"; api:value "CGI Controlled Vocabulary (2012-11)"]
+		, [api:name "serviceAuthor"; api:value "Guillaume Duclaux"]
+		, [api:name "serviceAuthorEmail"; api:value "Guillaume.Duclaux@csiro.au"]
+		, [api:name "serviceHomePage"; api:value "http://www.cgi-iugs.org/tech_collaboration/interoperability_working_group.html/"]
+## end of TODO:
+##############################################################
+
+# generic SISSvoc stuff
+	; api:maxPageSize "50"
+	; api:defaultPageSize "10"
+	; api:defaultFormatter [
+			a api:XsltFormatter
+			; api:name "html"
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+			; api:mimeType "text/html"
+			; elda:metadataOptions "bindings,versions,execution,formats"
+	]
+	; api:endpoint
+		svoc:LandingPage,
+		svoc:URIEndpoint ,
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
+		svoc:conceptListEndpoint ,
+		svoc:conceptByLabelEndpoint ,
+		svoc:conceptByLabelLooseEndpoint ,
+		svoc:conceptByNotationEndpoint ,
+		svoc:broaderThanURIEndpoint ,
+		svoc:narrowerThanURIEndpoint ,
+		svoc:broaderTransitiveThanURIEndpoint ,
+		svoc:narrowerTransitiveThanURIEndpoint ,
+		svoc:broaderByLabelEndpoint ,
+		svoc:narrowerByLabelEndpoint ,
+		svoc:broaderTransitiveByLabelEndpoint ,
+		svoc:narrowerTransitiveByLabelEndpoint
+	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
+##############################################################
+##
+## TODO: deployer to make changes here
+##
+## set title of service
+
+	; rdfs:label "IUGS Commission for the Management and Application of Geoscience Information Vocabulary (2012-11 edition)"@en
+
+####
+## set service shortname - change value of "test" here
+#	; api:variable
+#			[	api:name "vocab" ; api:value "test"	]
+## was trying to set constant here to be inserted as the first step of the uriTemplates below
+## but the {variable} syntax in uriTemplates is for catching values, not expanding them, so this approach failed
+####
+# document the provenance of this vocabulary with links to the source
+
+	; foaf:primaryTopic <http://www.cgi-iugs.org/>
+	; rdfs:seeAlso <http://www.cgi-iugs.org/>
+
+# set the SPARQL endpoint
+
+	; api:sparqlEndpoint <http://resource.geosciml.org/sparql/cgi201211>
+	.
+
+## end of TODO:
+##############################################################
+
+##############################################################
+##
+## TODO: deployer to make changes here
+## SPARQL 1.1 endpoints ONLY!
+## remove this if the endpoint does not support SPARQL 1.1
+
+<http://resource.geosciml.org/sparql/cgi201211> elda:supportsNestedSelect true .
+
+## end of TODO:
+##############################################################
+
+#VIEWERS
+
+svoc:viewerNone a api:Viewer
+    ; api:name "none"
+    .
+
+svoc:basicConceptSchemeViewer a api:Viewer
+    ; api:name "conceptScheme"
+    ; api:property rdfs:label, skos:hasTopConcept
+    .
+
+svoc:basicCollectionViewer a api:Viewer
+    ; api:name "collection"
+    ; api:property rdfs:label, skos:member
+    .
+
+svoc:basicConceptViewer a api:Viewer
+    ; api:name "concept"
+    ; api:property skos:prefLabel
+    .
+
+################
+##
+## LDA documentation is unclear about syntax for api_template, and in particular how to pass in the URI for the item
+##
+#svoc:labelledDescribeConceptViewer a api:Viewer
+#    ; api:name "conceptFull"
+#    ; api:template " CONSTRUCT { ?item ?p ?o . ?o skos:prefLabel ?l } WHERE { ?item ?p ?o ; rdf:type skos:Concept . OPTIONAL { ?o skos:prefLabel ?l } } "
+#    .
+#
+##
+################
+
+#ENDPOINTS
+
+## 000.000. This is the metadata identifier for the vocabulary content.
+svoc:LandingPage a api:ItemEndpoint
+		; rdfs:comment "Landing Page for this resource"
+		; api:uriTemplate  "/cgi201211"
+		; api:exampleRequestPath  "/cgi201211"
+		; api:itemTemplate  "http://resource.geosciml.org/classifierscheme/cgi/201211/geologicunittype"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		.
+
+
+## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
+svoc:URIEndpoint a api:ItemEndpoint
+		; rdfs:comment "Describe this resource"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## set value of uri= to a URI from the vocabulary
+
+		; api:uriTemplate  "/cgi201211/resource?uri={URI}"
+		; api:exampleRequestPath  "/cgi201211/resource?uri=http://resource.geosciml.org/classifier/cgi/geologicunittype/geologic_unit"
+
+## end of TODO:
+##############################################################
+		; api:itemTemplate  "{URI}"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:describeViewer,api:labelledDescribeViewer
+#		; api:viewer  svoc:labelledDescribeConceptViewer
+		.
+
+## 1. List of concept schemes - basic-view
+svoc:conceptSchemeEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept-schemes"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+
+		; api:uriTemplate  "/cgi201211/conceptscheme"
+		; api:exampleRequestPath  "/cgi201211/conceptscheme"
+
+## end of TODO:
+##############################################################
+		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
+		; api:defaultViewer  svoc:basicConceptSchemeViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptSchemeViewer
+		.
+
+## 2. List of concept collections - basic-view
+svoc:conceptCollectionEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept collections"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+
+		; api:uriTemplate  "/cgi201211/collection"
+		; api:exampleRequestPath  "/cgi201211/collection"
+
+## end of TODO:
+##############################################################
+		; api:selector [ 
+			api:where 
+				"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }"
+			]
+		; api:defaultViewer  svoc:basicCollectionViewer
+		; api:viewer  api:basicViewer,svoc:basicCollectionViewer
+		.
+
+## 3. List of concepts - basic-view
+svoc:conceptListEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concepts"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+
+		; api:uriTemplate  "/cgi201211/concept"
+		; api:exampleRequestPath  "/cgi201211/concept"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?item a skos:Concept . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 4. List of concepts where a label matches the text, in English
+svoc:conceptByLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property has exact match to text, in English"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept?anylabel={text}"
+		; api:exampleRequestPath  "/cgi201211/concept?anylabel=monzogranite"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 5. List of concepts where a label contains the text, any language, case-insensitive
+svoc:conceptByLabelLooseEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of labelcontains= to a word in a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept?labelcontains={text}"
+		; api:exampleRequestPath  "/cgi201211/concept?labelcontains=Monzogranite"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?item a skos:Concept . ?item ?label ?l . FILTER ( ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER regex( str(?l) , ?text , 'i' ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 6. List of concepts broader than the one identified by this URI
+svoc:broaderThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than the one identified by this URI"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/broader?uri={baseConcept}"
+		; api:exampleRequestPath  "/cgi201211/concept/broader?uri=http://resource.geosciml.org/classifier/cgi/lithology/chalk"
+
+## end of TODO:
+##############################################################
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broader ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 7. List of concepts narrower than the one identified by this URI
+svoc:narrowerThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than the one identified by this URI"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/narrower?uri={baseConcept}"
+		; api:exampleRequestPath  "/cgi201211/concept/narrower?uri=http://resource.geosciml.org/classifier/cgi/lithology/compound_material"
+
+## end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrower ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 8. List of concepts broaderTransitive than the one identified by this URI
+svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/broaderTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/cgi201211/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/cgi/lithology/basic_igneous_material"
+
+## end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broaderTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 9. List of concepts narrowerTransitive than the one identified by this URI
+svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/narrowerTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/cgi201211/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/cgi/lithology/compound_material"
+
+## end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrowerTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 10. List of concepts broader than the one where a label matches the text, in English
+svoc:broaderByLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than any concepts with this exact label"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/broader?anylabel={text}"
+		; api:exampleRequestPath  "/cgi201211/concept/broader?anylabel=chalk"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?i0 skos:broader ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 11. List of concepts narrower than the one where a label matches the text, in English
+svoc:narrowerByLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than any concepts with this exact label"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/narrower?anylabel={text}"
+		; api:exampleRequestPath  "/cgi201211/concept/narrower?anylabel=granite"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?i0 skos:narrower ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 12. List of concepts broaderTransitive than the one where a label matches the text, in English
+svoc:broaderTransitiveByLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/broaderTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/cgi201211/concept/broaderTransitive?anylabel=chalk"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?i0 skos:broaderTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 13. List of concepts narrowerTransitive than the one where a label matches the text, in English
+svoc:narrowerTransitiveByLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/cgi201211/concept/narrowerTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/cgi201211/concept/narrowerTransitive?anylabel=granite"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?i0 skos:narrowerTransitive ?item . ?i0 ?label ?l . FILTER ( ?label = rdfs:label || ?label = skos:prefLabel || ?label = skos:altLabel ) FILTER ( ?l = ?text@en ) "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+#
+# VOCABULARY
+#
+# The vocabulary declarations say which properties can be used in queries
+# and by what short name those properties are known. If property P with short
+# name Q has range type T, then a query parameters Q=V is translated to
+# a WHERE clause fragment ?item P V' where V' is a literal which is V
+# with type T. This is especially important for numbers and booleans.
+#
+
+## RDF
+rdf:type
+    api:label "type" ;
+    rdfs:range rdfs:Class .
+
+## RDFS
+rdfs:label
+    api:label "label" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:comment
+    api:label "comment" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+## DC
+dc:source
+	api:label "source" ;
+	api:structured "true"^^xsd:boolean;
+	a          rdf:Property .
+
+## SKOS
+skos:Concept
+		api:label "Concept" ;
+		a         rdfs:Class .
+
+skos:ConceptScheme
+		api:label "ConceptScheme" ;
+		a         rdfs:Class .
+
+skos:topConceptOf
+		api:label "topConceptOf" ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:hasTopConcept
+		api:label "hasTopConcept" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:inScheme
+		api:label "inScheme" ;
+		rdfs:domain	skos:Concept ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:member
+		api:label "member" ;
+		api:multiValued true ;
+		rdfs:domain	skos:Collection ;
+		rdfs:range      skos:Concept .
+
+skos:memberList
+		api:label "memberList" ;
+		rdfs:domain	skos:OrderedCollection ;
+		rdfs:range      skos:Concept .
+
+skos:prefLabel
+		api:label "prefLabel" ;
+		api:structured "true"^^xsd:boolean;
+		a           rdf:Property .
+
+skos:altLabel
+		api:label "altLabel" ;
+		api:multiValued true ;
+		api:structured "true"^^xsd:boolean;
+		a         rdf:Property  .
+
+skos:notation
+		a owl:DatatypeProperty;
+		api:label "notation"  .
+
+skos:semanticRelation
+		api:label "semanticRelation" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:related
+		api:label "related" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broader
+		api:label "broader" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrower
+		api:label "narrower" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broaderTransitive
+		api:label "broaderTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:mappingRelation
+		api:label "mappingRelation" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:closeMatch
+		api:label "closeMatch" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:exactMatch
+		api:label "exactMatch" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broadMatch
+		api:label "broadMatch" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrowMatch
+		api:label "narrowMatch " ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:relatedMatch
+		api:label "relatedMatch " ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+
