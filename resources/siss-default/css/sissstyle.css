@@ -11,3 +11,18 @@ nav.site {
 header h1 {
     background: url("../images/siss-icon-64.png") no-repeat scroll 0 0 transparent;
 }
+
+
+/* Hack to fix the nesting of tables.... - its even worse now.... */
+table {
+    table-layout: fixed;
+}
+
+#page {
+    width: 1040px;
+}
+
+#result {
+    width:620px;
+}
+

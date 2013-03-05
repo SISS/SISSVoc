@@ -71,6 +71,7 @@
 	<link rel="stylesheet" href="{$_resourceRoot}css/html5reset-1.6.1.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/result.css" type="text/css" />
+	<link rel="stylesheet" href="{$SISSDefaultResourceDirBase}/css/sissstyle.css" type="text/css" />
 	<link rel="stylesheet" href="{$myResourceCSSResultFile}" type="text/css" />
 	<xsl:comment>
 		<xsl:text>[if lt IE 9]&gt;</xsl:text>
