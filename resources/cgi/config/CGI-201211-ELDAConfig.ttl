@@ -78,20 +78,19 @@ svoc:cgi201211 a api:API
 	]
 	; api:endpoint
 		svoc:LandingPage,
-		svoc:URIEndpoint ,
-		svoc:conceptSchemeEndpoint ,
-		svoc:conceptCollectionEndpoint ,
-		svoc:conceptListEndpoint ,
-		svoc:conceptByLabelEndpoint ,
-		svoc:conceptByLabelLooseEndpoint ,
-		svoc:conceptByNotationEndpoint ,
-		svoc:broaderThanURIEndpoint ,
-		svoc:narrowerThanURIEndpoint ,
-		svoc:broaderTransitiveThanURIEndpoint ,
-		svoc:narrowerTransitiveThanURIEndpoint ,
-		svoc:broaderByLabelEndpoint ,
-		svoc:narrowerByLabelEndpoint ,
-		svoc:broaderTransitiveByLabelEndpoint ,
+		svoc:URIEndpoint,
+		svoc:conceptSchemeEndpoint,
+		svoc:conceptCollectionEndpoint,
+		svoc:conceptListEndpoint,
+		svoc:conceptByLabelEndpoint,
+		svoc:conceptByLabelLooseEndpoint,
+		svoc:broaderThanURIEndpoint,
+		svoc:narrowerThanURIEndpoint,
+		svoc:broaderTransitiveThanURIEndpoint,
+		svoc:narrowerTransitiveThanURIEndpoint,
+		svoc:broaderByLabelEndpoint,
+		svoc:narrowerByLabelEndpoint,
+		svoc:broaderTransitiveByLabelEndpoint,
 		svoc:narrowerTransitiveByLabelEndpoint
 	; api:defaultViewer api:describeViewer
 	; elda:enableETags true
@@ -231,8 +230,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 
 ## end of TODO:
 ##############################################################
-		; api:selector [ 
-			api:where 
+		; api:selector [
+			api:where
 				"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }"
 			]
 		; api:defaultViewer  svoc:basicCollectionViewer
