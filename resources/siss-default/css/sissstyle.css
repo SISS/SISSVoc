@@ -26,3 +26,8 @@ table {
     width:620px;
 }
 
+.panel section {
+    width: 575px;
+}
+
+/* END Hack to fix the nesting of tables.... - its even worse now.... */
