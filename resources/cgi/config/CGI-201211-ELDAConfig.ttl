@@ -100,7 +100,7 @@ svoc:cgi201211 a api:API
 ##
 ## set title of service
 
-	; rdfs:label "IUGS Commission for the Management and Application of Geoscience Information Vocabulary (2012-11 edition)"@en
+	; rdfs:label "IUGS Commission for the Management and Application of Geoscience Information Vocabularies (2012-11 edition)"@en
 
 ####
 ## set service shortname - change value of "test" here
