@@ -48,6 +48,7 @@
 @prefix qudt-skos:  <http://def.seegrid.csiro.au/resources/water/water-quality/qudt-skos#> .
 @prefix qudt_owl:  <http://qudt.org/1.1/vocab/qudt_owl#> .
 @prefix vaem:    <http://www.linkedmodel.org/schema/vaem#> .
+@prefix gts:	<http://workaround.fix.me/later/gts/> .
 
 
 ## end of TODO:
