@@ -279,7 +279,7 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept?anylabel={text}"
-		; api:exampleRequestPath  "/wq/concept?anylabel=pesticide concentration"
+		; api:exampleRequestPath  "/wq/concept?anylabel=pesticide%20concentration"
 
 ## end of TODO:
 ##############################################################
@@ -449,7 +449,7 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/narrower?anylabel={text}"
-		; api:exampleRequestPath  "/wq/concept/narrower?anylabel=organochlorine pesticide concentration"
+		; api:exampleRequestPath  "/wq/concept/narrower?anylabel=organochlorine%20pesticide%20concentration"
 
 ## end of TODO:
 ##############################################################
@@ -477,7 +477,7 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/broaderTransitive?anylabel={text}"
-		; api:exampleRequestPath  "/wq/concept/broaderTransitive?anylabel=organochlorine pesticide concentration"
+		; api:exampleRequestPath  "/wq/concept/broaderTransitive?anylabel=organochlorine%20pesticide%20concentration"
 
 ## end of TODO:
 ##############################################################
@@ -505,7 +505,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/narrowerTransitive?anylabel={text}"
-		; api:exampleRequestPath  "/wq/concept/narrowerTransitive?anylabel=organochlorine pesticide concentration"
+		; api:exampleRequestPath  "/wq/concept/narrowerTransitive?anylabel=organochlorine%20pesticide%20concentration"
 
 ## end of TODO:
 ##############################################################
