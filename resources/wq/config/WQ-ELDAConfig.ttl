@@ -48,7 +48,6 @@
 @prefix qudt-skos:  <http://def.seegrid.csiro.au/resources/water/water-quality/qudt-skos#> .
 @prefix qudt_owl:  <http://qudt.org/1.1/vocab/qudt_owl#> .
 @prefix vaem:    <http://www.linkedmodel.org/schema/vaem#> .
-@prefix gts:	<http://workaround.fix.me/later/gts/> .
 
 
 ## end of TODO:
@@ -422,7 +421,7 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/broader?anylabel={text}"
-		; api:exampleRequestPath  "/wq/concept/broader?anylabel=aldrin concentration"
+		; api:exampleRequestPath  "/wq/concept/broader?anylabel=aldrin%20concentration"
 
 ## end of TODO:
 ##############################################################
@@ -532,8 +531,8 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 
 ### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
 
-skos:notation	rdfs:range	gts:EraCode .
-gts:EraCode	a	rdfs:DataType .
+## skos:notation	rdfs:range	gts:EraCode .
+## gts:EraCode	a	rdfs:DataType .
 
 ## end of TODO:
 ##############################################################
