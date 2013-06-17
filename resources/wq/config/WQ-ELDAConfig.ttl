@@ -181,10 +181,10 @@ svoc:basicConceptViewer a api:Viewer
 
 ## 000.000. This is the metadata identifier for the vocabulary content.
 svoc:LandingPage a api:ItemEndpoint
-		; rdfs:comment "Landing Page for this resource"
+		; rdfs:comment "Landing Page for this vocabulary"
 		; api:uriTemplate  "/wq"
 		; api:exampleRequestPath  "/wq"
-		; api:itemTemplate  "http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/metal_concentration"
+		; api:itemTemplate  "/wq/collection"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:labelledDescribeViewer
 		.
