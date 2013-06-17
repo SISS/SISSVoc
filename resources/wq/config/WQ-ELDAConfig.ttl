@@ -122,7 +122,7 @@ svoc:wq a api:API
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
-		, [api:name "serviceTitle"; api:value "SISSvoc Water Quality Service"]
+		, [api:name "serviceTitle"; api:value "Water Quality Definitions Service"]
 		, [api:name "serviceAuthor"; api:value "Bruce Simons"]
 		, [api:name "serviceAuthorEmail"; api:value "Bruce.Simons@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
@@ -132,9 +132,9 @@ svoc:wq a api:API
 	; rdfs:label "SISSVOC WQ - vocabulary service API"@en
 
 # document the provenance of this vocabulary with links to the source
-
-	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
-	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
+#
+#	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
+#	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
 
 # set the SPARQL endpoint
 
