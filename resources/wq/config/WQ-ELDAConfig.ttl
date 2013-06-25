@@ -38,11 +38,16 @@
 ## TODO: deployer to make changes here
 ## other namespaces that appear in this vocabulary
 
-@prefix wqi:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/> .
+
+@prefix wq:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq/> .
+@prefix wqi:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/> .
+@prefix wqk:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-kind/> .
+@prefix wqo:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-object/> .
 @prefix wqp:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-skos_properties#> .
-@prefix wqq:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity/> .
+@prefix wqq:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/> .
 @prefix wqu:     <http://def.seegrid.csiro.au/resources/water/water-quality/wq-unit/> .
-@prefix wq:      <http://def.seegrid.csiro.au/resources/water/water-quality/wq/> .
+@prefix chebi-skos:      <http://def.seegrid.csiro.au/resources/water/water-quality/chebi-skos/> .
+@prefix wq-chebi:      <http://def.seegrid.csiro.au/resources/water/water-quality/wq-chebi_skos_mapping/> .
 @prefix dtype:   <http://www.linkedmodel.org/schema/dtype#> .
 @prefix qudt:    <http://qudt.org/schema/qudt#> .
 @prefix qudt-skos:  <http://def.seegrid.csiro.au/resources/water/water-quality/qudt-skos#> .
@@ -200,7 +205,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## set value of uri= to a URI from the vocabulary
 
 		; api:uriTemplate  "/wq/resource?uri={URI}"
-		; api:exampleRequestPath  "/wq/resource?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/pesticide_concentration"
+		; api:exampleRequestPath  "/wq/resource?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/pesticide_concentration"
 
 ## end of TODO:
 ##############################################################
@@ -333,7 +338,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/broader?uri={baseConcept}"
-		; api:exampleRequestPath  "/wq/concept/broader?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/pesticide_organochlorine_concentration"
+		; api:exampleRequestPath  "/wq/concept/broader?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/pesticide_organochlorine_concentration"
 
 ## end of TODO:
 ##############################################################
@@ -355,7 +360,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/narrower?uri={baseConcept}"
-		; api:exampleRequestPath  "/wq/concept/narrower?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/organochlorine_pesticide_concentration"
+		; api:exampleRequestPath  "/wq/concept/narrower?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/organochlorine_pesticide_concentration"
 
 ## end of TODO:
 ##############################################################
@@ -377,7 +382,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/broaderTransitive?uri={baseConcept}"
-		; api:exampleRequestPath  "/wq/concept/broaderTransitive?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/organochlorine_pesticide_concentration"
+		; api:exampleRequestPath  "/wq/concept/broaderTransitive?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/organochlorine_pesticide_concentration"
 
 ## end of TODO:
 ##############################################################
@@ -399,7 +404,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## change value of uri= to a uri for a concept in this vocabulary
 
 		; api:uriTemplate  "/wq/concept/narrowerTransitive?uri={baseConcept}"
-		; api:exampleRequestPath  "/wq/concept/narrowerTransitive?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-quantity-instance/organochlorine_pesticide_concentration"
+		; api:exampleRequestPath  "/wq/concept/narrowerTransitive?uri=http://def.seegrid.csiro.au/resources/water/water-quality/wq-observed-property/wqo-instance/organochlorine_pesticide_concentration"
 
 ## end of TODO:
 ##############################################################
