@@ -40,6 +40,7 @@
 
 @prefix crs:   	<http://def.seegrid.csiro.au/isotc211/iso19111/2008/crs/> .
 @prefix def:    <http://www.opengis.net/def/> .
+@prefix policy:	<http://www.opengis.net/ogc-na#> .
 
 ## end of TODO:
 ##############################################################
