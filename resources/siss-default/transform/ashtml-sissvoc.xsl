@@ -69,9 +69,9 @@
 
 <xsl:template match="result" mode="style">
 	<link rel="stylesheet" href="{$_resourceRoot}css/html5reset-1.6.1.css" type="text/css" />
-	<link rel="stylesheet" href="{$SISSDefaultResourceDirBase}/css/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="{$SISSDefaultResourceDirBase}css/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="{$_resourceRoot}css/result.css" type="text/css" />
-	<link rel="stylesheet" href="{$SISSDefaultResourceDirBase}/css/sissstyle.css" type="text/css" />
+	<link rel="stylesheet" href="{$SISSDefaultResourceDirBase}css/sissstyle.css" type="text/css" />
 	<link rel="stylesheet" href="{$myResourceCSSResultFile}" type="text/css" />
 	<xsl:comment>
 		<xsl:text>[if lt IE 9]&gt;</xsl:text>
@@ -82,8 +82,8 @@
 </xsl:template>
 
 <xsl:template match="result" mode="script">
-	<script type="text/javascript" src="{$SISSDefaultResourceDirBase}/js/jquery.min.js"></script>
-	<script type="text/javascript" src="{$SISSDefaultResourceDirBase}/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{$SISSDefaultResourceDirBase}js/jquery.min.js"></script>
+	<script type="text/javascript" src="{$SISSDefaultResourceDirBase}js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="{$_resourceRoot}scripts/codemirror/codemirror_min.js"></script>
 
 	<script type="text/javascript">
