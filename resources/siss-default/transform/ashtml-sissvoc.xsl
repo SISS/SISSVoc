@@ -86,6 +86,12 @@
 	<script type="text/javascript" src="{$_resourceRoot}scripts/jquery.sparkline.js"></script>
 	<script type="text/javascript" src="{$_resourceRoot}scripts/codemirror/codemirror_min.js"></script>
 
+	<![CDATA[
+	<!--[if lt IE 9]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+	<![endif]-->
+	]]>
+
 	<script type="text/javascript">
 	<![CDATA[	 
 	$(document).ready(function() {
