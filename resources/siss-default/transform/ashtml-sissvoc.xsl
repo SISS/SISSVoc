@@ -2,6 +2,9 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <!-- imports -->
 <xsl:import href="../../../lda-assets/xslt/linked-data-api.xsl" />
+
+<xsl:output method="html" doctype-system="about:legacy-compat" />
+
 <xsl:param name="_resourceRoot">/</xsl:param> 
 
 <xsl:param name="visibleSparqlEndpoint"/>
