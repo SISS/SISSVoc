@@ -165,7 +165,7 @@ svoc:recursViewer a api:Viewer
 		rdf:type,
 		skos:prefLabel,
 		(skos:concept skos:prefLabel),
-		(skos:member skos:prefLabel)
+		(skos:member skos:prefLabel),
 		(skos:broaderTransitive skos:prefLabel),
 		(skos:broader skos:prefLabel),
 		(skos:narrower skos:prefLabel),
