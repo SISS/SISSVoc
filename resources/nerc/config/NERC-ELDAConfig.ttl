@@ -154,55 +154,61 @@ svoc:viewerNone a api:Viewer
 
 svoc:basicViewer a api:Viewer
     ; api:name "skosbasic"
-    ; api:property 
+    ; api:property
     		rdf:type,
     		skos:prefLabel
     .
 
 svoc:recursViewer a api:Viewer
     ; api:name "rskos"
-    ; api:property 
-    		rdf:type,
-    		skos:prefLabel, (skos:concept skos:prefLabel), (skos:member skos:prefLabel)
-    .	
-	
+    ; api:property
+		rdf:type,
+		skos:prefLabel,
+		(skos:concept skos:prefLabel),
+		(skos:member skos:prefLabel)
+		(skos:broaderTransitive skos:prefLabel),
+		(skos:broader skos:prefLabel),
+		(skos:narrower skos:prefLabel),
+		(skos:narrowerTransitive skos:prefLabel)
+    .
+
 svoc:skosViewer a api:Viewer
     ; api:name "skos"
-    ; api:property 
-    		rdf:type, 
-    		skos:prefLabel, 
-    		skos:altLabel, 
-    		skos:definition, 
-    		dc:description, 
-    		rdfs:comment, 
-    		skos:note, 
-    		rdfs:seeAlso, 
-    		skos:hasTopConcept, 
-    		skos:topConceptOf, 
-    		skos:member, 
-    		skos:broaderTransitive, 
-    		skos:broader, 
-    		skos:narrower, 
-    		skos:narrowerTransitive 
+    ; api:property
+    		rdf:type,
+    		skos:prefLabel,
+    		skos:altLabel,
+    		skos:definition,
+    		dc:description,
+    		rdfs:comment,
+    		skos:note,
+    		rdfs:seeAlso,
+    		skos:hasTopConcept,
+    		skos:topConceptOf,
+    		skos:member,
+    		skos:broaderTransitive,
+    		skos:broader,
+    		skos:narrower,
+    		skos:narrowerTransitive
     .
 
 svoc:basicConceptSchemeViewer a api:Viewer
     ; api:name "conceptScheme"
-    ; api:property 
-    		skos:prefLabel, 
+    ; api:property
+    		skos:prefLabel,
     		skos:hasTopConcept
     .
 
 svoc:basicCollectionViewer a api:Viewer
     ; api:name "collection"
-    ; api:property 
-    		skos:prefLabel, 
+    ; api:property
+    		skos:prefLabel,
     		skos:member
     .
 
 svoc:basicConceptViewer a api:Viewer
     ; api:name "concept"
-    ; api:property 
+    ; api:property
     		skos:prefLabel
     .
 
@@ -237,7 +243,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 ##############################################################
 		; api:itemTemplate  "{URI}"
 		; api:defaultViewer  api:labelledDescribeViewer
-		; api:viewer  
+		; api:viewer
 				svoc:basicViewer,
 				api:basicViewer,
 				api:describeViewer,
@@ -262,7 +268,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ##############################################################
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
 		; api:defaultViewer  svoc:basicConceptSchemeViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -288,7 +294,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 					"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }"
 			]
 		; api:defaultViewer  svoc:basicCollectionViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -313,7 +319,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				api:where " ?item a skos:Concept . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -345,7 +351,7 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -376,7 +382,7 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 							FILTER regex( str(?l) , ?text , 'i' ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -402,7 +408,7 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:broader ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -428,7 +434,7 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:narrower ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -454,7 +460,7 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:broaderTransitive ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -480,7 +486,7 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 				api:where " ?baseConcept skos:narrowerTransitive ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -512,7 +518,7 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -544,7 +550,7 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -576,7 +582,7 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -608,7 +614,7 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
-		; api:viewer  
+		; api:viewer
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
@@ -709,22 +715,22 @@ skos:broader
 		api:label "broader" ;
 		api:multiValued true ;
 		rdfs:range      skos:Concept .
-		
+
 skos:broaderTransitive
 		api:label "broaderTransitive" ;
 		api:multiValued true ;
 		rdfs:range      skos:Concept .
-		
+
 skos:narrower
 		api:label "narrower" ;
 		api:multiValued true ;
 		rdfs:range      skos:Concept .
-		
+
 skos:narrowerTransitive
 		api:label "narrowerTransitive" ;
 		api:multiValued true ;
 		rdfs:range      skos:Concept .
-		
+
 skos:note
 		api:label "note" ;
 		a         owl:AnnotationProperty  .
