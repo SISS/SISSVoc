@@ -40,16 +40,6 @@
 
 @prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basictype/> .
 @prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
-@prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry/> .
-@prefix gml31:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.1/> .
-@prefix gml32:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-GML/3.2/> .
-@prefix gtrs:    <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
-@prefix gts:     <http://resource.geosciml.org/schema/cgi/gts/3.0/> .
-@prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
-@prefix ogcsf:   <http://def.seegrid.csiro.au/ogc/dataType/OGC-SF/1.0/> .
-@prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling/> .
-@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalobject/> .
-@prefix trs:     <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporalreferencesystem/> .
 
 ## end of TODO:
 ##############################################################
@@ -238,7 +228,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
-		; api:defaultViewer  svoc:skosViewer
+		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  
 				svoc:basicViewer,
 				api:basicViewer,
