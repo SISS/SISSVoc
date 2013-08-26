@@ -156,9 +156,16 @@ svoc:basicViewer a api:Viewer
     ; api:name "skosbasic"
     ; api:property 
     		rdf:type,
-    		skos:prefLabel 
+    		skos:prefLabel, (* skos:prefLabel)
     .
 
+svoc:recursViewer a api:Viewer
+    ; api:name "rskos"
+    ; api:property 
+    		rdf:type,
+    		skos:prefLabel, (* skos:prefLabel)
+    .	
+	
 svoc:skosViewer a api:Viewer
     ; api:name "skos"
     ; api:property 
@@ -235,7 +242,8 @@ svoc:URIEndpoint a api:ItemEndpoint
 				api:basicViewer,
 				api:describeViewer,
 				api:labelledDescribeViewer,
-				svoc:skosViewer
+				svoc:skosViewer,
+				svoc:recursViewer
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
@@ -258,7 +266,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicConceptSchemeViewer
+				svoc:basicConceptSchemeViewer,
+				svoc:recursViewer
 		.
 
 ## 2. List of concept collections - basic-view
@@ -283,7 +292,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicCollectionViewer
+				svoc:basicCollectionViewer,
+				svoc:recursViewer
 		.
 
 ## 3. List of concepts - basic-view
@@ -307,7 +317,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicConceptViewer
+				svoc:basicConceptViewer,
+				svoc:recursViewer
 		.
 
 ## 4. List of concepts where a label matches the text
