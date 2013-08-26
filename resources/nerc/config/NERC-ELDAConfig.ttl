@@ -169,6 +169,7 @@ svoc:skosViewer a api:Viewer
     		dc:description, 
     		rdfs:comment, 
     		skos:note, 
+    		rdfs:seeAlso, 
     		skos:hasTopConcept, 
     		skos:topConceptOf, 
     		skos:member, 
@@ -207,9 +208,13 @@ svoc:LandingPage a api:ItemEndpoint
 		; api:uriTemplate  "/nerc"
 		; api:exampleRequestPath  "/nerc"
 		# NO CLUE how to work this one out. Simon?
-		; api:itemTemplate  "http://www.what.goes.here.com"
-		; api:defaultViewer  api:labelledDescribeViewer
-		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		; api:itemTemplate  "/collection"
+		; api:defaultViewer  svoc:basicCollectionViewer
+		; api:viewer  
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicCollectionViewer
 		.
 
 
@@ -642,6 +647,10 @@ rdfs:label
 rdfs:comment
     api:label "comment" ;
     api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:seeAlso
+    api:label "seeAlso" ;
     a           rdf:Property .
 
 ## SKOS
