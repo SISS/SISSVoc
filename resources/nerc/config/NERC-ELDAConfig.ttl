@@ -156,14 +156,14 @@ svoc:basicViewer a api:Viewer
     ; api:name "skosbasic"
     ; api:property 
     		rdf:type,
-    		skos:prefLabel, (* skos:prefLabel)
+    		skos:prefLabel
     .
 
 svoc:recursViewer a api:Viewer
     ; api:name "rskos"
     ; api:property 
     		rdf:type,
-    		skos:prefLabel, (* skos:prefLabel)
+    		skos:prefLabel, (skos:concept skos:prefLabel), (skos:member skos:prefLabel)
     .	
 	
 svoc:skosViewer a api:Viewer
