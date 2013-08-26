@@ -124,8 +124,8 @@ svoc:nerc a api:API
 
 # document the provenance of this vocabulary with links to the source
 
-	; foaf:primaryTopic <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
-	; rdfs:seeAlso <http://stratigraphy.org/column.php?id=Chart/Time%20Scale>
+	; foaf:primaryTopic <http://www.bodc.ac.uk/products/web_services/vocab/>
+	; rdfs:seeAlso <http://www.bodc.ac.uk/products/web_services/vocab/documents/nvs2.0_documentation.pdf>
 
 # set the SPARQL endpoint
 
