@@ -92,10 +92,12 @@ svoc:nerc a api:API
 		svoc:conceptListEndpoint ,
 		svoc:conceptLabelEndpoint ,
 		svoc:conceptLabelContainsEndpoint ,
+		svoc:relatedURIEndpoint ,
 		svoc:broaderThanURIEndpoint ,
 		svoc:narrowerThanURIEndpoint ,
 		svoc:broaderTransitiveThanURIEndpoint ,
 		svoc:narrowerTransitiveThanURIEndpoint ,
+		svoc:relatedLabelEndpoint ,
 		svoc:broaderLabelEndpoint ,
 		svoc:narrowerLabelEndpoint ,
 		svoc:broaderTransitiveLabelEndpoint ,
@@ -159,51 +161,18 @@ svoc:basicViewer a api:Viewer
     		skos:prefLabel
     .
 
-svoc:recursViewer a api:Viewer
-    ; api:name "rskos"
-    ; api:property
-		rdf:type,
-		skos:prefLabel,
-		(skos:concept skos:prefLabel),
-		(skos:member skos:prefLabel),
-		(skos:broaderTransitive skos:prefLabel),
-		(skos:broader skos:prefLabel),
-		(skos:narrower skos:prefLabel),
-		(skos:narrowerTransitive skos:prefLabel)
-    .
-
-svoc:skosViewer a api:Viewer
-    ; api:name "skos"
-    ; api:property
-    		rdf:type,
-    		skos:prefLabel,
-    		skos:altLabel,
-    		skos:definition,
-    		dc:description,
-    		rdfs:comment,
-    		skos:note,
-    		rdfs:seeAlso,
-    		skos:hasTopConcept,
-    		skos:topConceptOf,
-    		skos:member,
-    		skos:broaderTransitive,
-    		skos:broader,
-    		skos:narrower,
-    		skos:narrowerTransitive
-    .
-
 svoc:basicConceptSchemeViewer a api:Viewer
     ; api:name "conceptScheme"
     ; api:property
     		skos:prefLabel,
-    		skos:hasTopConcept
+    		(skos:topConceptOf skos:prefLabel)
     .
 
 svoc:basicCollectionViewer a api:Viewer
     ; api:name "collection"
     ; api:property
     		skos:prefLabel,
-    		skos:member
+				(skos:member skos:prefLabel)
     .
 
 svoc:basicConceptViewer a api:Viewer
@@ -212,6 +181,26 @@ svoc:basicConceptViewer a api:Viewer
     		skos:prefLabel
     .
 
+svoc:skosViewer a api:Viewer
+    ; api:name "skos"
+    ; api:property
+				rdf:type,
+				skos:prefLabel,
+    		skos:altLabel,
+    		skos:definition,
+    		dc:description,
+    		rdfs:comment,
+    		skos:note,
+    		rdfs:seeAlso,
+    		(skos:hasTopConcept skos:prefLabel),
+    		(skos:topConceptOf skos:prefLabel),
+				(skos:member skos:prefLabel),
+				(skos:related skos:prefLabel),
+				(skos:broaderTransitive skos:prefLabel),
+				(skos:broader skos:prefLabel),
+				(skos:narrower skos:prefLabel),
+				(skos:narrowerTransitive skos:prefLabel)
+    .
 
 #ENDPOINTS
 
@@ -242,15 +231,13 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  svoc:skosViewer
 		; api:viewer
 				svoc:basicViewer,
 				api:basicViewer,
 				api:describeViewer,
 				api:labelledDescribeViewer,
-				svoc:skosViewer,
-				svoc:recursViewer
-#		; api:viewer  svoc:labelledDescribeConceptViewer
+				svoc:skosViewer
 		.
 
 ## 1. List of concept schemes - basic-view
@@ -272,8 +259,7 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicConceptSchemeViewer,
-				svoc:recursViewer
+				svoc:basicConceptSchemeViewer
 		.
 
 ## 2. List of concept collections - basic-view
@@ -298,8 +284,7 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicCollectionViewer,
-				svoc:recursViewer
+				svoc:basicCollectionViewer
 		.
 
 ## 3. List of concepts - basic-view
@@ -323,8 +308,7 @@ svoc:conceptListEndpoint a api:ListEndpoint
 				svoc:skosViewer,
 				svoc:basicViewer,
 				api:basicViewer,
-				svoc:basicConceptViewer,
-				svoc:recursViewer
+				svoc:basicConceptViewer
 		.
 
 ## 4. List of concepts where a label matches the text
@@ -380,6 +364,32 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 							UNION
 							{ ?item rdfs:label ?l }
 							FILTER regex( str(?l) , ?text , 'i' ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+## 60. List of concepts related to the one identified by this URI
+svoc:relatedURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts related to the one identified by this URI"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/nerc/concept/related?uri={baseConcept}"
+		; api:exampleRequestPath  "/nerc/concept/related?uri=http://vocab.nerc.ac.uk/collection/P07/current/CFV13N44/"
+
+## end of TODO:
+##############################################################
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:related ?item . "
 		]
 		; api:defaultViewer svoc:basicConceptViewer
 		; api:viewer
@@ -484,6 +494,38 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
 				api:where " ?baseConcept skos:narrowerTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+## 100. List of concepts related to the one where a label matches the text
+svoc:relatedLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts related to any concepts with this exact label"
+##############################################################
+##
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/nerc/concept/related?anylabel={text}"
+		; api:exampleRequestPath  "/nerc/concept/related?anylabel=aerosol"
+
+## end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:related ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
 		; api:viewer
@@ -627,8 +669,6 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## if the vocabulary contains 'skos:notation' values and these are available for queries,
 ## change "gts:EraCode" to the type used for notation values in this vocabulary
 
-### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
-
 ## skos:notation	rdfs:range	gts:EraCode .
 ## gts:EraCode	a	rdfs:DataType .
 
@@ -710,6 +750,11 @@ skos:altLabel
 skos:notation
 		a owl:DatatypeProperty;
 		api:label "notation"  .
+
+skos:related
+		api:label "related" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
 
 skos:broader
 		api:label "broader" ;
