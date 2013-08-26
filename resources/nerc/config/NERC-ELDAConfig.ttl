@@ -175,7 +175,12 @@ svoc:skosViewer a api:Viewer
     		rdf:type, 
     		skos:prefLabel, 
     		skos:altLabel, 
+    		skos:definition, 
+    		dc:description, 
+    		rdfs:comment, 
+    		skos:note, 
     		skos:hasTopConcept, 
+    		skos:topConceptOf, 
     		skos:member, 
     		skos:broaderTransitive, 
     		skos:broader, 
@@ -680,17 +685,46 @@ skos:member
 
 skos:prefLabel
 		api:label "prefLabel" ;
+		api:multiValued true ;
 		api:structured "true"^^xsd:boolean;
-		a           rdf:Property .
+		a           owl:AnnotationProperty .
 
 skos:altLabel
 		api:label "altLabel" ;
 		api:multiValued true ;
 		api:structured "true"^^xsd:boolean;
-		a         rdf:Property  .
+		a         owl:AnnotationProperty  .
 
 skos:notation
 		a owl:DatatypeProperty;
 		api:label "notation"  .
+
+skos:broader
+		api:label "broader" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+		
+skos:broaderTransitive
+		api:label "broaderTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+		
+skos:narrower
+		api:label "narrower" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+		
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+		
+skos:note
+		api:label "note" ;
+		a         owl:AnnotationProperty  .
+
+skos:definition
+		api:label "definition" ;
+		a         owl:AnnotationProperty  .
 
 
