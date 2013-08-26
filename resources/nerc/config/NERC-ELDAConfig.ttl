@@ -208,7 +208,7 @@ svoc:LandingPage a api:ItemEndpoint
 		; api:uriTemplate  "/nerc"
 		; api:exampleRequestPath  "/nerc"
 		# NO CLUE how to work this one out. Simon?
-		; api:itemTemplate  "http://www.what.goes.here.com"
+		; api:itemTemplate  "http://auscope-services-test.arrc.csiro.au/elda-demo/nerc/collection"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:labelledDescribeViewer
 		.
