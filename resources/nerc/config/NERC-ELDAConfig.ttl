@@ -612,8 +612,8 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 
 ### PROBLEM WITH gts:EraCode - fix later - maybe ask about how to set notation datatypes on SKOS list?
 
-skos:notation	rdfs:range	gts:EraCode .
-gts:EraCode	a	rdfs:DataType .
+## skos:notation	rdfs:range	gts:EraCode .
+## gts:EraCode	a	rdfs:DataType .
 
 ## end of TODO:
 ##############################################################
