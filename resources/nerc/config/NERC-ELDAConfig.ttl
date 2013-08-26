@@ -163,8 +163,13 @@ svoc:viewerNone a api:Viewer
     .
 
 svoc:basicViewer a api:Viewer
+    ; api:name "skosbasic"
+    ; api:property skos:prefLabel 
+    .
+
+svoc:skosViewer a api:Viewer
     ; api:name "skos"
-    ; api:property skos:prefLabel
+    ; api:property skos:prefLabel, skos:altLabel, skos:hasTopConcept, skos:member, skos:broaderTransitive, skos:broader, skos:narrower, skos:narrowerTransitive, 
     .
 
 svoc:basicConceptSchemeViewer a api:Viewer
@@ -212,7 +217,7 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
-		; api:defaultViewer  api:labelledDescribeViewer
+		; api:defaultViewer  svoc:skosViewer
 		; api:viewer  svoc:basicViewer,api:basicViewer,api:describeViewer,api:labelledDescribeViewer
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
