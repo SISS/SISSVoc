@@ -3,19 +3,21 @@
 <!-- imports -->
 <xsl:import href="../../../lda-assets/xslt/linked-data-api.xsl" />
 
-<xsl:output method="html" doctype-system="about:legacy-compat" />
+<xsl:output method="html" omit-xml-declaration="yes" 
+    doctype-public="-//W3C//DTD HTML 4.01//EN"
+    version="4.01" encoding="utf-8" indent="yes"/>
 
-<xsl:param name="_resourceRoot">/</xsl:param> 
+<xsl:param name="_resourceRoot">/</xsl:param>
 
 <xsl:param name="visibleSparqlEndpoint"/>
 <xsl:param name="visibleSparqlForm"/>
 <xsl:param name="activeImageBase" select="concat($_resourceRoot,'images/green/16x16')" />
 <xsl:param name="inactiveImageBase" select="concat($_resourceRoot,'images/grey/16x16')" />
 
-<xsl:param name="serviceTitle">Test Title</xsl:param> 
-<xsl:param name="serviceAuthor">Test Author</xsl:param> 
-<xsl:param name="serviceAuthorEmail">test.author@csiro.au</xsl:param> 
-<xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param> 
+<xsl:param name="serviceTitle">Test Title</xsl:param>
+<xsl:param name="serviceAuthor">Test Author</xsl:param>
+<xsl:param name="serviceAuthorEmail">test.author@csiro.au</xsl:param>
+<xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param>
 
 <xsl:param name="SISSDefaultResourceDirBase" />
 
@@ -25,7 +27,7 @@
 <xsl:param name="myResourceJsBase" select="concat($myResourceDirBase, 'js/')" />
 <xsl:param name="myResourceCSSResultFile" select="concat($myResourceCSSBase, 'mystyle.css')" />
 
-<xsl:param name="resourceEndPoint" /> 
+<xsl:param name="resourceEndPoint" />
 
 <xsl:param name="graphColour" select="'#577D00'" />
 <xsl:variable name="openSpaceAPIkey" select="'your openspace API key here.'" />
@@ -57,7 +59,7 @@
 </xsl:template>
 
 <xsl:template match="result" mode="meta">
-	<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon" /> 
+	<link rel="shortcut icon" href="{$SISSDefaultResourceDirBase}images/siss-favicon.png" type="image/x-icon" />
 	<xsl:apply-templates select="first | prev | next | last" mode="metalink" />
 	<xsl:apply-templates select="hasFormat/item" mode="metalink" />
 </xsl:template>
@@ -90,17 +92,17 @@
 	<script type="text/javascript" src="{$_resourceRoot}scripts/codemirror/codemirror_min.js"></script>
 
 	<script type="text/javascript">
-	<![CDATA[	 
+	<![CDATA[
 	$(document).ready(function() {
 	    var AlreadyRun = false;
 		$("#rewrite_onsite").dblclick(function() {
 			var hostPattern = /(^https?:\/\/[^\/]*)/
 			var url = document.URL;
-			
+
 			if (AlreadyRun != true) {
 			    AlreadyRun = true;
 				$("a[class=outlink]").each( function(a) {
-				  var replacement = /.*[?&=#].*/.test(this.href) ? encodeURIComponent(this.href) : encodeURI(this.href);]]> 
+				  var replacement = /.*[?&=#].*/.test(this.href) ? encodeURIComponent(this.href) : encodeURI(this.href);]]>
 				  this.href = this.href.replace(this.href,'<xsl:value-of select="$resourceEndPoint"/>'+"?uri="+replacement);
 				});
 				alert("OutLinks have been rewritten internal to the VOCAB!");
@@ -109,7 +111,7 @@
 				alert("OutLinks have ALREADY been rewritten!");
 			}
 		});
-	});	
+	});
 	</script>
 
 
@@ -222,7 +224,7 @@
 				</xsl:when>
 				<xsl:otherwise>identify the items to be shown in the page.</xsl:otherwise>
 			</xsl:choose>
-			
+
 			<xsl:text> You can modify it here and re-run the query but you may find more options at the </xsl:text>
 			<a href="{$formToUse}">endpoint's page</a>
 			<xsl:text>.</xsl:text>
@@ -369,7 +371,7 @@
 		</xsl:if>
 	</nav>
 </xsl:template>
-	
+
 
 <xsl:template name="valueGroups">
 	<xsl:param name="values" />
@@ -441,14 +443,14 @@
 	<section>
 		<h1>Find Concepts</h1>
 		<xsl:call-template name="createInfo">
-			<xsl:with-param name="text">Use this form to find concepts by 1) having the exact same text as input 2) having words containing the text input.		
+			<xsl:with-param name="text">Use this form to find concepts by 1) having the exact same text as input 2) having words containing the text input.
 			</xsl:with-param>
 		</xsl:call-template>
-	
+
 		<table>
 			<tbody>
 				<tr>
-					<th> 
+					<th>
 						<form action="{_resourceRoot}concept" method="get">
 							Exact label <br />
 							<input type="text" name="anylabel" size="27"  />
@@ -618,7 +620,7 @@
 		<xsl:call-template name="createInfo">
 			<xsl:with-param name="text">
 				<xsl:text>Choose what information you want to view about each item. </xsl:text>
-				<xsl:text>There are some pre-defined views, but starred properties are always present no matter what the view. </xsl:text> 
+				<xsl:text>There are some pre-defined views, but starred properties are always present no matter what the view. </xsl:text>
 				<xsl:text>You can star properties by clicking on the </xsl:text>
 				<img src="{$inactiveImageBase}/Star.png" alt="star this property" />
 				<xsl:text> icon. The currently starred icons have a </xsl:text>
@@ -672,7 +674,7 @@
 		</ul>
 	</section>
 </xsl:template>
-	
+
 <xsl:template match="result" mode="selectedProperties">
 	<xsl:param name="properties" />
 	<xsl:param name="previousProperties" select="''" />
@@ -704,7 +706,7 @@
 							<xsl:text>,</xsl:text>
 						</xsl:if>
 						<xsl:value-of select="substring-after($properties, ',')" />
-					</xsl:with-param> 
+					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:attribute>
 			<img src="{$activeImageBase}/Star.png" alt="unstar this property" />
@@ -736,9 +738,6 @@
 <xsl:template match="*" mode="propertiesentry">
 	<xsl:param name="properties" />
 	<xsl:param name="parentName" select="''" />
-
-
-
 
 	<xsl:variable name="propertyName">
 		<xsl:if test="$parentName != ''">
@@ -790,7 +789,7 @@
 								<xsl:text>,</xsl:text>
 							</xsl:if>
 							<xsl:value-of select="$name" />
-						</xsl:with-param> 
+						</xsl:with-param>
 					</xsl:call-template>
 				</xsl:attribute>
 				<img src="{$inactiveImageBase}/Star.png" alt="star this property" />
@@ -1026,7 +1025,7 @@
 							<xsl:text>,</xsl:text>
 						</xsl:if>
 						<xsl:value-of select="substring-after($sorts, ',')" />
-					</xsl:with-param> 
+					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:attribute>
 			<img src="{$activeImageBase}/Cancel.png" alt="remove this sort" />
@@ -1049,7 +1048,7 @@
 								<xsl:value-of select="concat('-', $sort)" />
 							</xsl:otherwise>
 						</xsl:choose>
-					</xsl:with-param> 
+					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:attribute>
 			<xsl:attribute name="title">
@@ -1092,9 +1091,6 @@
 	<xsl:param name="uri" />
 	<xsl:param name="current" />
 	<xsl:param name="parentName" select="''" />
-
-
-
 
 	<xsl:variable name="propertyName">
 		<xsl:if test="$parentName != ''">
@@ -1147,7 +1143,7 @@
 						<xsl:text>,</xsl:text>
 					</xsl:if>
 					<xsl:value-of select="$name" />
-				</xsl:with-param> 
+				</xsl:with-param>
 			</xsl:call-template>
 		</xsl:variable>
 		<li>
@@ -1201,7 +1197,7 @@
 		<xsl:otherwise><xsl:apply-templates select="." mode="paramHierarchy" /></xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
-	
+
 <xsl:template match="result" mode="bottomnav">
 	<nav class="bottomnav">
 		<xsl:apply-templates select="." mode="pagenav" />
@@ -1409,7 +1405,7 @@
 		</xsl:for-each>
 	</table>
 </xsl:template>
-	
+
 <xsl:template match="*" mode="caption">
 	<caption>
 		<xsl:apply-templates select=".." mode="link">
@@ -1589,7 +1585,7 @@
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
-	
+
 <xsl:template match="*[@datatype = 'boolean']" mode="display">
 	<xsl:choose>
 		<xsl:when test=". = 'true'">
@@ -1632,36 +1628,6 @@
 			<xsl:apply-templates select="." mode="nodePath" />
 		</xsl:variable>
 		<xsl:variable name="allValues" select="key('properties', $path)" />
-		<xsl:variable name="showBoxplot">
-			<xsl:apply-templates select="." mode="showBoxplot">
-				<xsl:with-param name="values" select="$allValues" />
-			</xsl:apply-templates>
-		</xsl:variable>
-		<xsl:if test="$showBoxplot = 'true'">
-			<span class="boxplot" id="boxplot{generate-id()}">
-			</span>
-			<script type="text/javascript">
-				$('#boxplot<xsl:value-of select="generate-id()"/>').sparkline([
-					<xsl:for-each select="$allValues">
-						<xsl:value-of select="." />
-						<xsl:if test="position() != last()">,</xsl:if>
-					</xsl:for-each>],
-					{
-						type: 'box',
-						showOutliers: false,
-						lineColor: '#555555',
-						boxLineColor: '#555555',
-						boxFillColor: '#EBEBEB',
-						whiskerColor: '#555555',
-						outlierLineColor: '#555555',
-						outlierFillColor: '#EBEBEB',
-						medianColor: '#555555',
-						target: <xsl:value-of select="." />,
-						targetColor: '<xsl:value-of select="$graphColour"/>'
-					}
-				)
-			</script>
-		</xsl:if>
 	</xsl:if>
 </xsl:template>
 
@@ -2064,8 +2030,8 @@
 								<col width="25%" />
 								<col width="75%" />
 							</colgroup>
-							<xsl:for-each 
-								select="key('properties', $propertyName)/*[name() != 'item' and generate-id(key('properties', concat($propertyName, '.', name(.)))[1]) = generate-id(.)] | 
+							<xsl:for-each
+								select="key('properties', $propertyName)/*[name() != 'item' and generate-id(key('properties', concat($propertyName, '.', name(.)))[1]) = generate-id(.)] |
 								key('properties', concat($propertyName, '.item'))/*[generate-id(key('properties', concat($propertyName, '.item.', name(.)))[1]) = generate-id(.)]">
 								<xsl:sort select="boolean(@datatype)" order="descending" />
 								<xsl:sort select="@datatype" />
