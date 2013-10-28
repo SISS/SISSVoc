@@ -23,7 +23,8 @@ exampleRequestPath = re.compile('''api:exampleRequestPath.*?"(.*?)"''')
 endSection = re.compile('''\.''')
 startSection = re.compile('''a api:(Item|List)Endpoint''')
 
-relativePath = "./api"
+'''Old relative path was ./api now it is .'''
+relativePath = "."
 
 for file in sorted(apis):
     print "Found config file: %s" % (file)
