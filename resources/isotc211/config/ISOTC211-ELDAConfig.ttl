@@ -19,8 +19,8 @@
 # Sections that must be customized are bracketted by rows of hashes similar to the line below which ends this comment block
 #
 ##############################################################
-
-Common prefixes - don't change these.
+#
+## Common prefixes - don't change these.
 @prefix api:     <http://purl.org/linked-data/api/vocab#> .
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
 @prefix dct: 		 <http://purl.org/dc/terms/> .
@@ -37,9 +37,9 @@ Common prefixes - don't change these.
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 ##############################################################
-##
-TODO: deployer to make changes here
-other namespaces that appear in this vocabulary
+#
+## TODO: deployer to make changes here
+## other namespaces that appear in this vocabulary
 
 @prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
 @prefix assoc:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/AssociationType/> .
@@ -96,21 +96,21 @@ other namespaces that appear in this vocabulary
 @prefix dcp:     <http://def.seegrid.csiro.au/isotc211/iso19119/2005/code/DCP/> .
 @prefix sv:      <http://def.seegrid.csiro.au/isotc211/iso19119/2005/services#> .
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
+## TODO: deployer to make changes here
+## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
 svoc:isotc211 a api:API
 
-it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
+## it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
 #	; api:base "http://def.seegrid.csiro.au/sissvoc/test"
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 # generic SISSvoc stuff
@@ -130,13 +130,13 @@ end of TODO:
 
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "ashtml.xsl" to the path for the result stylesheet for this API
+## TODO: deployer to make changes here
+## change "ashtml.xsl" to the path for the result stylesheet for this API
 
 			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
 	]
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 	; api:endpoint
@@ -162,8 +162,8 @@ end of TODO:
 
 ##############################################################
 ##
-TODO: deployer to make changes here
-replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+## TODO: deployer to make changes here
+## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 
 	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
 	; api:variable
@@ -175,32 +175,32 @@ replace %DEPLOYPATH% to be the actual deployed path on the webserver - style she
 		, [api:name "serviceAuthorEmail"; api:value "simon.cox@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
 
-set title of service
+## set title of service
 
 	; rdfs:label "ISO/TC 211 SISSvoc"@en
 
-# document the provenance of this vocabulary with links to the source
+## document the provenance of this vocabulary with links to the source
 
 	; foaf:primaryTopic <http://www.isotc211.org/hmmg/HTML/root.html>
 	; rdfs:seeAlso <http://www.isotc211.org/>
 
-# set the SPARQL endpoint
+## set the SPARQL endpoint
 
 	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isotc211>
 	.
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 ##############################################################
 ##
-TODO: deployer to make changes here
-SPARQL 1.1 endpoints ONLY!
-remove this if the endpoint does not support SPARQL 1.1
+## TODO: deployer to make changes here
+## SPARQL 1.1 endpoints ONLY!
+## remove this if the endpoint does not support SPARQL 1.1
 
 <http://def.seegrid.csiro.au/sparql/isotc211> elda:supportsNestedSelect true .
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 #VIEWERS
@@ -272,7 +272,7 @@ svoc:skosViewer a api:Viewer
 
 #ENDPOINTS
 
-000.000. This is the metadata identifier for the vocabulary content.
+## 000.000. This is the metadata identifier for the vocabulary content.
 svoc:LandingPage a api:ItemEndpoint
 		; rdfs:comment "Landing Page for this resource"
 		; api:uriTemplate  "/isotc211"
@@ -284,19 +284,17 @@ svoc:LandingPage a api:ItemEndpoint
 		.
 
 
-0. This is the basic "tell me what you know about the resource identified by this URI" request.
+## 0. This is the basic "tell me what you know about the resource identified by this URI" request.
 svoc:URIEndpoint a api:ItemEndpoint
 		; rdfs:comment "Describe this resource"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-set value of uri= to a URI from the vocabulary
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## set value of uri= to a URI from the vocabulary
 		; api:uriTemplate  "/isotc211/resource?uri={URI}"
 		; api:exampleRequestPath  "/isotc211/resource?uri=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling#SpatialSamplingFeature"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:itemTemplate  "{URI}"
 		; api:defaultViewer  svoc:skosViewer
@@ -308,18 +306,16 @@ end of TODO:
 				svoc:skosViewer
 		.
 
-00. List of ontologies
+## 00. List of ontologies
 svoc:ontologyEndpoint a api:ListEndpoint
 		; rdfs:comment "List all ontologies"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
 		; api:uriTemplate  "/isotc211/ontology"
 		; api:exampleRequestPath  "/isotc211/ontology"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [	api:where " ?item a owl:Ontology . " ]
 		; api:defaultViewer  svoc:ontologyViewer
@@ -327,18 +323,16 @@ end of TODO:
 				api:basicViewer,
 		.
 		
-1. List of concept schemes - basic-view
+## 1. List of concept schemes - basic-view
 svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; rdfs:comment "List all concept-schemes"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
 		; api:uriTemplate  "/isotc211/conceptscheme"
 		; api:exampleRequestPath  "/isotc211/conceptscheme"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
 		; api:defaultViewer  svoc:basicConceptSchemeViewer
@@ -349,18 +343,16 @@ end of TODO:
 				svoc:basicConceptSchemeViewer
 		.
 
-2. List of concept collections - basic-view
+## 2. List of concept collections - basic-view
 svoc:conceptCollectionEndpoint a api:ListEndpoint
 		; rdfs:comment "List all concept collections"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
 		; api:uriTemplate  "/isotc211/collection"
 		; api:exampleRequestPath  "/isotc211/collection"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -374,18 +366,16 @@ end of TODO:
 				svoc:basicCollectionViewer
 		.
 
-3. List of concepts - basic-view
+## 3. List of concepts - basic-view
 svoc:conceptListEndpoint a api:ListEndpoint
 		; rdfs:comment "List all concepts"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
 		; api:uriTemplate  "/isotc211/concept"
 		; api:exampleRequestPath  "/isotc211/concept"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where " ?item a skos:Concept . "
@@ -398,19 +388,17 @@ end of TODO:
 				svoc:basicConceptViewer
 		.
 
-4. List of concepts where a label matches the text
+## 4. List of concepts where a label matches the text
 svoc:conceptLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property has exact match to text"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept?anylabel=snow"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -429,19 +417,17 @@ end of TODO:
 				svoc:basicConceptViewer
 		.
 
-5. List of concepts where a label contains the text, any language, case-insensitive
+## 5. List of concepts where a label contains the text, any language, case-insensitive
 svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of labelcontains= to a word in a label for a concept in this vocabulary
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of labelcontains= to a word in a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept?labelcontains={text}"
 		; api:exampleRequestPath  "/isotc211/concept?labelcontains=smoke"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -460,19 +446,17 @@ end of TODO:
 				svoc:basicConceptViewer
 		.
 
-60. List of concepts related to the one identified by this URI
+## 60. List of concepts related to the one identified by this URI
 svoc:relatedURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts related to the one identified by this URI"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of uri= to a uri for a concept in this vocabulary
-
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/related?uri={baseConcept}"
 		; api:exampleRequestPath  "/isotc211/concept/related?uri=http://vocab.nerc.ac.uk/collection/P07/current/CFV13N44/"
-
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
@@ -486,17 +470,17 @@ end of TODO:
 				svoc:basicConceptViewer
 		.
 
-6. List of concepts broader than the one identified by this URI
+## 6. List of concepts broader than the one identified by this URI
 svoc:broaderThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broader than the one identified by this URI"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of uri= to a uri for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/broader?uri={baseConcept}"
 		; api:exampleRequestPath  "/isotc211/concept/broader?uri=http://vocab.nerc.ac.uk/collection/A01/current/Natural_Processes/"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
@@ -509,17 +493,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-7. List of concepts narrower than the one identified by this URI
+## 7. List of concepts narrower than the one identified by this URI
 svoc:narrowerThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrower than the one identified by this URI"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of uri= to a uri for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/narrower?uri={baseConcept}"
 		; api:exampleRequestPath  "/isotc211/concept/narrower?uri=http://vocab.nerc.ac.uk/collection/A01/current/Human_Activity/"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
@@ -532,17 +516,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-8. List of concepts broaderTransitive than the one identified by this URI
+## 8. List of concepts broaderTransitive than the one identified by this URI
 svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of uri= to a uri for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/broaderTransitive?uri={baseConcept}"
 		; api:exampleRequestPath  "/isotc211/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
@@ -555,17 +539,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-9. List of concepts narrowerTransitive than the one identified by this URI
+## 9. List of concepts narrowerTransitive than the one identified by this URI
 svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of uri= to a uri for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of uri= to a uri for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/narrowerTransitive?uri={baseConcept}"
 		; api:exampleRequestPath  "/isotc211/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
 		; api:selector [
@@ -578,17 +562,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-100. List of concepts related to the one where a label matches the text
+## 100. List of concepts related to the one where a label matches the text
 svoc:relatedLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts related to any concepts with this exact label"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/related?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept/related?anylabel=aerosol"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -607,17 +591,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-10. List of concepts broader than the one where a label matches the text
+## 10. List of concepts broader than the one where a label matches the text
 svoc:broaderLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broader than any concepts with this exact label"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/broader?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept/broader?anylabel=Ikke%20tilgjengelig"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -636,17 +620,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-11. List of concepts narrower than the one where a label matches the text
+## 11. List of concepts narrower than the one where a label matches the text
 svoc:narrowerLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrower than any concepts with this exact label"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/narrower?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept/narrower?anylabel=Processus%20naturels"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -665,17 +649,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-12. List of concepts broaderTransitive than the one where a label matches the text
+## 12. List of concepts broaderTransitive than the one where a label matches the text
 svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/broaderTransitive?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept/broaderTransitive?anylabel=Cambrian"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -694,17 +678,17 @@ end of TODO:
 				api:basicViewer,
 				svoc:basicConceptViewer
 		.
-13. List of concepts narrowerTransitive than the one where a label matches the text
+## 13. List of concepts narrowerTransitive than the one where a label matches the text
 svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
 ##############################################################
 ##
-TODO: deployer to make changes here
-change "test" to vocab name
-change value of anyLabel= to a label for a concept in this vocabulary
+## TODO: deployer to make changes here
+## change "test" to vocab name
+## change value of anyLabel= to a label for a concept in this vocabulary
 		; api:uriTemplate  "/isotc211/concept/narrowerTransitive?anylabel={text}"
 		; api:exampleRequestPath  "/isotc211/concept/narrowerTransitive?anylabel=Cambrian"
-end of TODO:
+## end of TODO:
 ##############################################################
 		; api:selector [
 				api:where
@@ -726,14 +710,14 @@ end of TODO:
 
 ##############################################################
 ##
-TODO: deployer to make changes here
-if the vocabulary contains 'skos:notation' values and these are available for queries,
-change "gts:EraCode" to the type used for notation values in this vocabulary
+## TODO: deployer to make changes here
+## if the vocabulary contains 'skos:notation' values and these are available for queries,
+## change "gts:EraCode" to the type used for notation values in this vocabulary
 
-skos:notation	rdfs:range	gts:EraCode .
-gts:EraCode	a	rdfs:DataType .
+## skos:notation	rdfs:range	gts:EraCode .
+## gts:EraCode	a	rdfs:DataType .
 
-end of TODO:
+## end of TODO:
 ##############################################################
 
 
