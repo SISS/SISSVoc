@@ -1,0 +1,848 @@
+##############################################################
+#
+# This is the template LDA configuration for a SISSvoc service
+# Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
+#
+# Copyright (c) CSIRO 2013
+# Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
+# see <http://creativecommons.org/licenses/by/3.0/au/>
+#
+# Contact: Simon J D Cox
+#          CSIRO Land and Water
+#          PO Box 56
+#          Highett
+#          Vic 3190
+#          Australia
+#          simon.cox@csiro.au
+#
+# The configuration must be customized for each vocabulary
+# Sections that must be customized are bracketted by rows of hashes similar to the line below which ends this comment block
+#
+##############################################################
+
+Common prefixes - don't change these.
+@prefix api:     <http://purl.org/linked-data/api/vocab#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dct: 		 <http://purl.org/dc/terms/> .
+@prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix svoc:    <http://www.seegrid.csiro.au/siss/voc/> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix voaf:    <http://purl.org/vocommons/voaf#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+##############################################################
+##
+TODO: deployer to make changes here
+other namespaces that appear in this vocabulary
+
+@prefix geo:     <http://def.seegrid.csiro.au/ogc/geosparql/> .
+@prefix assoc:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/AssociationType/> .
+@prefix basic:   <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic#> .
+@prefix cell:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/CellGeometry/> .
+@prefix char:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/CharacterSet/> .
+@prefix ci:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#> .
+@prefix class:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Classification/> .
+@prefix condition:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/ImagingCondition/> .
+@prefix cov:     <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/CoverageContentType/> .
+@prefix data:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Datatype/> .
+@prefix datetype:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/DateType/> .
+@prefix dim:     <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/DimensionNameType/> .
+@prefix dq:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#> .
+@prefix ds:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataset#> .
+@prefix eval:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/EvaluationMethodType/> .
+@prefix ex:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/extent#> .
+@prefix format:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/MediumFormat/> .
+@prefix geom:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/GeometricObjectType/> .
+@prefix gm:      <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry#> .
+@prefix h2o:     <http://def.seegrid.csiro.au/isotc211/iso19150/-2/2012/basic#> .
+@prefix init:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/InitiativeType/> .
+@prefix key:     <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/KeywordType/> .
+@prefix li:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/lineage#> .
+@prefix maint:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/MaintenanceFrequency/> .
+@prefix md:      <http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#> .
+@prefix medium:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/MediumName/> .
+@prefix online:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/OnLineFunction/> .
+@prefix present:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/PresentationForm/> .
+@prefix progress:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Progress/> .
+@prefix restrict:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Restriction/> .
+@prefix role:    <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Role/> .
+@prefix scope:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/Scope/> .
+@prefix spatial:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/SpatialRepresentationType/> .
+@prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2006/temporal#> .
+@prefix topic:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/TopicCategory/> .
+@prefix topol:   <http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/TopologyLevel/> .
+@prefix banddefinition:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/BandDefinition/> .
+@prefix context:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/ContextCode/> .
+@prefix geometrytype:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/GeometryTypeCode/> .
+@prefix h2o:     <http://def.seegrid.csiro.au/isotc211/iso19150/-2/2012/basic#> .
+@prefix le:      <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/lineage#> .
+@prefix mi:      <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/imagery#> .
+@prefix objectivetype:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/ObjectiveTypeCode/> .
+@prefix operationtype:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/OperationTypeCode/> .
+@prefix polarisationorientation:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/PolarisationOrientationCode/> .
+@prefix priority:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/PriorityCode/> .
+@prefix qe:      <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/quality#> .
+@prefix sensortype:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/SensorTypeCode/> .
+@prefix sequence:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/SequenceCode/> .
+@prefix transferfunction:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/TransferFunctionTypeCode/> .
+@prefix trigger:  <http://def.seegrid.csiro.au/isotc211/iso19115/-2/2009/code/TriggerCode/> .
+@prefix couple:  <http://def.seegrid.csiro.au/isotc211/iso19119/2005/code/CouplingType/> .
+@prefix dcp:     <http://def.seegrid.csiro.au/isotc211/iso19119/2005/code/DCP/> .
+@prefix sv:      <http://def.seegrid.csiro.au/isotc211/iso19119/2005/services#> .
+
+end of TODO:
+##############################################################
+
+
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
+
+svoc:isotc211 a api:API
+
+it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
+#	; api:base "http://def.seegrid.csiro.au/sissvoc/test"
+
+end of TODO:
+##############################################################
+
+# generic SISSvoc stuff
+	; api:maxPageSize "50"
+	; api:defaultPageSize "10"
+	; api:defaultFormatter [
+			a api:XsltFormatter
+			; api:name "html"
+			; api:mimeType "text/html"
+# the following property enables the stylesheet to work better, including linking the item properties to their definitions
+# remove the ones you don't want
+			; elda:metadataOptions "bindings,versions,execution,formats"
+# bindings	-	causes the inclusion of shortname to URI term bindings.
+# versions	-	causes the inclusion of links for configured alternate views (as in api:viewer) in the result page metadata.
+# execution	-	causes the inclusion of details about the LDA implementation and the executed sparql queries that produced the result.
+# formats		-	causes the inclusion of links to build-in and configured format versions of the rendered page (.html, .ttl, .json etc. variants).
+
+##############################################################
+##
+TODO: deployer to make changes here
+change "ashtml.xsl" to the path for the result stylesheet for this API
+
+			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+	]
+
+end of TODO:
+##############################################################
+
+	; api:endpoint
+		svoc:LandingPage,
+		svoc:URIEndpoint ,
+		svoc:conceptSchemeEndpoint ,
+		svoc:conceptCollectionEndpoint ,
+		svoc:conceptListEndpoint ,
+		svoc:conceptLabelEndpoint ,
+		svoc:conceptLabelContainsEndpoint ,
+		svoc:relatedURIEndpoint ,
+		svoc:broaderThanURIEndpoint ,
+		svoc:narrowerThanURIEndpoint ,
+		svoc:broaderTransitiveThanURIEndpoint ,
+		svoc:narrowerTransitiveThanURIEndpoint ,
+		svoc:relatedLabelEndpoint ,
+		svoc:broaderLabelEndpoint ,
+		svoc:narrowerLabelEndpoint ,
+		svoc:broaderTransitiveLabelEndpoint ,
+		svoc:narrowerTransitiveLabelEndpoint
+	; api:defaultViewer api:describeViewer
+	; elda:enableETags true
+
+##############################################################
+##
+TODO: deployer to make changes here
+replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
+
+	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
+	; api:variable
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/isotc211/"]
+		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
+		, [api:name "serviceTitle"; api:value "ISO/TC 211 SISSvoc"]
+		, [api:name "serviceAuthor"; api:value "Simon Cox"]
+		, [api:name "serviceAuthorEmail"; api:value "simon.cox@csiro.au"]
+		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
+
+set title of service
+
+	; rdfs:label "ISO/TC 211 SISSvoc"@en
+
+# document the provenance of this vocabulary with links to the source
+
+	; foaf:primaryTopic <http://www.isotc211.org/hmmg/HTML/root.html>
+	; rdfs:seeAlso <http://www.isotc211.org/>
+
+# set the SPARQL endpoint
+
+	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/isotc211>
+	.
+
+end of TODO:
+##############################################################
+
+##############################################################
+##
+TODO: deployer to make changes here
+SPARQL 1.1 endpoints ONLY!
+remove this if the endpoint does not support SPARQL 1.1
+
+<http://def.seegrid.csiro.au/sparql/isotc211> elda:supportsNestedSelect true .
+
+end of TODO:
+##############################################################
+
+#VIEWERS
+
+svoc:viewerNone a api:Viewer
+    ; api:name "none"
+    .
+
+svoc:basicViewer a api:Viewer
+    ; api:name "skosbasic"
+    ; api:property
+    		rdf:type,
+    		skos:prefLabel
+    .
+
+svoc:basicConceptSchemeViewer a api:Viewer
+    ; api:name "conceptScheme"
+    ; api:property
+    		skos:prefLabel,
+    		(skos:topConceptOf skos:prefLabel)
+    .
+
+svoc:basicCollectionViewer a api:Viewer
+    ; api:name "collection"
+    ; api:property
+    		skos:prefLabel,
+				(skos:member skos:prefLabel)
+    .
+
+svoc:basicConceptViewer a api:Viewer
+    ; api:name "concept"
+    ; api:property
+    		skos:prefLabel
+    .
+
+svoc:ontologyViewer a api:Viewer
+    ; api:name "ontology"
+    ; api:property
+				rdf:type,
+				dc:title, 
+				rdfs:label, 
+    		dc:description,
+    		dc:publisher, 
+    		dct:license, 
+    		rdfs:comment,
+    		(dct:hasPart rdfs:Label)
+    .
+
+svoc:skosViewer a api:Viewer
+    ; api:name "skos"
+    ; api:property
+				rdf:type,
+				skos:prefLabel,
+    		skos:altLabel,
+    		skos:definition,
+    		dc:description,
+    		rdfs:comment,
+    		skos:note,
+    		rdfs:seeAlso,
+    		(skos:hasTopConcept skos:prefLabel),
+    		(skos:topConceptOf skos:prefLabel),
+				(skos:member skos:prefLabel),
+				(skos:related skos:prefLabel),
+				(skos:broaderTransitive skos:prefLabel),
+				(skos:broader skos:prefLabel),
+				(skos:narrower skos:prefLabel),
+				(skos:narrowerTransitive skos:prefLabel)
+    .
+
+#ENDPOINTS
+
+000.000. This is the metadata identifier for the vocabulary content.
+svoc:LandingPage a api:ItemEndpoint
+		; rdfs:comment "Landing Page for this resource"
+		; api:uriTemplate  "/isotc211"
+		; api:exampleRequestPath  "/isotc211"
+		# NO CLUE how to work this one out. Simon?
+		; api:itemTemplate  "http://auscope-services-test.arrc.csiro.au/elda-demo/isotc211/collection"
+		; api:defaultViewer  api:labelledDescribeViewer
+		; api:viewer  api:basicViewer,api:labelledDescribeViewer
+		.
+
+
+0. This is the basic "tell me what you know about the resource identified by this URI" request.
+svoc:URIEndpoint a api:ItemEndpoint
+		; rdfs:comment "Describe this resource"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+set value of uri= to a URI from the vocabulary
+
+		; api:uriTemplate  "/isotc211/resource?uri={URI}"
+		; api:exampleRequestPath  "/isotc211/resource?uri=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling#SpatialSamplingFeature"
+
+end of TODO:
+##############################################################
+		; api:itemTemplate  "{URI}"
+		; api:defaultViewer  svoc:skosViewer
+		; api:viewer
+				svoc:basicViewer,
+				api:basicViewer,
+				api:describeViewer,
+				api:labelledDescribeViewer,
+				svoc:skosViewer
+		.
+
+00. List of ontologies
+svoc:ontologyEndpoint a api:ListEndpoint
+		; rdfs:comment "List all ontologies"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+
+		; api:uriTemplate  "/isotc211/ontology"
+		; api:exampleRequestPath  "/isotc211/ontology"
+
+end of TODO:
+##############################################################
+		; api:selector [	api:where " ?item a owl:Ontology . " ]
+		; api:defaultViewer  svoc:ontologyViewer
+		; api:viewer
+				api:basicViewer,
+		.
+		
+1. List of concept schemes - basic-view
+svoc:conceptSchemeEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept-schemes"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+
+		; api:uriTemplate  "/isotc211/conceptscheme"
+		; api:exampleRequestPath  "/isotc211/conceptscheme"
+
+end of TODO:
+##############################################################
+		; api:selector [	api:where " ?item a skos:ConceptScheme . " ]
+		; api:defaultViewer  svoc:basicConceptSchemeViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptSchemeViewer
+		.
+
+2. List of concept collections - basic-view
+svoc:conceptCollectionEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concept collections"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+
+		; api:uriTemplate  "/isotc211/collection"
+		; api:exampleRequestPath  "/isotc211/collection"
+
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					"{ ?item a skos:OrderedCollection } UNION { ?item a skos:Collection }"
+			]
+		; api:defaultViewer  svoc:basicCollectionViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicCollectionViewer
+		.
+
+3. List of concepts - basic-view
+svoc:conceptListEndpoint a api:ListEndpoint
+		; rdfs:comment "List all concepts"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+
+		; api:uriTemplate  "/isotc211/concept"
+		; api:exampleRequestPath  "/isotc211/concept"
+
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where " ?item a skos:Concept . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+4. List of concepts where a label matches the text
+svoc:conceptLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property has exact match to text"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/isotc211/concept?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept?anylabel=snow"
+
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+5. List of concepts where a label contains the text, any language, case-insensitive
+svoc:conceptLabelContainsEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of labelcontains= to a word in a label for a concept in this vocabulary
+
+		; api:uriTemplate  "/isotc211/concept?labelcontains={text}"
+		; api:exampleRequestPath  "/isotc211/concept?labelcontains=smoke"
+
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" { ?item skos:prefLabel ?l }
+							UNION
+							{ ?item skos:altLabel ?l }
+							UNION
+							{ ?item rdfs:label ?l }
+							FILTER regex( str(?l) , ?text , 'i' ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+60. List of concepts related to the one identified by this URI
+svoc:relatedURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts related to the one identified by this URI"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of uri= to a uri for a concept in this vocabulary
+
+		; api:uriTemplate  "/isotc211/concept/related?uri={baseConcept}"
+		; api:exampleRequestPath  "/isotc211/concept/related?uri=http://vocab.nerc.ac.uk/collection/P07/current/CFV13N44/"
+
+end of TODO:
+##############################################################
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:related ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+6. List of concepts broader than the one identified by this URI
+svoc:broaderThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than the one identified by this URI"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of uri= to a uri for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/broader?uri={baseConcept}"
+		; api:exampleRequestPath  "/isotc211/concept/broader?uri=http://vocab.nerc.ac.uk/collection/A01/current/Natural_Processes/"
+end of TODO:
+##############################################################
+		; api:variable [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broader ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+7. List of concepts narrower than the one identified by this URI
+svoc:narrowerThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than the one identified by this URI"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of uri= to a uri for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/narrower?uri={baseConcept}"
+		; api:exampleRequestPath  "/isotc211/concept/narrower?uri=http://vocab.nerc.ac.uk/collection/A01/current/Human_Activity/"
+end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrower ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+8. List of concepts broaderTransitive than the one identified by this URI
+svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than the one identified by this URI"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of uri= to a uri for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/broaderTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/isotc211/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:broaderTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+9. List of concepts narrowerTransitive than the one identified by this URI
+svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than the one identified by this URI"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of uri= to a uri for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/narrowerTransitive?uri={baseConcept}"
+		; api:exampleRequestPath  "/isotc211/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+end of TODO:
+##############################################################
+		; api:variable  [ api:name "baseConcept"; api:type rdfs:Resource ]
+		; api:selector [
+				api:where " ?baseConcept skos:narrowerTransitive ?item . "
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+100. List of concepts related to the one where a label matches the text
+svoc:relatedLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts related to any concepts with this exact label"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/related?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept/related?anylabel=aerosol"
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:related ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+10. List of concepts broader than the one where a label matches the text
+svoc:broaderLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broader than any concepts with this exact label"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/broader?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept/broader?anylabel=Ikke%20tilgjengelig"
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:broader ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+11. List of concepts narrower than the one where a label matches the text
+svoc:narrowerLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrower than any concepts with this exact label"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/narrower?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept/narrower?anylabel=Processus%20naturels"
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:narrower ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+12. List of concepts broaderTransitive than the one where a label matches the text
+svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts broaderTransitive than any concepts with this exact label"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/broaderTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept/broaderTransitive?anylabel=Cambrian"
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:broaderTransitive ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+13. List of concepts narrowerTransitive than the one where a label matches the text
+svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts narrowerTransitive than any concepts with this exact label"
+##############################################################
+##
+TODO: deployer to make changes here
+change "test" to vocab name
+change value of anyLabel= to a label for a concept in this vocabulary
+		; api:uriTemplate  "/isotc211/concept/narrowerTransitive?anylabel={text}"
+		; api:exampleRequestPath  "/isotc211/concept/narrowerTransitive?anylabel=Cambrian"
+end of TODO:
+##############################################################
+		; api:selector [
+				api:where
+					""" ?i0 skos:narrowerTransitive ?item .
+							{ ?i0 rdfs:label ?l }
+							UNION
+							{ ?i0 skos:prefLabel ?l }
+							UNION
+							{ ?i0 skos:altLabel ?l }
+							FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer
+				svoc:skosViewer,
+				svoc:basicViewer,
+				api:basicViewer,
+				svoc:basicConceptViewer
+		.
+
+##############################################################
+##
+TODO: deployer to make changes here
+if the vocabulary contains 'skos:notation' values and these are available for queries,
+change "gts:EraCode" to the type used for notation values in this vocabulary
+
+skos:notation	rdfs:range	gts:EraCode .
+gts:EraCode	a	rdfs:DataType .
+
+end of TODO:
+##############################################################
+
+
+#
+# VOCABULARY
+#
+# The vocabulary declarations say which properties can be used in queries
+# and by what short name those properties are known. If property P with short
+# name Q has range type T, then a query parameters Q=V is translated to
+# a WHERE clause fragment ?item P V' where V' is a literal which is V
+# with type T. This is especially important for numbers and booleans.
+#
+
+RDF
+rdf:type
+    api:label "type" ;
+    rdfs:range rdfs:Class .
+
+RDFS
+rdfs:label
+    api:label "label" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:comment
+    api:label "comment" ;
+    api:structured "true"^^xsd:boolean;
+    a           rdf:Property .
+
+rdfs:seeAlso
+    api:label "seeAlso" ;
+    a           rdf:Property .
+
+SKOS
+skos:Concept
+		api:label "Concept" ;
+		a         rdfs:Class .
+
+skos:ConceptScheme
+		api:label "ConceptScheme" ;
+		a         rdfs:Class .
+
+skos:topConceptOf
+		api:label "topConceptOf" ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:hasTopConcept
+		api:label "hasTopConcept" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:inScheme
+		api:label "inScheme" ;
+		rdfs:domain	skos:Concept ;
+		rdfs:range      skos:ConceptScheme .
+
+skos:member
+		api:label "member" ;
+		api:multiValued true ;
+		rdfs:domain	skos:Collection ;
+		rdfs:range      skos:Concept .
+
+skos:prefLabel
+		api:label "prefLabel" ;
+		api:multiValued true ;
+		api:structured "true"^^xsd:boolean;
+		a           owl:AnnotationProperty .
+
+skos:altLabel
+		api:label "altLabel" ;
+		api:multiValued true ;
+		api:structured "true"^^xsd:boolean;
+		a         owl:AnnotationProperty  .
+
+skos:notation
+		a owl:DatatypeProperty;
+		api:label "notation"  .
+
+skos:related
+		api:label "related" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broader
+		api:label "broader" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:broaderTransitive
+		api:label "broaderTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrower
+		api:label "narrower" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:narrowerTransitive
+		api:label "narrowerTransitive" ;
+		api:multiValued true ;
+		rdfs:range      skos:Concept .
+
+skos:note
+		api:label "note" ;
+		a         owl:AnnotationProperty  .
+
+skos:definition
+		api:label "definition" ;
+		a         owl:AnnotationProperty  .
+
+
