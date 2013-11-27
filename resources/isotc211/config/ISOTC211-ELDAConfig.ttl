@@ -730,12 +730,12 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 # with type T. This is especially important for numbers and booleans.
 #
 
-RDF
+#RDF
 rdf:type
     api:label "type" ;
     rdfs:range rdfs:Class .
 
-RDFS
+#RDFS
 rdfs:label
     api:label "label" ;
     api:structured "true"^^xsd:boolean;
@@ -750,7 +750,7 @@ rdfs:seeAlso
     api:label "seeAlso" ;
     a           rdf:Property .
 
-SKOS
+#SKOS
 skos:Concept
         api:label "Concept" ;
         a         rdfs:Class .
