@@ -170,6 +170,7 @@ svoc:basicCollectionViewer a api:Viewer
     ; api:name "collection"
     ; api:property
     		skos:prefLabel,
+				(skos:memberList skos:prefLabel),
 				(skos:member skos:prefLabel)
     .
 
