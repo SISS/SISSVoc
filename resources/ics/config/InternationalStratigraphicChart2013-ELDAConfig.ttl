@@ -170,7 +170,7 @@ svoc:basicCollectionViewer a api:Viewer
     ; api:name "collection"
     ; api:property
     		skos:prefLabel,
-				(skos:memberList skos:prefLabel),
+				(skos:memberList/skos:prefLabel),
 				(skos:member skos:prefLabel)
     .
 
@@ -194,7 +194,7 @@ svoc:skosViewer a api:Viewer
     		(skos:hasTopConcept skos:prefLabel),
     		(skos:topConceptOf skos:prefLabel),
 				(skos:member skos:prefLabel),
-				(skos:memberList skos:prefLabel),
+				(skos:memberList/skos:prefLabel),
 				(skos:related skos:prefLabel),
 				(skos:broaderTransitive skos:prefLabel),
 				(skos:broader skos:prefLabel),
@@ -611,6 +611,12 @@ skos:member
 		api:multiValued true ;
 		rdfs:domain	skos:Collection ;
 		rdfs:range      skos:Concept .
+
+skos:memberList
+		api:label "member list" ;
+		api:multiValued true ;
+		rdfs:domain	skos:OrderedCollection ;
+		rdfs:range      rdf:List .
 
 skos:prefLabel
 		api:label "prefLabel" ;
