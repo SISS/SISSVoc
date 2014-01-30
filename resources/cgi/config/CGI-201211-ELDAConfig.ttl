@@ -56,8 +56,8 @@ svoc:cgi201211 a api:API
 ## replace %DEPLOYPATH% to be the actual deployed path on the webserver - style sheets are not currently functional for relative paths
 	; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
 	; api:variable
-		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
-		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/cgi/"]
+		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/lda-assets/resources/siss-default/"]
+		, [api:name "myResourceDirBase"; api:value "{webapp}/lda-assets/resources/cgi/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
 		, [api:name "serviceTitle"; api:value "CGI Controlled Vocabulary (2012-11)"]
 		, [api:name "serviceAuthor"; api:value "Guillaume Duclaux"]
@@ -72,7 +72,7 @@ svoc:cgi201211 a api:API
 	; api:defaultFormatter [
 			a api:XsltFormatter
 			; api:name "html"
-			; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+			; api:stylesheet "lda-assets/resources/siss-default/transform/ashtml-sissvoc.xsl"
 			; api:mimeType "text/html"
 			; elda:metadataOptions "bindings,versions,execution,formats"
 	]

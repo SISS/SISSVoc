@@ -133,7 +133,7 @@ svoc:isotc211 a api:API
 ## TODO: deployer to make changes here
 ## change "ashtml.xsl" to the path for the result stylesheet for this API
 
-            ; api:stylesheet "resources/siss-default/transform/ashtml-sissvoc.xsl"
+            ; api:stylesheet "lda-assets/resources/siss-default/transform/ashtml-sissvoc.xsl"
     ]
 
 ## end of TODO:
@@ -167,8 +167,8 @@ svoc:isotc211 a api:API
 
     ; api:variable [api:name "webapp"; api:value "%DEPLOYPATH%"]
     ; api:variable
-        [api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/siss-default/"]
-        , [api:name "myResourceDirBase"; api:value "{webapp}/resources/isotc211/"]
+        [api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/lda-assets/resources/siss-default/"]
+        , [api:name "myResourceDirBase"; api:value "{webapp}/lda-assets/resources/isotc211/"]
         , [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
         , [api:name "serviceTitle"; api:value "ISO/TC 211 SISSvoc"]
         , [api:name "serviceAuthor"; api:value "Simon Cox"]
