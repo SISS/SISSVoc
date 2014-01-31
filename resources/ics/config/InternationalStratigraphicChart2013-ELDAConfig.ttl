@@ -613,7 +613,7 @@ skos:member
 		rdfs:range      skos:Concept .
 
 skos:memberList
-		api:label "member list" ;
+		api:label "memberList" ;
 		api:multiValued true ;
 		rdfs:domain	skos:OrderedCollection ;
 		rdfs:range      rdf:List .
