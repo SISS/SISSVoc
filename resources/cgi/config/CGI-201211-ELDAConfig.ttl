@@ -116,7 +116,8 @@ svoc:cgi201211 a api:API
 
 # set the SPARQL endpoint
 
-	; api:sparqlEndpoint <http://resource.geosciml.org/sparql/cgi201211>
+#	; api:sparqlEndpoint <http://resource.geosciml.org/sparql/cgi201211>
+	; api:sparqlEndpoint <http://def.seegrid.csiro.au/sparql/cgi201211>
 	.
 
 ## end of TODO:
