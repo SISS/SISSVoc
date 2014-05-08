@@ -1,9 +1,9 @@
 ##############################################################
 #
-# This is the template LDA configuration for a SISSvoc service
+# This is the LDA configuration for a SISSvoc service
 # Reference - <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30Specification>
 #
-# Copyright (c) CSIRO 2013
+# Copyright (c) CSIRO 2014
 # Re-use permitted according to Creative Commons Attribution 3.0 Australia (CC BY 3.0)
 # see <http://creativecommons.org/licenses/by/3.0/au/>
 #
@@ -23,7 +23,7 @@
 ## Common prefixes - don't change these.
 @prefix api:     <http://purl.org/linked-data/api/vocab#> .
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
-@prefix dct:          <http://purl.org/dc/terms/> .
+@prefix dct:     <http://purl.org/dc/terms/> .
 @prefix elda:    <http://www.epimorphics.com/vocabularies/lda#> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -62,7 +62,7 @@
 ## TODO: deployer to make changes here
 ## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
 
-svoc:isc2013 a api:API
+svoc:isc2014 a api:API
 
 ## it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
 #    ; api:base "http://def.seegrid.csiro.au/sissvoc/test"
@@ -114,14 +114,14 @@ svoc:isc2013 a api:API
         [api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/lda-assets/resources/siss-default/"]
         , [api:name "myResourceDirBase"; api:value "{webapp}/lda-assets/resources/ics/"]
         , [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
-        , [api:name "serviceTitle"; api:value "Geologic timescale (2013)"]
+        , [api:name "serviceTitle"; api:value "Geologic timescale (2014)"]
         , [api:name "serviceAuthor"; api:value "Simon Cox"]
         , [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"]
         , [api:name "serviceHomePage"; api:value "http://www.stratigraphy.org/"]
 
 ## set title of service
 
-    ; rdfs:label "International Stratigraphic Chart (2013 edition)"@en
+    ; rdfs:label "International Stratigraphic Chart (2014 edition)"@en
 
 # document the provenance of this vocabulary with links to the source
 
@@ -130,7 +130,7 @@ svoc:isc2013 a api:API
 
 # set the SPARQL endpoint
 
-    ; api:sparqlEndpoint <http://resource.geosciml.org/sparql/isc2013>
+    ; api:sparqlEndpoint <http://resource.geosciml.org/sparql/isc2014>
     .
 
 ## end of TODO:
@@ -142,7 +142,7 @@ svoc:isc2013 a api:API
 ## SPARQL 1.1 endpoints ONLY!
 ## remove this if the endpoint does not support SPARQL 1.1
 
-<http://def.seegrid.csiro.au/sparql/isc2013> elda:supportsNestedSelect true .
+<http://def.seegrid.csiro.au/sparql/isc2014> elda:supportsNestedSelect true .
 
 ## end of TODO:
 ##############################################################
@@ -208,9 +208,9 @@ svoc:skosViewer a api:Viewer
 ## 000.000. This is the metadata identifier for the vocabulary content.
 svoc:LandingPage a api:ItemEndpoint
         ; rdfs:comment "Landing Page for this resource"
-        ; api:uriTemplate  "/isc2013"
-        ; api:exampleRequestPath  "/isc2013"
-        ; api:itemTemplate  "http://resource.geosciml.org/vocabulary/timescale/isc2013"
+        ; api:uriTemplate  "/isc2014"
+        ; api:exampleRequestPath  "/isc2014"
+        ; api:itemTemplate  "http://resource.geosciml.org/vocabulary/timescale/isc2014"
         ; api:defaultViewer  api:labelledDescribeViewer
         ; api:viewer  api:basicViewer,api:labelledDescribeViewer
         .
@@ -225,8 +225,8 @@ svoc:URIEndpoint a api:ItemEndpoint
 ## change "test" to vocab name
 ## set value of uri= to a URI from the vocabulary
 
-        ; api:uriTemplate  "/isc2013/resource?uri={URI}"
-        ; api:exampleRequestPath  "/isc2013/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
+        ; api:uriTemplate  "/isc2014/resource?uri={URI}"
+        ; api:exampleRequestPath  "/isc2014/resource?uri=http://resource.geosciml.org/classifier/ics/ischart/Furongian"
 
 ## end of TODO:
 ##############################################################
@@ -244,8 +244,8 @@ svoc:conceptSchemeEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-        ; api:uriTemplate  "/isc2013/conceptscheme"
-        ; api:exampleRequestPath  "/isc2013/conceptscheme"
+        ; api:uriTemplate  "/isc2014/conceptscheme"
+        ; api:exampleRequestPath  "/isc2014/conceptscheme"
 
 ## end of TODO:
 ##############################################################
@@ -262,8 +262,8 @@ svoc:conceptCollectionEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-        ; api:uriTemplate  "/isc2013/collection"
-        ; api:exampleRequestPath  "/isc2013/collection"
+        ; api:uriTemplate  "/isc2014/collection"
+        ; api:exampleRequestPath  "/isc2014/collection"
 
 ## end of TODO:
 ##############################################################
@@ -287,8 +287,8 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## TODO: deployer to make changes here
 ## change "test" to vocab name
 
-        ; api:uriTemplate  "/isc2013/concept"
-        ; api:exampleRequestPath  "/isc2013/concept"
+        ; api:uriTemplate  "/isc2014/concept"
+        ; api:exampleRequestPath  "/isc2014/concept"
 
 ## end of TODO:
 ##############################################################
@@ -308,8 +308,8 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept?anylabel={text}"
-        ; api:exampleRequestPath  "/isc2013/concept?anylabel=Cambrian"
+        ; api:uriTemplate  "/isc2014/concept?anylabel={text}"
+        ; api:exampleRequestPath  "/isc2014/concept?anylabel=Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -333,8 +333,8 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of labelcontains= to a word in a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept?labelcontains={text}"
-        ; api:exampleRequestPath  "/isc2013/concept?labelcontains=cambrian"
+        ; api:uriTemplate  "/isc2014/concept?labelcontains={text}"
+        ; api:exampleRequestPath  "/isc2014/concept?labelcontains=cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -345,6 +345,14 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
                             { ?item skos:altLabel ?l }
                             UNION
                             { ?item rdfs:label ?l }
+                            UNION
+                            { ?item rdfs:comment ?l }
+                            UNION
+                            { ?item skos:definition ?l }
+                            UNION
+                            { ?item dc:description ?l }
+                            UNION
+                            { ?item dct:description ?l }
                             FILTER regex( str(?l) , ?text , 'i' ) """
         ]
         ; api:defaultViewer svoc:basicConceptViewer
@@ -360,8 +368,8 @@ svoc:broaderThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/broader?uri={baseConcept}"
-        ; api:exampleRequestPath  "/isc2013/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/broader?uri={baseConcept}"
+        ; api:exampleRequestPath  "/isc2014/concept/broader?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -382,8 +390,8 @@ svoc:narrowerThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/narrower?uri={baseConcept}"
-        ; api:exampleRequestPath  "/isc2013/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/narrower?uri={baseConcept}"
+        ; api:exampleRequestPath  "/isc2014/concept/narrower?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -404,8 +412,8 @@ svoc:broaderTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/broaderTransitive?uri={baseConcept}"
-        ; api:exampleRequestPath  "/isc2013/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/broaderTransitive?uri={baseConcept}"
+        ; api:exampleRequestPath  "/isc2014/concept/broaderTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -426,8 +434,8 @@ svoc:narrowerTransitiveThanURIEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of uri= to a uri for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/narrowerTransitive?uri={baseConcept}"
-        ; api:exampleRequestPath  "/isc2013/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/narrowerTransitive?uri={baseConcept}"
+        ; api:exampleRequestPath  "/isc2014/concept/narrowerTransitive?uri=http://resource.geosciml.org/classifier/ics/ischart/Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -448,8 +456,8 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/broader?anylabel={text}"
-        ; api:exampleRequestPath  "/isc2013/concept/broader?anylabel=Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/broader?anylabel={text}"
+        ; api:exampleRequestPath  "/isc2014/concept/broader?anylabel=Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -474,8 +482,8 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/narrower?anylabel={text}"
-        ; api:exampleRequestPath  "/isc2013/concept/narrower?anylabel=Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/narrower?anylabel={text}"
+        ; api:exampleRequestPath  "/isc2014/concept/narrower?anylabel=Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -500,8 +508,8 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/broaderTransitive?anylabel={text}"
-        ; api:exampleRequestPath  "/isc2013/concept/broaderTransitive?anylabel=Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/broaderTransitive?anylabel={text}"
+        ; api:exampleRequestPath  "/isc2014/concept/broaderTransitive?anylabel=Cambrian"
 
 ## end of TODO:
 ##############################################################
@@ -526,8 +534,8 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## change "test" to vocab name
 ## change value of anyLabel= to a label for a concept in this vocabulary
 
-        ; api:uriTemplate  "/isc2013/concept/narrowerTransitive?anylabel={text}"
-        ; api:exampleRequestPath  "/isc2013/concept/narrowerTransitive?anylabel=Cambrian"
+        ; api:uriTemplate  "/isc2014/concept/narrowerTransitive?anylabel={text}"
+        ; api:exampleRequestPath  "/isc2014/concept/narrowerTransitive?anylabel=Cambrian"
 
 ## end of TODO:
 ##############################################################

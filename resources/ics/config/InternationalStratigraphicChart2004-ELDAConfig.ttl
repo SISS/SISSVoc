@@ -172,7 +172,7 @@ svoc:LandingPage a api:ItemEndpoint
 		; rdfs:comment "Landing Page for this resource"
 		; api:uriTemplate  "/isc2004"
 		; api:exampleRequestPath  "/isc2004"
-		; api:itemTemplate  "http://resource.geosciml.org/vocabulary/timescale/isc-2004"
+		; api:itemTemplate  "http://resource.geosciml.org/vocabulary/timescale/isc2004"
 		; api:defaultViewer  api:labelledDescribeViewer
 		; api:viewer  api:basicViewer,api:labelledDescribeViewer
 		.
