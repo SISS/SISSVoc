@@ -48,8 +48,8 @@
 @prefix thors:   <http://resource.geosciml.org/ontology/timescale/thors#> .
 @prefix gts:     <http://resource.geosciml.org/ontology/timescale/gts#> .
 @prefix isc:     <http://resource.geosciml.org/classifier/ics/ischart/> .
-@prefix sccgi:   <http://resource.geosciml.org/classifier/cgi/stratchart/>
-@prefix rank:		 <http://resource.geosciml.org/ontology/timescale/rank/>
+@prefix sccgi:   <http://resource.geosciml.org/classifier/cgi/stratchart/> .
+@prefix rank:		 <http://resource.geosciml.org/ontology/timescale/rank/> .
 @prefix sam:     <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling#> .
 @prefix tm:      <http://def.seegrid.csiro.au/isotc211/iso19108/2002/temporal#> .
 
