@@ -69,6 +69,7 @@ svoc:slake a api:API
 		, [api:name "serviceAuthor"; api:value "Florence Tan"]
 		, [api:name "serviceAuthorEmail"; api:value "Florence.Tan@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/ASRDC/SlakeUOMVocabulary-FormalisationDeploymentGuide"]
+		, [api:name "configID"; api:value "$Header$"]
 ## end of TODO:
 ##############################################################
 

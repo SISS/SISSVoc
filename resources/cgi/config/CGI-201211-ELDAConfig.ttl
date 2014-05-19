@@ -63,6 +63,7 @@ svoc:cgi201211 a api:API
 		, [api:name "serviceAuthor"; api:value "Guillaume Duclaux"]
 		, [api:name "serviceAuthorEmail"; api:value "Guillaume.Duclaux@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "http://www.cgi-iugs.org/tech_collaboration/interoperability_working_group.html/"]
+		, [api:name "configID"; api:value "$Header$"]
 ## end of TODO:
 ##############################################################
 

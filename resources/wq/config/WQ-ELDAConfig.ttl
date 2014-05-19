@@ -132,6 +132,7 @@ svoc:wq a api:API
 		, [api:name "serviceAuthor"; api:value "Bruce Simons"]
 		, [api:name "serviceAuthorEmail"; api:value "Bruce.Simons@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "https://www.seegrid.csiro.au/wiki/Siss/SISSvoc3Overview"]
+		, [api:name "configID"; api:value "$Header$"]
 
 ## set title of service
 

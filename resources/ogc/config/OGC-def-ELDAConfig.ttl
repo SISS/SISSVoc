@@ -106,6 +106,7 @@ svoc:ogc-def a api:API
 		, [api:name "serviceAuthor"; api:value "Simon Cox"]
 		, [api:name "serviceAuthorEmail"; api:value "Simon.Cox@csiro.au"]
 		, [api:name "serviceHomePage"; api:value "http://www.opengeospatial.org/"]
+		, [api:name "configID"; api:value "$Header$"]
 
 ## set title of service
 
