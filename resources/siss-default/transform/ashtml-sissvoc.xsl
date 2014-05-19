@@ -173,7 +173,7 @@
 			<a href="http://www.axialis.com/free/icons/">Icons</a> by <a href="http://www.axialis.com">Axialis Team</a>
 		</p>
 
-	<xsl:comment>{$configID}</xsl:ccomment>
+	<xsl:comment><xsl:value-of select='$configID'/></xsl:ccomment>
 	
 	</footer>
 </xsl:template>
