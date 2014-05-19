@@ -19,6 +19,8 @@
 <xsl:param name="serviceAuthorEmail">test.author@csiro.au</xsl:param>
 <xsl:param name="serviceHomePage">http://test.homepage/here</xsl:param>
 
+<xsl:param name="configID">Please Enable SVN $Header$ on your config file.</xsl:param>
+
 <xsl:param name="SISSDefaultResourceDirBase" />
 
 <xsl:param name="myResourceDirBase" />
@@ -170,6 +172,9 @@
 			<a href="http://code.google.com/p/linked-data-api">Linked Data API</a><br />
 			<a href="http://www.axialis.com/free/icons/">Icons</a> by <a href="http://www.axialis.com">Axialis Team</a>
 		</p>
+
+	<xsl:comment>{$configID}</xsl:ccomment>
+	
 	</footer>
 </xsl:template>
 
