@@ -1,6 +1,4 @@
 sissvoc
 =======
-vanilla branch
-contact: Jonathan Yu (jonathan.yu[ at ] csiro.au)
+master branch
 
-Contains a minimal configuration required to setup a SISSVoc instance.
