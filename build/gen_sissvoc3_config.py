@@ -1,17 +1,29 @@
 import ConfigParser,os,sys
 Config = ConfigParser.ConfigParser()
 
+import argparse
 
-if(len(sys.argv) <= 1):
-   print "\n\tusage: python gen_sissvoc3_config.py <output file>\n"
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--config', help='config file (default is config.properties)', type=str, default='config.properties')
+parser.add_argument('outputfile', help='output file', type=str)
+
+args = parser.parse_args()
+
+
 
 print "Initialising..."
 
-Config.read('config.properties')
+if args.config:
+   configfile = args.config
+else:
+   configfile = 'config.properties'
+   
+
+Config.read(configfile)
 filename='SISSvoc3-ELDAConfig-template.ttl'
 infile = open(filename)
 
-outfilename = sys.argv[1]
+outfilename = args.outputfile
 outfile = open(outfilename, 'w')
 
 print "Emitting to file: ", outfilename
