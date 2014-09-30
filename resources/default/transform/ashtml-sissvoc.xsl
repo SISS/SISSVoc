@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <!-- imports -->
-<xsl:import href="../../../xslt/linked-data-api.xsl" />
+<xsl:import href="../../../lda-assets/xslt/linked-data-api.xsl" />
 
 <xsl:output method="html" omit-xml-declaration="yes" 
     doctype-public="-//W3C//DTD HTML 4.01//EN"
