@@ -104,6 +104,8 @@ svoc:%SVC_ID% a api:API
 		[api:name "SISSDefaultResourceDirBase"; api:value "{webapp}/resources/default/"]
 		, [api:name "myResourceDirBase"; api:value "{webapp}/resources/default/"]
 		, [api:name "_resourceRoot"; api:value "{webapp}/lda-assets/"]
+		, [api:name "resourcePath"; api:value "{webapp}%SVC_PREFIX%/resource"]
+		, [api:name "resourceEndPoint"; api:value "{webapp}%SVC_PREFIX%/resource"]
 		, [api:name "serviceTitle"; api:value "%SERVICE_TITLE%"]
 		, [api:name "serviceAuthor"; api:value "%SERVICE_AUTHOR%"]
 		, [api:name "serviceAuthorEmail"; api:value "%SERVICE_AUTHOR_EMAIL%"]
