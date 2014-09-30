@@ -1955,6 +1955,43 @@
 	</xsl:choose>
 </xsl:template>
 
+	<xsl:template name="string-replace-all">
+    <xsl:param name="text" />
+    <xsl:param name="replace" />
+    <xsl:param name="by" />
+    <xsl:choose>
+      <xsl:when test="contains($text, $replace)">
+        <xsl:value-of select="substring-before($text,$replace)" />
+        <xsl:value-of select="$by" />
+        <xsl:call-template name="string-replace-all">
+          <xsl:with-param name="text"
+          select="substring-after($text,$replace)" />
+          <xsl:with-param name="replace" select="$replace" />
+          <xsl:with-param name="by" select="$by" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$text" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+	
+	<xsl:template match="@href" mode="adjust-uri">
+			<xsl:variable name="p1">
+				<xsl:call-template name="string-replace-all">
+				  <xsl:with-param name="text" select="." />
+				  <xsl:with-param name="replace" select="string('#')" />
+				  <xsl:with-param name="by" select="string('%23')" />
+				</xsl:call-template>
+			  </xsl:variable>
+	
+			<xsl:variable name="adjustedHref" select="concat($resourcePath,'?uri=', $p1)"/>
+			
+			
+			<xsl:value-of select="$adjustedHref" />
+	</xsl:template>
+
+
 <xsl:template match="*" mode="link">
 	<xsl:param name="content" />
 	<xsl:choose>
@@ -1970,7 +2007,8 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:variable name="adjustedHref">
-						<xsl:apply-templates select="@href" mode="uri" />
+						<!--<xsl:apply-templates select="@href" mode="uri" />-->
+						<xsl:apply-templates select="@href" mode="adjust-uri"/>
 					</xsl:variable>
 					<xsl:choose>
 						<xsl:when test="$adjustedHref = @href">
