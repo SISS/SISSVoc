@@ -192,8 +192,8 @@
 		<xsl:attribute name="class">
 			<xsl:text> query col</xsl:text>
 			<xsl:choose>
-				<xsl:when test="self::viewingResult[../selectionResult/query/value != '']">1</xsl:when>
-				<xsl:otherwise>2</xsl:otherwise>
+				<xsl:when test="self::viewingResult[../selectionResult/query/value != '']">2</xsl:when>
+				<xsl:otherwise>1</xsl:otherwise>
 			</xsl:choose>
 		</xsl:attribute>
 		<h2>
