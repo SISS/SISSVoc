@@ -1,8 +1,0 @@
-/* This is the last CSS loaded - you can destroy incoming formatting! */
-
-/* we are replacing the icon near the title. */ 
-header h1 {
-    background: url("../images/GeoSciML-64.png") no-repeat scroll 0 0 transparent;
-    font-size:	36px; 
-    font-family:	Calibri, Helvetica Neue, Helvetica, sans-serif;
-}
