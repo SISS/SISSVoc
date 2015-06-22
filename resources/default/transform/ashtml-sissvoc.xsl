@@ -1725,21 +1725,32 @@
 </xsl:template>
 
 <xsl:template match="*[@href]" mode="content">
-	<xsl:param name="nested" select="false()" />
-	<xsl:choose>
-		<xsl:when test="$nested">
-			<xsl:apply-templates select="." mode="table" />
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="link">
-				<xsl:with-param name="content">
-					<xsl:call-template name="lastURIpart">
-						<xsl:with-param name="uri" select="@href" />
-					</xsl:call-template>
-				</xsl:with-param>
-			</xsl:apply-templates>
+  <xsl:param name="nested" select="false()"/>
+  <xsl:choose>
+    <xsl:when test="$nested">
+	  <xsl:apply-templates select="." mode="table"/>
+	</xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+	    <xsl:when test="/result/items/item[@href = current()/@href]">
+	      <xsl:apply-templates select="/result/items/item[@href = current()/@href]" mode="link">
+		    <xsl:with-param name="content">
+		      <xsl:apply-templates select="/result/items/item[@href = current()/@href]" mode="name"/>
+            </xsl:with-param>
+          </xsl:apply-templates>
+	    </xsl:when>
+      	<xsl:otherwise>
+      	  <xsl:apply-templates select="." mode="link">
+      	    <xsl:with-param name="content">
+      		  <xsl:call-template name="lastURIpart">
+			    <xsl:with-param name="uri" select="@href"/>
+			  </xsl:call-template>
+            </xsl:with-param>
+		  </xsl:apply-templates>
 		</xsl:otherwise>
-	</xsl:choose>
+	  </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="*" mode="content">
