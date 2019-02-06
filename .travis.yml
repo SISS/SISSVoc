@@ -9,8 +9,10 @@ branches:
 before_script:
   - wget https://github.com/epimorphics/elda/archive/elda-2.0.0.tar.gz -O elda.tar.gz
   - tar -xvf elda.tar.gz
+  - cd elda-elda-2.0.0
+  - mvn clean package
 
 jobs:
   include:
-    - stage: Build ELDA
-    - script: mvn clean package
+    - stage: Create SISSVoc dist
+    - script: echo "Placeholder to create dist"
