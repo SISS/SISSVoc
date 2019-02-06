@@ -1,0 +1,16 @@
+language: java
+
+# safelist
+branches:
+  only:
+  - master
+  - stable
+
+before_script:
+  - wget https://github.com/epimorphics/elda/archive/elda-2.0.0.tar.gz -O elda.tar.gz
+  - tar -xvf elda.tar.gz
+
+jobs:
+  include:
+    - stage: Build ELDA
+    - script: mvn clean package
