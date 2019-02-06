@@ -11,6 +11,7 @@ before_script:
   - tar -xvf elda.tar.gz
   - cd elda-elda-2.0.0
   - mvn clean package
+  - python --version
 
 jobs:
   include:
