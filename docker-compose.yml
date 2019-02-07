@@ -1,0 +1,18 @@
+version: "3"
+services:
+  tomcat:
+    image: tomcat:8-jre8
+    ports:
+      - "8090:8080"
+    volumes:
+      - "./sissvoc.war:/usr/local/tomcat/webapps/sissvoc.war"
+
+  fuseki:
+    environment:
+      - RDF4J_DATA=/data 
+      - ADMIN_PASSWORD=abc123
+    image: stain/jena-fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - "/opt/repo/fuseki:/fuseki"
