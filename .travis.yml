@@ -6,7 +6,7 @@ branches:
   - master
   - stable
 
-before_script:
+install:
   - wget https://github.com/epimorphics/elda/archive/elda-2.0.0.tar.gz -O elda.tar.gz
   - tar -xvf elda.tar.gz
   - mv elda-elda-2.0.0 elda
@@ -14,10 +14,9 @@ before_script:
   - mvn clean package
   - python --version
   - cd ..
+  - ./build.sh
+  - docker-compose up -d --build  && docker-compose ps && docker-compose logs && docker-compose down -v
 
 jobs:
   include:
-    - stage: Create SISSVoc dist
-    - script: pwd && ./build.sh
-    - stage: deploy
-    - script: docker-compose up -d --build  && docker-compose ps && docker-compose logs && docker-compose down -v
+    - script: wget http://localhost:8080/sissvoc/default/concept
