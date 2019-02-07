@@ -13,10 +13,12 @@ before_script:
   - cd elda
   - mvn clean package
   - python --version
+  - cd ..
 
 jobs:
   include:
     - stage: Create SISSVoc dist
+    - script: pwd
     - script: ./build.sh
     - stage: Create SISSVoc dist
     - script: docker-compose build
