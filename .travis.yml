@@ -14,8 +14,9 @@ install:
   - mvn clean package
   - python --version
   - cd ..
-  - ./build.sh
-  - docker-compose up -d --build  && docker-compose ps && docker-compose logs && docker-compose down -v
+  - ./scripts/build.sh
+  - docker-compose up -d --build  && docker-compose ps 
+  - ./scripts/wait-for-it.sh localhost:8080 --timeout=1
 
 jobs:
   include:
