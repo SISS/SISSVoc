@@ -11,8 +11,9 @@ mkdir sissvoc-pkg
 cd sissvoc-pkg
 cp -rf ../elda/elda-common/target/elda-common/* .
 cp -rf ../elda/elda-assets/target/elda-assets lda-assets
-cp -rf ../resources/ default-landing/ .
+cp -rf ../resources/ ../default-landing/* .
 cp ../build/default_sissvoc.ttl resources/default/config
 sed -i "s/<param-value>\/etc\/elda\/conf.d\/{APP}\/\*.ttl<\/param-value>/<param-value>resources\/default\/config\/\*.ttl<\/param-value>/g" WEB-INF/web.xml
+sed -i "s/<welcome-file>index.html<\/welcome-file>/<welcome-file>default-landing\/index.html<\/welcome-file>/g" WEB-INF/web.xml
 jar -cvf sissvoc.war *
 mv sissvoc.war ..
