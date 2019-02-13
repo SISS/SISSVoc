@@ -1,4 +1,4 @@
-FROM tomcat:8-jre8
+FROM tomcat:8-jre8-alpine
 RUN mkdir /usr/local/tomcat/webapps/sissvoc
 
 WORKDIR "/tmp"
