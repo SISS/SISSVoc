@@ -9,7 +9,13 @@ Contact: Jonathan Yu (jonathan.yu [ at ] csiro.au)
 
 ## About
 
-A minimal config package for setting up sissvoc.
+SISSVoc is a Linked Data API for accessing published vocabularies. SISSVoc provides a RESTful interface via a set of URI patterns that are aligned with SKOS. These provide a standard web interface for any vocabulary which uses SKOS classes and properties.
+
+SISSVoc provides web pages for human-readable views, and machine-readable resources for client applications (in RDF, JSON, and XML). SISSVoc is implemented using a Linked Data API façade over a SPARQL endpoint. This approach streamlines the configuration of content negotiation, styling, query construction and dispatching.
+
+This repo features resources required to build SISSvoc. The [releases section](https://github.com/SISS/SISSVoc/releases) now provides a built .war file distribution which wraps the configuration assets as part of an automated build on release. Download the latest version there.
+
+A docker image is also available for deployment - see https://hub.docker.com/r/csiroenvinf/sissvoc for more details on using docker to deploy SISSvoc.
 
 ### What's new?
 
@@ -18,11 +24,7 @@ A minimal config package for setting up sissvoc.
 * build scripts included
 * cleanup of the (xslt) code in resources/default/transform to make local references work
 * added build script (gen_sissvoc3_config.py) - allows users to generate a sissvoc elda configuration based on properties file and sissvoc-v3-template. See README in the build dir.
-
-## FAQ
-
-Q. How do I get a package of sissvoc? 
-A. Refer to https://github.com/CSIRO-enviro-informatics/sissvoc-package
+* SISSvoc docker image
 
 ## Build
 
@@ -63,9 +65,9 @@ Pre-requisite:
 * docker
 * docker-compose
 
-If you would like to use docker-compose, you can easily deploy SISSvoc.
+If you would like to use docker-compose, you can easily deploy your custom built sissvoc.war...
 ```
-$ docker-compose up -d
+$ docker-compose -f docker-compose.localsissvoc.yml up -d
 ```
 
 You can access your SISSVoc service at: 
