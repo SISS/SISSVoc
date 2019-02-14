@@ -9,7 +9,13 @@ Contact: Jonathan Yu (jonathan.yu [ at ] csiro.au)
 
 ## About
 
-A minimal config package for setting up sissvoc.
+SISSVoc is a Linked Data API for accessing published vocabularies. SISSVoc provides a RESTful interface via a set of URI patterns that are aligned with SKOS. These provide a standard web interface for any vocabulary which uses SKOS classes and properties.
+
+SISSVoc provides web pages for human-readable views, and machine-readable resources for client applications (in RDF, JSON, and XML). SISSVoc is implemented using a Linked Data API façade over a SPARQL endpoint. This approach streamlines the configuration of content negotiation, styling, query construction and dispatching.
+
+This repo features resources required to build SISSvoc. The [releases section](https://github.com/SISS/SISSVoc/releases) now provides a built .war file distribution which wraps the configuration assets as part of an automated build on release. Download the latest version there.
+
+A docker image is also available for deployment - see https://hub.docker.com/r/csiroenvinf/sissvoc for more details on using docker to deploy SISSvoc.
 
 ### What's new?
 
@@ -18,13 +24,32 @@ A minimal config package for setting up sissvoc.
 * build scripts included
 * cleanup of the (xslt) code in resources/default/transform to make local references work
 * added build script (gen_sissvoc3_config.py) - allows users to generate a sissvoc elda configuration based on properties file and sissvoc-v3-template. See README in the build dir.
+* SISSvoc docker image
 
-## FAQ
+## Quickstart
 
-Q. How do I get a package of sissvoc? 
-A. Refer to https://github.com/CSIRO-enviro-informatics/sissvoc-package
 
-## Build
+### Using docker
+Pre-requisite: Docker CE 1.7+
+
+```
+$ docker run -p "8080:8080" csiroenvinf/sissvoc:latest
+```
+
+You can access your SISSVoc service at: 
+* http://localhost:8080/sissvoc/index.html (landing page)
+* http://localhost:8080/sissvoc/default/concept (concept API page)
+
+### Tomcat
+
+Drop the latest sissvoc.war file in the [releases section](https://github.com/SISS/SISSVoc/releases) into the /webapps dir of your tomcat service. 
+
+You can access your SISSVoc service at: 
+* /sissvoc/index.html (landing page)
+* /sissvoc/default/concept (concept API page)
+
+
+## Custom Build
 
 Pre-requisites:
 * Python 2
@@ -63,11 +88,33 @@ Pre-requisite:
 * docker
 * docker-compose
 
-If you would like to use docker-compose, you can easily deploy SISSvoc.
+If you would like to use docker-compose, you can easily deploy your custom built sissvoc.war...
 ```
-$ docker-compose up -d
+$ docker-compose -f docker-compose.localsissvoc.yml up -d
 ```
 
 You can access your SISSVoc service at: 
 * http://localhost:8080/sissvoc/index.html (landing page)
 * http://localhost:8080/sissvoc/default/concept (concept API page)
+
+## Creating a custom config
+
+If you want to create your own custom SISSvoc config file, the main SISSVoc repo has a build directory with some scripts to help create custom SISSvoc config files. See https://github.com/SISS/SISSVoc/tree/master/build
+
+Create a my-config.properties file based on `config.properties.
+
+Run the following:
+```
+$ python2 gen_sissvoc3_config.py --config=my-config.properties my-sissvoc-config.ttl
+```
+
+### Using docker 
+You can then map in my-sissvoc-config.ttl to the sissvoc container and it will automagically map in the endpoints you specified.
+
+```
+$ docker run -v  "my-sissvoc-config.ttl:/usr/local/tomcat/webapps/sissvoc/resources/default/config/default_sissvoc.ttl" csiroenvinf/sissvoc:latest
+```
+
+### Tomcat
+
+You can copy my-sissvoc-config.ttl and overwrite the /webapps/sissvoc/resources/default/config/default_sissvoc.ttl file in your Tomcat configuration. Restart tomcat and you should see the result.
