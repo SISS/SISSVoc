@@ -37,15 +37,9 @@
 
 
 ##############################################################
-## TODO: deployer to make changes here
-## change "test" to give this API a name to distinguish it from any other API hosted by the same LDA service
-
 svoc:%SVC_ID% a api:API
+	; api:base "%DEPLOYPATH%"
 
-## it would be great if this could be made to help somehow, but ELDA does not currently appear to implement it
-#	; api:base "http://def.seegrid.csiro.au/sissvoc%SVC_PREFIX%"
-
-## end of TODO:
 ##############################################################
 
 # generic SISSvoc stuff
