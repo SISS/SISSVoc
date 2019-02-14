@@ -26,7 +26,30 @@ A docker image is also available for deployment - see https://hub.docker.com/r/c
 * added build script (gen_sissvoc3_config.py) - allows users to generate a sissvoc elda configuration based on properties file and sissvoc-v3-template. See README in the build dir.
 * SISSvoc docker image
 
-## Build
+## Quickstart
+
+
+### Using docker
+Pre-requisite: Docker CE 1.7+
+
+```
+$ docker run -p "8080:8080" csiroenvinf/sissvoc:latest
+```
+
+You can access your SISSVoc service at: 
+* http://localhost:8080/sissvoc/index.html (landing page)
+* http://localhost:8080/sissvoc/default/concept (concept API page)
+
+### Tomcat
+
+Drop the latest sissvoc.war file in the [releases section](https://github.com/SISS/SISSVoc/releases) into the /webapps dir of your tomcat service. 
+
+You can access your SISSVoc service at: 
+* /sissvoc/index.html (landing page)
+* /sissvoc/default/concept (concept API page)
+
+
+## Custom Build
 
 Pre-requisites:
 * Python 2
@@ -73,3 +96,25 @@ $ docker-compose -f docker-compose.localsissvoc.yml up -d
 You can access your SISSVoc service at: 
 * http://localhost:8080/sissvoc/index.html (landing page)
 * http://localhost:8080/sissvoc/default/concept (concept API page)
+
+## Creating a custom config
+
+If you want to create your own custom SISSvoc config file, the main SISSVoc repo has a build directory with some scripts to help create custom SISSvoc config files. See https://github.com/SISS/SISSVoc/tree/master/build
+
+Create a my-config.properties file based on `config.properties.
+
+Run the following:
+```
+$ python2 gen_sissvoc3_config.py --config=my-config.properties my-sissvoc-config.ttl
+```
+
+### Using docker 
+You can then map in my-sissvoc-config.ttl to the sissvoc container and it will automagically map in the endpoints you specified.
+
+```
+$ docker run -v  "my-sissvoc-config.ttl:/usr/local/tomcat/webapps/sissvoc/resources/default/config/default_sissvoc.ttl" csiroenvinf/sissvoc:latest
+```
+
+### Tomcat
+
+You can copy my-sissvoc-config.ttl and overwrite the /webapps/sissvoc/resources/default/config/default_sissvoc.ttl file in your Tomcat configuration. Restart tomcat and you should see the result.
