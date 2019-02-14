@@ -264,8 +264,12 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" { ?item skos:prefLabel ?l }
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+					      { ?item skos:prefLabel ?l }
 							UNION
 							{ ?item skos:altLabel ?l }
 							UNION
@@ -291,13 +295,18 @@ svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" { ?item skos:prefLabel ?l }
-							UNION
-							{ ?item skos:altLabel ?l }
-							UNION
-							{ ?item rdfs:label ?l }
-							FILTER regex( str(?l) , ?text , 'i' ) """
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+                     { ?item skos:prefLabel ?l }
+                     UNION
+                     { ?item skos:altLabel ?l }
+                     UNION
+                     { ?item rdfs:label ?l }
+                     FILTER regex( str(?l) , ?text , 'i' )
+					   } """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer
@@ -406,8 +415,12 @@ svoc:broaderLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" ?i0 skos:broader ?item .
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+					      ?i0 skos:broader ?item .
 							{ ?i0 rdfs:label ?l }
 							UNION
 							{ ?i0 skos:prefLabel ?l }
@@ -434,8 +447,12 @@ svoc:narrowerLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" ?i0 skos:narrower ?item .
+				api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+					   ?i0 skos:narrower ?item .
 							{ ?i0 rdfs:label ?l }
 							UNION
 							{ ?i0 skos:prefLabel ?l }
@@ -462,8 +479,12 @@ svoc:broaderTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" ?i0 skos:broaderTransitive ?item .
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+					   ?i0 skos:broaderTransitive ?item .
 							{ ?i0 rdfs:label ?l }
 							UNION
 							{ ?i0 skos:prefLabel ?l }
@@ -490,8 +511,12 @@ svoc:narrowerTransitiveLabelEndpoint a api:ListEndpoint
 ## end of TODO:
 ##############################################################
 		; api:selector [
-				api:where
-					""" ?i0 skos:narrowerTransitive ?item .
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+					   ?i0 skos:narrowerTransitive ?item .
 							{ ?i0 rdfs:label ?l }
 							UNION
 							{ ?i0 skos:prefLabel ?l }
