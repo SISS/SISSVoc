@@ -3,7 +3,7 @@ branches:
   only:
   - master
   - stable
-  - /^\d+\.\d+\..*/
+  - /^\d+\.\d+.*/
 install:
 - wget https://github.com/epimorphics/elda/archive/elda-2.0.0.tar.gz -O elda.tar.gz
 - tar -xvf elda.tar.gz
