@@ -12,7 +12,8 @@ install:
 - python --version
 - cd ..
 - "./scripts/build.sh"
-- sha256sum sissvoc.war > sissvoc.war.sha256.txt
+- cp sissvoc.war sissvoc-${TRAVIS_TAG}.war 
+- sha256sum sissvoc-${TRAVIS_TAG}.war > sissvoc-${TRAVIS_TAG}.war.sha256.txt
 - docker-compose up -d --build  && docker-compose ps
 - "./scripts/wait-for-it.sh localhost:8080 --timeout=1"
 jobs:
@@ -22,10 +23,12 @@ deploy:
   provider: releases
   skip_cleanup: true
   draft: true
+  name: SISSVoc version $TRAVIS_TAG
   api_key:
     secure: A0nucIzLwoXzUrT5VZ5I88bWgj76NuSccqlrxzlwHONsG7WBj5RNv5Scqgnf2kgBI005vfO0jGrVnzuQS+PUB4Wn/BQPIjRxb+55CBezGQzL+t2Ms5UM5PMfIUn8x+2Ijm+8WjZzC3DoIa8RpqcTBxtujX9ta1WJm6R5UeQo1rA=
   file: 
-    - sissvoc.war
-    - sissvoc.war.sha256.txt
+    - sissvoc*.war
+    - sissvoc*.war.sha256.txt
   on:
     repo: SISS/SISSVoc
+    tags: true
