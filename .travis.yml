@@ -9,7 +9,7 @@ install:
 - tar -xvf elda.tar.gz
 - mv elda-elda-2.0.0 elda
 - cd elda
-- mvn clean package
+- mvn -q clean package
 - python --version
 - cd ..
 - "./scripts/build.sh"
