@@ -26,9 +26,18 @@ deploy:
   name: SISSVoc version $TRAVIS_TAG
   api_key:
     secure: A0nucIzLwoXzUrT5VZ5I88bWgj76NuSccqlrxzlwHONsG7WBj5RNv5Scqgnf2kgBI005vfO0jGrVnzuQS+PUB4Wn/BQPIjRxb+55CBezGQzL+t2Ms5UM5PMfIUn8x+2Ijm+8WjZzC3DoIa8RpqcTBxtujX9ta1WJm6R5UeQo1rA=
+  file_glob: true
+  overwrite: true
   file: 
     - sissvoc*.war
     - sissvoc*.war.sha256.txt
   on:
     repo: SISS/SISSVoc
     tags: true
+before_script:
+    # Print build info that binary is compiled with.
+    - echo $TRAVIS_COMMIT
+    - echo $TRAVIS_TAG
+    - echo $TRAVIS_BRANCH
+    - echo $TRAVIS_BUILD_NUMBER
+    - echo $TRAVIS_REPO_SLUG
