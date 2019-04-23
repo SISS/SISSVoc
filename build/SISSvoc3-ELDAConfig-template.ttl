@@ -190,6 +190,64 @@ svoc:URIEndpoint a api:ItemEndpoint
 #		; api:viewer  svoc:labelledDescribeConceptViewer
 		.
 
+
+## 0.1. List resource by label
+svoc:resourceLabelEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property has exact match to text"
+		; api:uriTemplate  "%SVC_PREFIX%/resource?anylabel={text}"
+		; api:exampleRequestPath  "%SVC_PREFIX%/resource?anylabel=Cambrian"
+		; api:selector [
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+		  	{ 
+				?item skos:prefLabel ?l 
+			}
+			UNION
+			{ 
+				?item skos:altLabel ?l 
+			}
+			UNION
+			{ 
+				?item rdfs:label ?l 
+			}
+			FILTER ( str(?l)=?text ) """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
+## 0.2. List of resources where a label contains the text, any language, case-insensitive
+svoc:resourceLabelContainsEndpoint a api:ListEndpoint
+		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
+		; api:uriTemplate  "%SVC_PREFIX%/resource?labelcontains={text}"
+		; api:exampleRequestPath  "%SVC_PREFIX%/resource?labelcontains=cambrian"
+		; api:selector [
+            api:select
+               """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+                  PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                  SELECT DISTINCT ?item
+                  WHERE {
+			{ 
+		     		?item skos:prefLabel ?l 
+			}
+                     	UNION
+                     	{ 
+				?item skos:altLabel ?l 
+			}
+                     	UNION
+                     	{ 
+				?item rdfs:label ?l 
+			}
+                     	FILTER regex( str(?l) , ?text , 'i' )
+					   } """
+		]
+		; api:defaultViewer svoc:basicConceptViewer
+		; api:viewer  api:basicViewer,svoc:basicConceptViewer
+		.
+
 ## 1. List of concept schemes - basic-view
 svoc:conceptSchemeEndpoint a api:ListEndpoint
 		; rdfs:comment "List all concept-schemes"
@@ -252,29 +310,29 @@ svoc:conceptListEndpoint a api:ListEndpoint
 ## 4. List of concepts where a label matches the text
 svoc:conceptLabelEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property has exact match to text"
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "test" to vocab name
-## change value of anyLabel= to a label for a concept in this vocabulary
-
 		; api:uriTemplate  "%SVC_PREFIX%/concept?anylabel={text}"
 		; api:exampleRequestPath  "%SVC_PREFIX%/concept?anylabel=Cambrian"
-
-## end of TODO:
-##############################################################
 		; api:selector [
             api:select
                """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
                   PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                   SELECT DISTINCT ?item
                   WHERE {
-					      { ?item skos:prefLabel ?l }
-							UNION
-							{ ?item skos:altLabel ?l }
-							UNION
-							{ ?item rdfs:label ?l }
-							FILTER ( str(?l)=?text ) """
+		  	{ 
+		      		?item a skos:Concept . 
+				?item skos:prefLabel ?l 
+			}
+			UNION
+			{ 
+				?item a skos:Concept . 
+				?item skos:altLabel ?l 
+			}
+			UNION
+			{ 
+				?item a skos:Concept . 
+				?item rdfs:label ?l 
+			}
+			FILTER ( str(?l)=?text ) """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
 		; api:viewer  api:basicViewer,svoc:basicConceptViewer
@@ -283,29 +341,29 @@ svoc:conceptLabelEndpoint a api:ListEndpoint
 ## 5. List of concepts where a label contains the text, any language, case-insensitive
 svoc:conceptLabelContainsEndpoint a api:ListEndpoint
 		; rdfs:comment "List concepts where a skos label property contains this text, case-insensitive"
-##############################################################
-##
-## TODO: deployer to make changes here
-## change "test" to vocab name
-## change value of labelcontains= to a word in a label for a concept in this vocabulary
-
 		; api:uriTemplate  "%SVC_PREFIX%/concept?labelcontains={text}"
 		; api:exampleRequestPath  "%SVC_PREFIX%/concept?labelcontains=cambrian"
-
-## end of TODO:
-##############################################################
 		; api:selector [
             api:select
                """PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
                   PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                   SELECT DISTINCT ?item
                   WHERE {
-                     { ?item skos:prefLabel ?l }
-                     UNION
-                     { ?item skos:altLabel ?l }
-                     UNION
-                     { ?item rdfs:label ?l }
-                     FILTER regex( str(?l) , ?text , 'i' )
+			{ 
+				?item a skos:Concept . 
+		     		?item skos:prefLabel ?l 
+			}
+                     	UNION
+                     	{ 
+				?item a skos:Concept . 
+				?item skos:altLabel ?l 
+			}
+                     	UNION
+                     	{ 
+				?item a skos:Concept . 
+				?item rdfs:label ?l 
+			}
+                     	FILTER regex( str(?l) , ?text , 'i' )
 					   } """
 		]
 		; api:defaultViewer svoc:basicConceptViewer
