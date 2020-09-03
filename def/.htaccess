@@ -1,0 +1,10 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_ACCEPT} ^.*text/turtle.*
+RewriteRule   ^(pizza)$    /def/$1.ttl  [R]
+
+RewriteCond %{HTTP_ACCEPT} ^.*application/rdf\+xml.*
+RewriteRule   ^(.*)$    /def/$1.rdf [R]
+
+
+RewriteRule   ^(pizza)$    /def/$1.ttl [R]

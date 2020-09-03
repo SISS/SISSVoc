@@ -1,0 +1,193 @@
+@media handheld {
+
+	.selector-01 {
+		padding: 0;
+		margin: 0;
+		}
+	.selector-02 {
+		padding: 0;
+		margin: 0;
+		}
+	.selector-03 {
+		padding: 0;
+		margin: 0;
+		}
+	
+	.top-nav {
+	   line-height: 20px;
+	   background-color: black;
+	   height: 30px;
+	   margin-bottom: 10px;
+	   text-align:right;
+	   
+	}
+
+	.top-nav div{
+	   display:inline;
+	}
+
+div.sissvocSearchModal {
+   width: 100px;
+}
+
+
+.modal-body input {
+   width: 200px;
+}
+
+
+.modal-body select {
+   width: 200px;
+}
+	
+.top-nav ul li a{
+color: orange;
+font-family:  'Trebuchet MS', arial,sans-serif;
+font-weight: bold;
+  line-height: 25px; /* height of icon */
+  font-size: 15px;
+
+}
+
+.top-nav ul li a:hover{
+color: white;
+text-decoration: none;
+}
+.top-nav ul li {
+  list-style-type:none;
+  margin-right: 10px;
+  display: inline;
+}
+
+
+.top-nav ul li.last:after {
+   margin-right: 0px; 
+   content: "";
+}
+	
+    * {
+		float: none;
+	}
+	
+	
+#broader { background-image: url(arrow.png); }
+#narrower { background-image: url(arrow.png); }
+#type-icon { background-image: url(arrow.png); }
+#narrowerTransitive { background-image: url(arrow.png); }
+#broaderTransitive { background-image: url(arrow.png); }
+#type { background-image: url(arrow.png); }
+#inScheme { background-image: url(arrow.png); }
+#subClassOf { background-image: url(arrow.png); }
+
+.res { 
+	   background-color: #FFFFFF  ;
+	}
+	
+	li, body, html, h3 {
+       font-size: small;
+       font-family: arial,sans-serif;
+	}
+	
+	.renderProps li {list-style-type:none;}
+	.skoslabel li {
+	   list-style-type:none; 
+	   display: inline; 
+	   margin: 0px; 
+	   font-size: medium;
+	   line-height: 20px;
+	}
+	ul.skoslabel {
+	 margin: 0px 0px 0px 0px;
+	}
+	.skoslabel li:after {
+      content: " / ";
+    }
+    .skoslabel li.last:after {
+    content: "";
+    }
+	h3.title { 
+	   margin: 0px; 
+	   font-size: medium;
+	   line-height: 20px;
+	}
+	
+	.renderProps {
+	   margin-left: 5px;
+	}
+	
+	.dispUri {
+			   padding-top: 5px;
+		   padding-bottom: 5px;
+		     	   margin-left: 5px;
+
+	}
+	
+	ul.inline-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  	   margin-left: 5px;
+
+  }
+ul.inline-menu li {
+  margin-right: 10px;
+  display: inline;
+  font-weight: bold;
+  line-height: 15px; /* height of icon */
+  background-repeat: no-repeat;
+  background-position: right center;
+  }
+ul.inline-menu li a {
+  padding-left: 20px; /* width of icon + whitespace */
+  }
+  
+  
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.input-append button.add-on {
+    margin-top: 10px;
+	height: 30px;
+	width: 30px;
+	
+}
+.input-append button.add-on {
+    margin-top: 10px;
+	height: 30px;
+	width: 30px;
+	
+}
+.input-append .ui-btn {
+ margin-top: 10px;
+	height: 30px;
+	width: 30px;
+	
+}
+
+#searchloading  img{
+	margin-top: 12px;
+	margin-left: 10px;
+	display: none;
+}
+
+#searchterm {
+	width: 120px;
+	margin-top: 10px;
+
+}
+button#searchBtn {
+   display: none;
+}
+
+#searchBtnText {
+   display: inline;
+}
+#logo {
+	width: 100%;
+
+}
+
+}

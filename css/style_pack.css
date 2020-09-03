@@ -1,0 +1,102 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+body, html{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+.node {
+	cursor: pointer;
+}
+
+.node:hover {
+	stroke: #000;
+	stroke-width: 1.5px;
+}
+
+.node--leaf {
+	fill: white;
+}
+
+.label {
+	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-anchor: middle;
+	text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root{
+	pointer-events: none;
+}
+
+#filter{
+	display: block;
+	outline-style: none;
+	height: 45px;
+	width: 100%;
+	font-size: 15px;
+	border-radius: 0px;
+	border: 0;
+	text-align: center;
+	border-bottom: 0px solid #73dfae;
+	background-color: #fcfcfc;
+	padding: 15px 10px;
+	box-sizing: border-box;
+	box-shadow: inset 0px 0px 10px -5px rgba(0, 0, 0, 0.42);
+}
+
+#filter:focus{
+	box-shadow: inset 0px 0px 10px -2px  rgba(116, 213, 215, 1);
+}
+
+#details{
+	width: 500px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: #fff;
+	border-left: 1px solid rgba(46, 165, 138, 0.28);
+	z-index: 1;
+	font-family: 'Open Sans', sans-serif;
+	overflow: auto;
+	transition: 0.3s ease-in-out;
+	padding-bottom: 10px;
+}
+
+#details h2{
+	font-weight: 300;
+	color: #aab9b9;
+	font-size: 2em;
+	text-align: center;
+	padding-bottom: 15px;
+	width: 90%;
+	margin: 20px auto;
+	border-bottom: 1px solid #ececec;
+}
+
+#details #content{
+	padding: 10px 25px;
+}
+
+#details strong{
+	color: #3cbd98;
+	font-weight: 400;
+	font-size: 1.2em;
+}
+
+#arrow{
+	background: url('../img/arrow.png');
+	background-size: 12px 10px;
+	transition: 0.3s;
+	opacity: 0.2;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	border: 0;
+	height: 10px;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	left:0px;}
+

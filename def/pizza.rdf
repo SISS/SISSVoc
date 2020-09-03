@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns="http://sissvoc.info/def/pizza/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+	<owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+	<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Created with TopBraid Composer</owl:versionInfo>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/AussiePizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aussie pizza</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/Pizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aussie pizza</skos:prefLabel>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/Ham"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/Egg"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/TomatoSauce"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Basil">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basil</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/Herb"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basil</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/BlueCheese">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blue cheese</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blue cheese</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/CheddarCheese">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheddar cheese</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheddar cheese</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Cheese">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheese</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/CheddarCheese"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/BlueCheese"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/MozzarellaCheese"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheese</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Egg">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Egg</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Egg</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/GarlicSauce">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garlic sauce</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garlic sauce</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Ham">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ham</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ham</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Herb">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Herb</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Herb</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/IngredientConcept">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ingredient concept</rdfs:label>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Herb"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Sauce"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/SeafoodIngredient"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Vegetable"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/MeatIngredient"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Egg"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ingredient concept</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/MargheritaPizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Margherita pizza</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/Pizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Margherita pizza</skos:prefLabel>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/Basil"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/MozzarellaCheese"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/TomatoSauce"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/MarinaraPizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marinara pizza</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/Pizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marinara pizza</skos:prefLabel>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/SeafoodIngredient"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/Herb"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/GarlicSauce"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/MeatIngredient">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meat ingredient</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Ham"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meat ingredient</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/MozzarellaCheese">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mozzarella cheese</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mozzarella cheese</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Mushroom">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mushroom</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mushroom</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/MushroomPizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mushroom pizza</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/Pizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mushroom pizza</skos:prefLabel>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/TomatoSauce"/>
+	<skos:related rdf:resource="http://sissvoc.info/def/pizza/Mushroom"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/NonVegetarianPizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non vegetarian pizza</rdfs:label>
+	<skos:member rdf:resource="http://sissvoc.info/def/pizza/MarinaraPizza"/>
+	<skos:member rdf:resource="http://sissvoc.info/def/pizza/AussiePizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non vegetarian pizza</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Pizza">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pizza</rdfs:label>
+	<skos:narrowMatch rdf:resource="http://sissvoc.info/def/pizza/MushroomPizza"/>
+	<skos:narrowMatch rdf:resource="http://sissvoc.info/def/pizza/AussiePizza"/>
+	<skos:narrowMatch rdf:resource="http://sissvoc.info/def/pizza/MargheritaPizza"/>
+	<skos:narrowMatch rdf:resource="http://sissvoc.info/def/pizza/MarinaraPizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pizza</skos:prefLabel>
+	<skos:topConceptOf rdf:resource="http://www.w3.org/2004/02/skos/core#PizzaConceptScheme"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Sauce">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sauce</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/GarlicSauce"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/TomatoSauce"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sauce</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/SeafoodIngredient">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seafood ingredient</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seafood ingredient</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/TomatoSauce">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomato sauce</rdfs:label>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomato sauce</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/Vegetable">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vegetable</rdfs:label>
+	<skos:broader rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:narrower rdf:resource="http://sissvoc.info/def/pizza/Mushroom"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vegetable</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/VegetarianPizzaCollection">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+	<skos:member rdf:resource="http://sissvoc.info/def/pizza/MushroomPizza"/>
+	<skos:member rdf:resource="http://sissvoc.info/def/pizza/MargheritaPizza"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/IngredientScheme">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ingredient scheme</rdfs:label>
+	<skos:hasTopConcept rdf:resource="http://sissvoc.info/def/pizza/IngredientConcept"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ingredient scheme</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://sissvoc.info/def/pizza/PizzaConceptScheme">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pizza concept scheme</rdfs:label>
+	<skos:hasTopConcept rdf:resource="http://sissvoc.info/def/pizza/Pizza"/>
+	<skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pizza concept scheme</skos:prefLabel>
+</rdf:Description>
+
+</rdf:RDF>

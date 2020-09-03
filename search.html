@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>SISSVoc Search Client</title>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- sharing widgets -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-520da2310bedc7e1"></script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" >
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css" media="only screen and (max-width:640px)"/>
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="sissvoc-search-style.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="sissvoc-search-style-640.css" media="only screen and (max-width:640px)"/>
+	
+        <link rel="search" type="application/opensearchdescription+xml" title="SISSVoc Search" href= "http://sissvoc.ereefs.info/opensearch/sissvoc-search.xml"/>
+
+	<link rel="stylesheet" type="text/css" href="sissvoc-search-style-handheld.css" media="handheld"/>
+	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="handheld" >
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+		<div class="top-nav">
+
+			<div style="display:inline">
+				<ul>
+
+				   <li><a target="about" href="https://www.seegrid.csiro.au/wiki/Siss/VocabularyService">About SISSVoc</a></li>
+   				   <li><a href="#" onclick="showAdvancedDlg()">Advanced</a></li>
+<!--
+				   <li><a href="#" onclick="initOrHideClippy('Clippy')"><img title="Clippy" src="img/clippy.jpg" width="20" height="20"/></a></li>
+				   <li><a href="#" onclick="initOrHideClippy('Links')"><img title="Links Cat" src="img/cat.png" width="20" height="20"/></a></li>
+				   <li><a href="#" onclick="initOrHideClippy('Rocky')"><img title="Rocky Dog" src="img/rocky.png" width="20" height="20"/></a></li>
+				   <li><a href="#" onclick="initOrHideClippy('Merlin')"><img title="Merlin" src="img/merlin.png" width="20" height="20"/></a></li>
+-->
+					<li><!-- AddThis Button BEGIN -->
+						<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=xa-520da4a748a761b6"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-520da4a748a761b6"></script>
+						<!-- AddThis Button END -->
+					</li>
+				</ul> 
+			</div>
+		</div>
+		<div class="header">
+			 <!--<span id="title" style="">SISSVoc Search</span>-->
+			 <a href="#" onclick="showAboutSissvocSearch()"><img id="logo" src="sissvoc-search.png" ></a>
+			 
+			 <div >
+				 <div class='input-append'>    
+				   <input id="searchterm"  type="text" data-clear-btn="true"  placeholder="Search concepts by label..." />
+					 <button id="searchBtn" class='btn add-on'>
+					   <i class="icon-search"></i>
+					 </button>
+					 <span id="searchloading" ><img src="img/loading.gif" alt="loading"/></span>
+				  </div>
+				  <br/>
+				<div class="service-url">
+				   <div >
+					  Service URL: <span id="service-url-value">http://sissvoc.ereefs.info/sissvoc/ereefs</span>
+				   </div>
+				   <div style="padding-left:10px"><a href="#" onclick="changeServiceUrl()">[change]</a><div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div style="clear: both;"></div>
+		
+		<hr/>
+			
+		<div id="results"></div>
+		
+		<div id="pagination"></div>
+	
+		<div id="footer">
+		<p> &copy; 2013 CSIRO. SISSVoc Search v.0.4.2</p>
+		</div>
+		
+		<script src="sissvoc-search.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45772212-1', 'ereefs.info');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>
