@@ -63,14 +63,19 @@ var agentSpeak = function (text, hold) {
 var i = 0;
 
 var knownSissvocEndpoints = [
-					"http://sissvoc.ereefs.info/sissvoc/ereefs",
-					"http://auscope-services-test.arrc.csiro.au/elda-demo/wq",
-					"http://def.seegrid.csiro.au/sissvoc/isc2012" ,
-					"http://auscope-services-test.arrc.csiro.au/elda-demo/nerc",
-					"http://neiivocab.bom.gov.au/api/aclep",
-					"http://sissvoc.ereefs.info/sissvoc/ereefs"
+					"https://vocabs.ardc.edu.au/repository/api/lda/anzsrc-for",
+					"https://vocabs.ardc.edu.au/repository/api/lda/neii/water-regulations-2008-water-information-terms/version-1",
+					"https://vocabs.ardc.edu.au/repository/api/lda/aodn/aodn-sampling-parameter-vocabulary/version-1-0",
+					"https://vocabs.ardc.edu.au/repository/api/lda/anzsrc-seo" ,
+					"https://vocabs.ardc.edu.au/repository/api/lda/neii/australian-hydrological-geospatial-fabric-geofabri/version-1",
+					"https://vocabs.ardc.edu.au/repository/api/lda/abares/australian-land-use-and-management-classification/version-8",
+					"https://vocabs.ardc.edu.au/repository/api/lda/ga/feature-of-interest-type/v0-1",
+					"https://vocabs.ardc.edu.au/repository/api/lda/bom/national-groundwater-information-system/version-1",
+					"https://vocabs.ardc.edu.au/repository/api/lda/ga-cgi/observation-method-geologic-feature/v0-1",
+					"https://vocabs.ardc.edu.au/repository/api/lda/ga/place-type/v1-0",
+					"https://vocabs.ardc.edu.au/repository/api/lda/ga/sampling-method/v1-0"
 								];
-var currentEndpoint = "http://sissvoc.ereefs.info/sissvoc/ereefs";
+var currentEndpoint = "https://vocabs.ardc.edu.au/repository/api/lda/anzsrc-for";
 
 var delay = (function () {
 	var timer = 0;
